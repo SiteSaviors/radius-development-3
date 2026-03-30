@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import heroBg from "@/assets/Radius-Back.jpeg";
+import jointVenturesBg from "@/assets/joint-ventures.jpg";
 import landEntitlementBg from "@/assets/land-entitlement.jpg";
 import luxRetailBg from "@/assets/lux-retail.jpg";
 
@@ -117,39 +118,63 @@ const Index = () => {
         </div>
         <div className="bento">
           <div className="bc rv">
-            <div className="bcbg land-photo" style={{backgroundImage:`url(${landEntitlementBg})`}}></div>
-            <div className="bctop">
-              <svg width="26" height="26" viewBox="0 0 26 26" fill="none"><rect x=".5" y=".5" width="25" height="25" stroke="rgba(255,255,255,.22)" strokeWidth=".75"/><path d="M4 19L13 7L22 19" stroke="rgba(255,255,255,.5)" strokeWidth=".75" fill="none"/><line x1="4" y1="19" x2="22" y2="19" stroke="rgba(255,255,255,.5)" strokeWidth=".75"/></svg>
+            <div className="bcmedia">
+              <div className="bcbg land-photo" style={{backgroundImage:`url(${landEntitlementBg})`}}></div>
+              <div className="bctop">
+                <svg width="26" height="26" viewBox="0 0 26 26" fill="none"><rect x=".5" y=".5" width="25" height="25" stroke="rgba(255,255,255,.22)" strokeWidth=".75"/><path d="M4 19L13 7L22 19" stroke="rgba(255,255,255,.5)" strokeWidth=".75" fill="none"/><line x1="4" y1="19" x2="22" y2="19" stroke="rgba(255,255,255,.5)" strokeWidth=".75"/></svg>
+              </div>
             </div>
             <div className="bcc">
               <div className="bcn">01 / Land</div>
               <div className="bct">Land Entitlement</div>
-              <div className="bcd">Site identification, due diligence, and structured acquisition of raw and entitled land across high-growth Sun Belt metros.</div>
-              <div className="bcs"><span className="bcsv">8,400+</span><span className="bcsl">Acres Controlled</span></div>
+              <div className="bcd">We specialize in sourcing and unlocking off-market land opportunities in high-growth corridors.</div>
+              <div className="bal">Our Approach</div>
+              <ul className="bals">
+                <li>Off-market sourcing</li>
+                <li>Entitlement path mapping</li>
+                <li>Capital and risk structuring</li>
+              </ul>
+              <a href="#" className="bcta">Let's Talk Land</a>
             </div>
           </div>
           <div className="bc rv d1">
-            <div className="bcbg dev"></div>
-            <div className="bctop">
-              <svg width="26" height="26" viewBox="0 0 26 26" fill="none"><rect x=".5" y=".5" width="25" height="25" stroke="rgba(255,255,255,.22)" strokeWidth=".75"/><rect x="3" y="10" width="7" height="13" stroke="rgba(255,255,255,.5)" strokeWidth=".75" fill="none"/><rect x="14" y="6" width="9" height="17" stroke="rgba(255,255,255,.5)" strokeWidth=".75" fill="none"/><line x1="10" y1="23" x2="14" y2="23" stroke="rgba(255,255,255,.5)" strokeWidth=".75"/></svg>
+            <div className="bcmedia">
+              <div className="bcbg development-photo" style={{backgroundImage:`url(${jointVenturesBg})`}}></div>
+              <div className="bctop">
+                <svg width="26" height="26" viewBox="0 0 26 26" fill="none"><rect x=".5" y=".5" width="25" height="25" stroke="rgba(255,255,255,.22)" strokeWidth=".75"/><rect x="3" y="10" width="7" height="13" stroke="rgba(255,255,255,.5)" strokeWidth=".75" fill="none"/><rect x="14" y="6" width="9" height="17" stroke="rgba(255,255,255,.5)" strokeWidth=".75" fill="none"/><line x1="10" y1="23" x2="14" y2="23" stroke="rgba(255,255,255,.5)" strokeWidth=".75"/></svg>
+              </div>
             </div>
             <div className="bcc">
               <div className="bcn">02 / Development</div>
               <div className="bct">Joint Ventures</div>
               <div className="bcd">Master-planned community execution and residential lot delivery — structured for institutional builder partners.</div>
-              <div className="bcs"><span className="bcsv">$287M</span><span className="bcsl">Avg. Deal Size</span></div>
+              <div className="bal">Our Approach</div>
+              <ul className="bals">
+                <li>Builder-aligned JV structures</li>
+                <li>Phased execution oversight</li>
+                <li>Delivery and exit planning</li>
+              </ul>
+              <a href="#" className="bcta">Let's Talk Development</a>
             </div>
           </div>
           <div className="bc rv d2">
-            <div className="bcbg retail-photo" style={{backgroundImage:`url(${luxRetailBg})`}}></div>
-            <div className="bctop">
-              <svg width="26" height="26" viewBox="0 0 26 26" fill="none"><rect x=".5" y=".5" width="25" height="25" stroke="rgba(255,255,255,.22)" strokeWidth=".75"/><rect x="2" y="13" width="22" height="10" stroke="rgba(255,255,255,.5)" strokeWidth=".75" fill="none"/><line x1="2" y1="13" x2="2" y2="9" stroke="rgba(255,255,255,.5)" strokeWidth=".75"/><line x1="24" y1="13" x2="24" y2="9" stroke="rgba(255,255,255,.5)" strokeWidth=".75"/><path d="M2 9Q13 3 24 9" stroke="rgba(255,255,255,.5)" strokeWidth=".75" fill="none"/><line x1="10" y1="13" x2="10" y2="23" stroke="rgba(255,255,255,.3)" strokeWidth=".5"/><line x1="16" y1="13" x2="16" y2="23" stroke="rgba(255,255,255,.3)" strokeWidth=".5"/></svg>
+            <div className="bcmedia">
+              <div className="bcbg retail-photo" style={{backgroundImage:`url(${luxRetailBg})`}}></div>
+              <div className="bctop">
+                <svg width="26" height="26" viewBox="0 0 26 26" fill="none"><rect x=".5" y=".5" width="25" height="25" stroke="rgba(255,255,255,.22)" strokeWidth=".75"/><rect x="2" y="13" width="22" height="10" stroke="rgba(255,255,255,.5)" strokeWidth=".75" fill="none"/><line x1="2" y1="13" x2="2" y2="9" stroke="rgba(255,255,255,.5)" strokeWidth=".75"/><line x1="24" y1="13" x2="24" y2="9" stroke="rgba(255,255,255,.5)" strokeWidth=".75"/><path d="M2 9Q13 3 24 9" stroke="rgba(255,255,255,.5)" strokeWidth=".75" fill="none"/><line x1="10" y1="13" x2="10" y2="23" stroke="rgba(255,255,255,.3)" strokeWidth=".5"/><line x1="16" y1="13" x2="16" y2="23" stroke="rgba(255,255,255,.3)" strokeWidth=".5"/></svg>
+              </div>
             </div>
             <div className="bcc">
               <div className="bcn">03 / Retail</div>
               <div className="bct">Retail Development</div>
               <div className="bcd">Outparcel strategy, retail site delivery, and commercial entitlement — anchoring residential communities at scale.</div>
-              <div className="bcs"><span className="bcsv">47</span><span className="bcsl">Active Retail Sites</span></div>
+              <div className="bal">Our Approach</div>
+              <ul className="bals">
+                <li>Corridor-driven retail planning</li>
+                <li>Outparcel merchandising strategy</li>
+                <li>Tenant and access coordination</li>
+              </ul>
+              <a href="#" className="bcta">Let's Talk Retail</a>
             </div>
           </div>
         </div>
