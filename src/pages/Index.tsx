@@ -1,10 +1,12 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import heroBg from "@/assets/Radius-Back.jpeg";
 import jointVenturesBg from "@/assets/joint-ventures.jpg";
 import landEntitlementBg from "@/assets/land-entitlement.jpg";
 import luxRetailBg from "@/assets/lux-retail.jpg";
 
 const Index = () => {
+  const [mobileNavOpen, setMobileNavOpen] = useState(false);
+
   useEffect(() => {
     // CURSOR
     const cur = document.getElementById("cur")!;
@@ -66,13 +68,31 @@ const Index = () => {
       <nav>
         <div className="nlogo">radius</div>
         <ul className="nlinks">
-          <li><a href="#">What We Do</a></li>
-          <li><a href="#">Current Projects</a></li>
-          <li><a href="#">Segments</a></li>
-          <li><a href="#">About Us</a></li>
-          <li><a href="#">Contact</a></li>
+          <li><a href="#platform">What We Do</a></li>
+          <li><a href="#transactions">Current Projects</a></li>
+          <li><a href="#retail">Segments</a></li>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#contact">Contact</a></li>
         </ul>
         <button className="nbtn">Investor Portal</button>
+        <button
+          type="button"
+          className={`mnavt${mobileNavOpen ? " open" : ""}`}
+          aria-expanded={mobileNavOpen}
+          aria-label="Toggle navigation"
+          onClick={() => setMobileNavOpen((open) => !open)}
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <div className={`mnav${mobileNavOpen ? " open" : ""}`}>
+          <a href="#platform" onClick={() => setMobileNavOpen(false)}>What We Do</a>
+          <a href="#transactions" onClick={() => setMobileNavOpen(false)}>Current Projects</a>
+          <a href="#retail" onClick={() => setMobileNavOpen(false)}>Segments</a>
+          <a href="#about" onClick={() => setMobileNavOpen(false)}>About Us</a>
+          <a href="#contact" onClick={() => setMobileNavOpen(false)}>Contact</a>
+        </div>
       </nav>
 
       {/* HERO */}
@@ -201,51 +221,51 @@ const Index = () => {
         {/* TX 01 */}
         <div className="txrow rv">
           <div className="txth"><svg viewBox="0 0 76 50" fill="none"><rect width="76" height="50" fill="#0a0a0a"/><line x1="0" y1="12" x2="76" y2="12" stroke="#252525" strokeWidth=".5"/><line x1="0" y1="25" x2="76" y2="25" stroke="#252525" strokeWidth=".5"/><line x1="0" y1="37" x2="76" y2="37" stroke="#252525" strokeWidth=".5"/><line x1="19" y1="0" x2="19" y2="50" stroke="#252525" strokeWidth=".5"/><line x1="38" y1="0" x2="38" y2="50" stroke="#252525" strokeWidth=".5"/><line x1="57" y1="0" x2="57" y2="50" stroke="#252525" strokeWidth=".5"/><rect x="3" y="3" width="29" height="19" fill="none" stroke="rgba(255,255,255,.52)" strokeWidth=".75"/><rect x="41" y="3" width="30" height="9" fill="none" stroke="rgba(255,255,255,.36)" strokeWidth=".5"/><rect x="41" y="14" width="13" height="9" fill="none" stroke="rgba(255,255,255,.3)" strokeWidth=".5"/><rect x="56" y="14" width="14" height="9" fill="none" stroke="rgba(255,255,255,.3)" strokeWidth=".5"/><rect x="3" y="28" width="9" height="18" fill="none" stroke="rgba(255,255,255,.28)" strokeWidth=".5"/><rect x="14" y="28" width="9" height="18" fill="none" stroke="rgba(255,255,255,.28)" strokeWidth=".5"/><rect x="25" y="28" width="9" height="18" fill="none" stroke="rgba(255,255,255,.28)" strokeWidth=".5"/><rect x="41" y="28" width="29" height="18" fill="none" stroke="rgba(255,255,255,.52)" strokeWidth=".75"/></svg></div>
-          <div><div className="txnm">Canyon Ridge</div><div className="txlc">Phoenix, AZ</div></div>
-          <div className="txv">$124.5M</div>
-          <div className="txac">847 acres</div>
-          <div className="txtp">Residential Land</div>
-          <div><span className="badge bex">Executed</span></div>
+          <div className="txproject"><div className="txnm">Canyon Ridge</div><div className="txlc">Phoenix, AZ</div></div>
+          <div className="txmeta txv" data-label="Transaction Value">$124.5M</div>
+          <div className="txmeta txac" data-label="Acreage">847 acres</div>
+          <div className="txmeta txtp" data-label="Type">Residential Land</div>
+          <div className="txmeta txstatus" data-label="Status"><span className="badge bex">Executed</span></div>
         </div>
 
         {/* TX 02 */}
         <div className="txrow rv d1">
           <div className="txth"><svg viewBox="0 0 76 50" fill="none"><rect width="76" height="50" fill="#0a0a0a"/><circle cx="38" cy="25" r="18" stroke="#222" strokeWidth=".5"/><circle cx="38" cy="25" r="9" stroke="#2a2a2a" strokeWidth=".5"/><line x1="20" y1="25" x2="56" y2="25" stroke="#252525" strokeWidth=".5"/><line x1="38" y1="7" x2="38" y2="43" stroke="#252525" strokeWidth=".5"/><rect x="7" y="7" width="20" height="14" fill="none" stroke="rgba(255,255,255,.48)" strokeWidth=".75"/><rect x="49" y="7" width="20" height="14" fill="none" stroke="rgba(255,255,255,.48)" strokeWidth=".75"/><rect x="7" y="29" width="20" height="14" fill="none" stroke="rgba(255,255,255,.48)" strokeWidth=".75"/><rect x="49" y="29" width="20" height="14" fill="none" stroke="rgba(255,255,255,.48)" strokeWidth=".75"/><circle cx="38" cy="25" r="3" fill="none" stroke="rgba(255,255,255,.6)" strokeWidth=".75"/></svg></div>
-          <div><div className="txnm">Meridian Commons</div><div className="txlc">Denver, CO</div></div>
-          <div className="txv">$287.0M</div>
-          <div className="txac">1,240 acres</div>
-          <div className="txtp">Master-Planned</div>
-          <div><span className="badge bex">Executed</span></div>
+          <div className="txproject"><div className="txnm">Meridian Commons</div><div className="txlc">Denver, CO</div></div>
+          <div className="txmeta txv" data-label="Transaction Value">$287.0M</div>
+          <div className="txmeta txac" data-label="Acreage">1,240 acres</div>
+          <div className="txmeta txtp" data-label="Type">Master-Planned</div>
+          <div className="txmeta txstatus" data-label="Status"><span className="badge bex">Executed</span></div>
         </div>
 
         {/* TX 03 */}
         <div className="txrow rv d2">
           <div className="txth"><svg viewBox="0 0 76 50" fill="none"><rect width="76" height="50" fill="#0a0a0a"/><rect x="3" y="3" width="70" height="44" fill="none" stroke="#202020" strokeWidth=".5"/><line x1="3" y1="25" x2="73" y2="25" stroke="#2a2a2a" strokeWidth=".5"/><rect x="7" y="6" width="60" height="14" fill="none" stroke="rgba(255,255,255,.55)" strokeWidth=".75"/><rect x="7" y="28" width="13" height="14" fill="none" stroke="rgba(255,255,255,.32)" strokeWidth=".5"/><rect x="23" y="28" width="13" height="14" fill="none" stroke="rgba(255,255,255,.32)" strokeWidth=".5"/><rect x="39" y="28" width="13" height="14" fill="none" stroke="rgba(255,255,255,.32)" strokeWidth=".5"/><rect x="55" y="28" width="12" height="14" fill="none" stroke="rgba(255,255,255,.32)" strokeWidth=".5"/><line x1="3" y1="21" x2="73" y2="21" stroke="#1a1a1a" strokeWidth=".4" strokeDasharray="3,3"/></svg></div>
-          <div><div className="txnm">Silverbell Ranch</div><div className="txlc">Tucson, AZ</div></div>
-          <div className="txv">$156.2M</div>
-          <div className="txac">2,100 acres</div>
-          <div className="txtp">Mixed-Use Entitlement</div>
-          <div><span className="badge bac">Active</span></div>
+          <div className="txproject"><div className="txnm">Silverbell Ranch</div><div className="txlc">Tucson, AZ</div></div>
+          <div className="txmeta txv" data-label="Transaction Value">$156.2M</div>
+          <div className="txmeta txac" data-label="Acreage">2,100 acres</div>
+          <div className="txmeta txtp" data-label="Type">Mixed-Use Entitlement</div>
+          <div className="txmeta txstatus" data-label="Status"><span className="badge bac">Active</span></div>
         </div>
 
         {/* TX 04 */}
         <div className="txrow rv d3">
           <div className="txth"><svg viewBox="0 0 76 50" fill="none"><rect width="76" height="50" fill="#0a0a0a"/><line x1="38" y1="0" x2="38" y2="50" stroke="#222" strokeWidth=".5"/><line x1="0" y1="25" x2="76" y2="25" stroke="#222" strokeWidth=".5"/><polygon points="3,3 33,3 33,47 3,47" fill="none" stroke="rgba(255,255,255,.52)" strokeWidth=".75"/><polygon points="41,3 73,3 73,22 41,22" fill="none" stroke="rgba(255,255,255,.42)" strokeWidth=".5"/><polygon points="41,28 56,28 56,47 41,47" fill="none" stroke="rgba(255,255,255,.42)" strokeWidth=".5"/><polygon points="60,28 73,28 73,47 60,47" fill="none" stroke="rgba(255,255,255,.42)" strokeWidth=".5"/><line x1="3" y1="14" x2="33" y2="14" stroke="#252525" strokeWidth=".5"/><line x1="3" y1="35" x2="33" y2="35" stroke="#252525" strokeWidth=".5"/><line x1="18" y1="3" x2="18" y2="47" stroke="#252525" strokeWidth=".5"/></svg></div>
-          <div><div className="txnm">Vista Del Sol</div><div className="txlc">Las Vegas, NV</div></div>
-          <div className="txv">$98.2M</div>
-          <div className="txac">680 acres</div>
-          <div className="txtp">Residential Land</div>
-          <div><span className="badge bex">Executed</span></div>
+          <div className="txproject"><div className="txnm">Vista Del Sol</div><div className="txlc">Las Vegas, NV</div></div>
+          <div className="txmeta txv" data-label="Transaction Value">$98.2M</div>
+          <div className="txmeta txac" data-label="Acreage">680 acres</div>
+          <div className="txmeta txtp" data-label="Type">Residential Land</div>
+          <div className="txmeta txstatus" data-label="Status"><span className="badge bex">Executed</span></div>
         </div>
 
         {/* TX 05 */}
         <div className="txrow rv d4">
           <div className="txth"><svg viewBox="0 0 76 50" fill="none"><rect width="76" height="50" fill="#0a0a0a"/><rect x="3" y="3" width="70" height="44" fill="none" stroke="#1e1e1e" strokeWidth=".5"/><rect x="9" y="8" width="20" height="12" fill="none" stroke="rgba(255,255,255,.52)" strokeWidth=".75"/><rect x="33" y="8" width="20" height="12" fill="none" stroke="rgba(255,255,255,.52)" strokeWidth=".75"/><rect x="57" y="8" width="12" height="12" fill="none" stroke="rgba(255,255,255,.36)" strokeWidth=".5"/><rect x="9" y="28" width="12" height="14" fill="none" stroke="rgba(255,255,255,.32)" strokeWidth=".5"/><rect x="25" y="28" width="12" height="14" fill="none" stroke="rgba(255,255,255,.32)" strokeWidth=".5"/><rect x="41" y="28" width="12" height="14" fill="none" stroke="rgba(255,255,255,.32)" strokeWidth=".5"/><rect x="57" y="28" width="12" height="14" fill="none" stroke="rgba(255,255,255,.32)" strokeWidth=".5"/><line x1="3" y1="24" x2="73" y2="24" stroke="#282828" strokeWidth=".5"/><circle cx="19" cy="14" r="2" fill="none" stroke="rgba(255,255,255,.4)" strokeWidth=".5"/><circle cx="43" cy="14" r="2" fill="none" stroke="rgba(255,255,255,.4)" strokeWidth=".5"/></svg></div>
-          <div><div className="txnm">Summit Gate</div><div className="txlc">Salt Lake City, UT</div></div>
-          <div className="txv">$341.0M</div>
-          <div className="txac">1,560 acres</div>
-          <div className="txtp">Master-Planned</div>
-          <div><span className="badge bpp">Pipeline</span></div>
+          <div className="txproject"><div className="txnm">Summit Gate</div><div className="txlc">Salt Lake City, UT</div></div>
+          <div className="txmeta txv" data-label="Transaction Value">$341.0M</div>
+          <div className="txmeta txac" data-label="Acreage">1,560 acres</div>
+          <div className="txmeta txtp" data-label="Type">Master-Planned</div>
+          <div className="txmeta txstatus" data-label="Status"><span className="badge bpp">Pipeline</span></div>
         </div>
 
         <div className="txtot rv">
@@ -366,7 +386,7 @@ const Index = () => {
       </section>
 
       {/* FOOTER */}
-      <footer>
+      <footer id="contact">
         <div>
           <div className="flogo">Radius Development</div>
           <p className="ftag">Principal-led land investment and development platform operating across the Sun Belt and Mountain West.</p>
