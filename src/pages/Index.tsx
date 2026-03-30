@@ -111,10 +111,10 @@ const Index = () => {
       <section className="plat" id="platform">
         <div className="sh">
           <div>
-            <div className="ey rv">The Three Pillars</div>
-            <div className="st rv d1">A Vertically Integrated<br/>Land Intelligence Platform</div>
+            <div className="ey rv">The Radius Advantage</div>
+            <div className="st rv d1">An End-to-End Platform<br/>for Real Estate Value Creation</div>
           </div>
-          <p className="sd rv d2">From raw land entitlement to retail site delivery, Radius operates across the full lifecycle of residential and commercial development — providing institutional-grade execution at every stage.</p>
+          <p className="sd rv d2">At Radius, we operate across the full lifecycle of real estate value creation—from identifying land before the market sees it, to partnering on institutional-scale development, to building iconic retail destinations.</p>
         </div>
         <div className="bento">
           <div className="bc rv">
