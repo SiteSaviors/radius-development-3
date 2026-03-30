@@ -1,3 +1,3 @@
-# Welcome to your Lovable project
+# Radius Development Group
 
-TODO: Document your project here
+Premium real estate platform website built with Vite, React, and TypeScript.
