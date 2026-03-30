@@ -132,7 +132,7 @@ const Index = () => {
         <div className="sh">
           <div>
             <div className="ey rv">The Radius Advantage</div>
-            <div className="st rv d1">An End-to-End Platform<br/>for Real Estate Value Creation</div>
+            <div className="st rv d1">A Smarter Path to<br/>Real Estate Value Creation</div>
           </div>
           <p className="sd rv d2">At Radius, we operate across the full lifecycle of real estate value creation—from identifying land before the market sees it, to partnering on institutional-scale development, to building iconic retail destinations.</p>
         </div>
@@ -148,11 +148,12 @@ const Index = () => {
               <div className="bcn">01 / Land</div>
               <div className="bct">Land Entitlement</div>
               <div className="bcd">We specialize in sourcing and unlocking off-market land opportunities in high-growth corridors.</div>
-              <div className="bal">Our Approach</div>
+              <div className="bal">Our Approach:</div>
               <ul className="bals">
-                <li>Off-market sourcing</li>
-                <li>Entitlement path mapping</li>
-                <li>Capital and risk structuring</li>
+                <li>Off-Market Sourcing</li>
+                <li>Data-Led Selection</li>
+                <li>Entitlement Path Mapping</li>
+                <li>Capital & Risk Structuring</li>
               </ul>
               <a href="#" className="bcta">Let's Talk Land</a>
             </div>
