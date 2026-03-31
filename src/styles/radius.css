@@ -121,7 +121,8 @@ h1 em{font-style:italic;color:rgba(255,255,255,.6)}
 .fps{padding:32px 48px 112px;background:#040404;position:relative;overflow:hidden}
 .fps::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 18% 12%,rgba(255,255,255,.03) 0%,transparent 32%),radial-gradient(circle at 84% 82%,rgba(27,42,74,.18) 0%,transparent 34%);pointer-events:none}
 .fph{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.35fr);gap:56px;align-items:end;margin-bottom:42px}
-.fpgrid{position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;gap:26px}
+.fplayout{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);gap:26px;align-items:stretch}
+.fpstack{display:grid;grid-template-rows:repeat(3,minmax(0,1fr));gap:20px}
 .fpcard{
   position:relative;
   min-height:340px;
@@ -137,6 +138,14 @@ h1 em{font-style:italic;color:rgba(255,255,255,.6)}
   transition:transform .45s ease,border-color .3s ease,box-shadow .3s ease;
   cursor:none;
   isolation:isolate;
+}
+.fphero{
+  --fpr:40px 0 0 40px;
+  min-height:712px;
+}
+.fpside{
+  --fpr:0 36px 36px 0;
+  min-height:224px;
 }
 .fpcard::before{
   content:'';
@@ -241,6 +250,8 @@ h1 em{font-style:italic;color:rgba(255,255,255,.6)}
   width:100%;
   padding:28px 32px 30px;
 }
+.fphero .fpcontent{padding:34px 36px 36px}
+.fpside .fpcontent{padding:24px 26px 24px}
 .fplabel{
   display:inline-flex;
   align-items:center;
@@ -271,6 +282,10 @@ h1 em{font-style:italic;color:rgba(255,255,255,.6)}
   margin-bottom:10px;
   max-width:85%;
 }
+.fpside .fpname{
+  font-size:clamp(28px,2.3vw,34px);
+  max-width:88%;
+}
 .fpdesc{
   max-width:520px;
   font-size:11.5px;
@@ -279,14 +294,18 @@ h1 em{font-style:italic;color:rgba(255,255,255,.6)}
   line-height:1.75;
   color:rgba(255,255,255,.68);
 }
+.fpside .fpdesc{
+  max-width:430px;
+  font-size:10.5px;
+  line-height:1.7;
+}
 .fp-01{background:linear-gradient(135deg,#101617 0%,#1b2522 24%,#0e1010 100%)}
-.fp-01{--fpr:40px 40px 0 40px}
 .fp-01 .fpmedia{background:radial-gradient(circle at 26% 28%,rgba(210,221,199,.28) 0%,transparent 25%),radial-gradient(circle at 68% 72%,rgba(80,100,77,.22) 0%,transparent 24%),linear-gradient(150deg,#1c2420 0%,#2e3830 30%,#141716 74%,#090909 100%)}
-.fp-02{--fpr:40px 40px 40px 0;background:linear-gradient(145deg,#0f131d 0%,#172235 35%,#0a0c11 100%)}
+.fp-02{background:linear-gradient(145deg,#0f131d 0%,#172235 35%,#0a0c11 100%)}
 .fp-02 .fpmedia{background:radial-gradient(circle at 76% 20%,rgba(157,182,236,.18) 0%,transparent 24%),radial-gradient(circle at 18% 72%,rgba(54,82,132,.22) 0%,transparent 28%),linear-gradient(160deg,#101522 0%,#17253b 34%,#0d1420 68%,#08090d 100%)}
-.fp-03{--fpr:40px 0 40px 40px;background:linear-gradient(150deg,#15120d 0%,#2c2416 34%,#0d0a08 100%)}
+.fp-03{background:linear-gradient(150deg,#15120d 0%,#2c2416 34%,#0d0a08 100%)}
 .fp-03 .fpmedia{background:radial-gradient(circle at 30% 16%,rgba(255,226,165,.16) 0%,transparent 24%),radial-gradient(circle at 84% 74%,rgba(142,111,48,.22) 0%,transparent 26%),linear-gradient(150deg,#19140d 0%,#362816 32%,#16110c 68%,#0a0908 100%)}
-.fp-04{--fpr:0 40px 40px 40px;background:linear-gradient(145deg,#151618 0%,#262624 30%,#0c0c0d 100%)}
+.fp-04{background:linear-gradient(145deg,#151618 0%,#262624 30%,#0c0c0d 100%)}
 .fp-04 .fpmedia{background:radial-gradient(circle at 22% 76%,rgba(193,214,226,.14) 0%,transparent 24%),radial-gradient(circle at 72% 18%,rgba(214,194,153,.12) 0%,transparent 20%),linear-gradient(145deg,#15181b 0%,#2a2925 34%,#121314 70%,#090909 100%)}
 .fp-04.fp-has-image::before{
   background:
@@ -478,17 +497,21 @@ footer{padding:68px 48px 40px;border-top:1px solid var(--hl);background:#000;dis
   /* Featured Projects */
   .fps{padding:12px 20px 64px}
   .fph{grid-template-columns:1fr;gap:24px;margin-bottom:28px}
-  .fpgrid{grid-template-columns:1fr;gap:18px}
+  .fplayout{grid-template-columns:1fr;gap:18px}
+  .fpstack{grid-template-rows:none;gap:18px}
   .fpcard{min-height:300px;border-radius:30px}
   .fpcard::after{border-radius:29px}
-  .fp-01,.fp-02,.fp-03,.fp-04{--fpr:30px}
+  .fphero,.fpside,.fp-01,.fp-02,.fp-03,.fp-04{--fpr:30px}
   .fptags{gap:8px}
   .fptag{min-height:26px;padding:6px 10px;font-size:7px;letter-spacing:.16em}
   .fpgridline{background-size:34px 34px;opacity:.24}
   .fpcontent{padding:22px 22px 24px}
+  .fphero .fpcontent,.fpside .fpcontent{padding:22px 22px 24px}
   .fplabel{font-size:7.5px;letter-spacing:.28em;margin-bottom:12px}
   .fpname{max-width:100%;font-size:34px}
+  .fpside .fpname{font-size:34px}
   .fpdesc{max-width:100%;font-size:12px;line-height:1.65}
+  .fpside .fpdesc{font-size:12px}
 
   /* Transactions */
   .txs{padding:64px 20px}
