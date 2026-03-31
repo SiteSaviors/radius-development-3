@@ -7,6 +7,32 @@ import altaAriaBg from "@/assets/alta-aria.jpg";
 import franklinBg from "@/assets/Franklin.jpg";
 import shilohBg from "@/assets/Shiloh.jpg";
 import terracesBg from "@/assets/TERRACES.jpg";
+import trammelCrowLogo from "@/assets/Trammel-Crow.webp";
+import tollBrothersLogo from "@/assets/Toll-Brothers.webp";
+import triPointeLogo from "@/assets/Tri-Pointe.webp";
+import mcAdamsLogo from "@/assets/McAdams.webp";
+
+const partnerLogoSlots = [
+  {
+    name: "Trammell Crow",
+    image: trammelCrowLogo,
+  },
+  {
+    name: "Toll Brothers",
+    image: tollBrothersLogo,
+  },
+  {
+    name: "Tri-Pointe Homes",
+    image: triPointeLogo,
+  },
+  {
+    name: "McAdams",
+    image: mcAdamsLogo,
+  },
+  {
+    name: "Wood Partners",
+  },
+] as const;
 
 const featuredProjects = [
   {
@@ -168,11 +194,18 @@ const Index = () => {
       <div className="logos rv">
         <div className="lbh">Trusted Partners &amp; Institutional Counterparties</div>
         <div className="lrow">
-          <div className="li"><span className="lt">Trammel Crow</span></div>
-          <div className="li"><span className="lt">Wood Partners</span></div>
-          <div className="li"><span className="lt">Tri-Pointe Homes</span></div>
-          <div className="li"><span className="lt">McAdams</span></div>
-          <div className="li"><span className="lt">Toll Brothers</span></div>
+          {partnerLogoSlots.map((partner) => (
+            <div key={partner.name} className="li">
+              <div className="lslot">
+                <div
+                  className={`limg${partner.image ? " has-logo" : ""}`}
+                  aria-hidden="true"
+                  style={partner.image ? { backgroundImage: `url(${partner.image})` } : undefined}
+                ></div>
+                <div className="llabel">{partner.name}</div>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
 
