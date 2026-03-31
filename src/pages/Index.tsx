@@ -147,14 +147,7 @@ const Index = () => {
             <div className="bcc">
               <div className="bcn">01 / Land</div>
               <div className="bct">Land Entitlement</div>
-              <div className="bcd">We specialize in sourcing and unlocking off-market land opportunities in high-growth corridors.</div>
-              <div className="bal">Our Approach:</div>
-              <ul className="bals">
-                <li>Off-Market Sourcing</li>
-                <li>Data-Led Selection</li>
-                <li>Entitlement Path Mapping</li>
-                <li>Capital & Risk Structuring</li>
-              </ul>
+              <div className="bcd">We identify off-market opportunities across high growth corridors while leveraging deep local relationships and proprietary data to secure sites before they reach the broader market.</div>
               <a href="#" className="bcta">Let's Talk Land</a>
             </div>
           </div>
@@ -167,14 +160,8 @@ const Index = () => {
             </div>
             <div className="bcc">
               <div className="bcn">02 / Development</div>
-              <div className="bct">Joint Ventures</div>
-              <div className="bcd">Master-planned community execution and residential lot delivery — structured for institutional builder partners.</div>
-              <div className="bal">Our Approach</div>
-              <ul className="bals">
-                <li>Builder-aligned JV structures</li>
-                <li>Phased execution oversight</li>
-                <li>Delivery and exit planning</li>
-              </ul>
+              <div className="bct">Development Partnerships</div>
+              <div className="bcd">From residential communities to mixed-use retail developments, we partner with best-in-class institutional developers with a focus on maximizing returns while building lasting community value. </div>
               <a href="#" className="bcta">Let's Talk Development</a>
             </div>
           </div>
@@ -188,13 +175,7 @@ const Index = () => {
             <div className="bcc">
               <div className="bcn">03 / Retail</div>
               <div className="bct">Retail Development</div>
-              <div className="bcd">Outparcel strategy, retail site delivery, and commercial entitlement — anchoring residential communities at scale.</div>
-              <div className="bal">Our Approach</div>
-              <ul className="bals">
-                <li>Corridor-driven retail planning</li>
-                <li>Outparcel merchandising strategy</li>
-                <li>Tenant and access coordination</li>
-              </ul>
+              <div className="bcd">We develop high-end, experience-driven retail centers in markets where demand is underserved. Rather than building commodity retail, we develop environments that blend retail, dining, and community into a cohesive destination.</div>
               <a href="#" className="bcta">Let's Talk Retail</a>
             </div>
           </div>
