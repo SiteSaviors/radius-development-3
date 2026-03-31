@@ -256,6 +256,12 @@ const Index = () => {
                     }}
                   ></div>
                 ) : null}
+                <div className="fpglow"></div>
+                <div className="fpgridline"></div>
+              </div>
+              <div className="fpcontent">
+                <div className="fplabel">{project.status}</div>
+                <div className="fpname">{project.name}</div>
                 {project.highlights ? (
                   <div className="fptags">
                     {project.highlights.map((highlight) => (
@@ -264,14 +270,9 @@ const Index = () => {
                       </div>
                     ))}
                   </div>
-                ) : null}
-                <div className="fpglow"></div>
-                <div className="fpgridline"></div>
-              </div>
-              <div className="fpcontent">
-                <div className="fplabel">{project.status}</div>
-                <div className="fpname">{project.name}</div>
-                <p className="fpdesc">{project.description}</p>
+                ) : (
+                  <p className="fpdesc">{project.description}</p>
+                )}
               </div>
             </a>
           ))}
