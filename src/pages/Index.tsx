@@ -3,6 +3,49 @@ import heroBg from "@/assets/Radius-Back.jpeg";
 import jointVenturesBg from "@/assets/joint-ventures.jpg";
 import landEntitlementBg from "@/assets/land-entitlement.jpg";
 import luxRetailBg from "@/assets/lux-retail.jpg";
+import altaAriaBg from "@/assets/alta-aria.jpg";
+import franklinBg from "@/assets/Franklin.jpg";
+import shilohBg from "@/assets/Shiloh.jpg";
+import terracesBg from "@/assets/TERRACES.jpg";
+
+const featuredProjects = [
+  {
+    name: "The Shiloh",
+    status: "Active",
+    description: "Mixed-use land position advancing through entitlement and early planning.",
+    href: "#",
+    theme: "fp-01",
+    image: shilohBg,
+    imagePosition: "center 42%",
+  },
+  {
+    name: "The Franklin",
+    status: "Active",
+    description: "Residential and retail pipeline asset in a high-growth Sun Belt corridor.",
+    href: "#",
+    theme: "fp-02",
+    image: franklinBg,
+    imagePosition: "center 40%",
+  },
+  {
+    name: "Alta Aria",
+    status: "Active",
+    description: "Retail-led development site being structured for phased execution.",
+    href: "#",
+    theme: "fp-03",
+    image: altaAriaBg,
+    imagePosition: "center 42%",
+  },
+  {
+    name: "Terraces At West Cary",
+    status: "Active",
+    description: "Strategic land assembly moving toward partner-ready delivery.",
+    href: "#",
+    theme: "fp-04",
+    image: terracesBg,
+    imagePosition: "center 34%",
+  },
+] as const;
 
 const Index = () => {
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
@@ -25,7 +68,7 @@ const Index = () => {
     };
     raf = requestAnimationFrame(anim);
 
-    const hoverEls = document.querySelectorAll(".bp,.bg,.txlnk,.txrow,.bc,.li,.nbtn,.flinks a,.nlinks a,.rts");
+    const hoverEls = document.querySelectorAll(".bp,.bg,.txlnk,.txrow,.bc,.fpcard,.li,.nbtn,.flinks a,.nlinks a,.rts");
     const enter = () => cur.classList.add("x");
     const leave = () => cur.classList.remove("x");
     hoverEls.forEach(el => { el.addEventListener("mouseenter", enter); el.addEventListener("mouseleave", leave); });
@@ -179,6 +222,45 @@ const Index = () => {
               <a href="#" className="bcta">Let's Talk Retail</a>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* FEATURED PROJECTS */}
+      <section className="fps" id="featured-projects">
+        <div className="fph">
+          <div>
+            <div className="ey rv">Featured Projects</div>
+            <div className="st rv d1">Active Pipeline</div>
+          </div>
+          <p className="sd rv d2">Current projects moving through entitlement, strategic development structuring, and retail execution across high-growth markets.</p>
+        </div>
+        <div className="fpgrid">
+          {featuredProjects.map((project, index) => (
+            <a
+              key={project.name}
+              href={project.href}
+              className={`fpcard rv d${Math.min(index + 1, 5)} ${project.theme}${project.image ? " fp-has-image" : ""}`}
+            >
+              <div className="fpmedia" aria-hidden="true">
+                {project.image ? (
+                  <div
+                    className="fpimage"
+                    style={{
+                      backgroundImage: `url(${project.image})`,
+                      backgroundPosition: project.imagePosition,
+                    }}
+                  ></div>
+                ) : null}
+                <div className="fpglow"></div>
+                <div className="fpgridline"></div>
+              </div>
+              <div className="fpcontent">
+                <div className="fplabel">{project.status}</div>
+                <div className="fpname">{project.name}</div>
+                <p className="fpdesc">{project.description}</p>
+              </div>
+            </a>
+          ))}
         </div>
       </section>
 
