@@ -17,6 +17,11 @@ const featuredProjects = [
     theme: "fp-01",
     image: shilohBg,
     imagePosition: "center 42%",
+    highlights: [
+      { text: "Mixed-Use", tone: "mint" },
+      { text: "2000+ Residential Units", tone: "gold" },
+      { text: "225,000 Sq Ft Retail Space", tone: "slate" },
+    ],
   },
   {
     name: "The Franklin",
@@ -250,6 +255,15 @@ const Index = () => {
                       backgroundPosition: project.imagePosition,
                     }}
                   ></div>
+                ) : null}
+                {project.highlights ? (
+                  <div className="fptags">
+                    {project.highlights.map((highlight) => (
+                      <div key={highlight.text} className={`fptag ${highlight.tone}`}>
+                        {highlight.text}
+                      </div>
+                    ))}
+                  </div>
                 ) : null}
                 <div className="fpglow"></div>
                 <div className="fpgridline"></div>
