@@ -39,7 +39,7 @@ const partnerLogoSlots = [
 const featuredProjects = [
   {
     name: "The Shiloh",
-    status: "Active",
+    status: "Under Development",
     description: "Mixed-use land position advancing through entitlement and early planning.",
     href: "#",
     theme: "fp-01",
@@ -53,30 +53,65 @@ const featuredProjects = [
   },
   {
     name: "The Franklin",
-    status: "Active",
+    status: "Under Development",
     description: "Residential and retail pipeline asset in a high-growth Sun Belt corridor.",
     href: "#",
     theme: "fp-02",
     image: franklinBg,
     imagePosition: "center 40%",
+    layout: "fp-wide-top",
   },
   {
     name: "Alta Aria",
-    status: "Active",
+    status: "Under Development",
     description: "Retail-led development site being structured for phased execution.",
     href: "#",
     theme: "fp-03",
     image: altaAriaBg,
     imagePosition: "center 42%",
+    layout: "fp-small-a",
   },
   {
     name: "Terraces At West Cary",
-    status: "Active",
+    status: "Under Development",
     description: "Strategic land assembly moving toward partner-ready delivery.",
     href: "#",
     theme: "fp-04",
     image: terracesBg,
     imagePosition: "center 34%",
+    layout: "fp-small-b",
+  },
+  {
+    name: "Cedar Crossing",
+    status: "Under Development",
+    description: "Town center land strategy progressing through phased entitlement and anchor planning.",
+    href: "#",
+    theme: "fp-05",
+    layout: "fp-tall-a",
+  },
+  {
+    name: "Parkline Commons",
+    status: "Under Development",
+    description: "Retail-adjacent mixed-use site moving through partner structuring.",
+    href: "#",
+    theme: "fp-06",
+    layout: "fp-tall-b",
+  },
+  {
+    name: "Juniper Point",
+    status: "Under Development",
+    description: "Pipeline multifamily and neighborhood retail concept in early execution planning.",
+    href: "#",
+    theme: "fp-07",
+    layout: "fp-under-left",
+  },
+  {
+    name: "Summit Exchange",
+    status: "Under Development",
+    description: "Institutional-quality development position advancing toward market-facing delivery.",
+    href: "#",
+    theme: "fp-08",
+    layout: "fp-under-right",
   },
 ] as const;
 
@@ -313,7 +348,7 @@ const Index = () => {
               <a
                 key={project.name}
                 href={project.href}
-                className={`fpcard fpside rv d${Math.min(index + 1, 5)} ${project.theme}${project.image ? " fp-has-image" : ""}`}
+                className={`fpcard fpside rv d${Math.min(index + 1, 5)} ${project.theme} ${project.layout}${project.image ? " fp-has-image" : ""}`}
               >
                 <div className="fpmedia" aria-hidden="true">
                   {project.image ? (
