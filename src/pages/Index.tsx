@@ -11,6 +11,7 @@ import trammelCrowLogo from "@/assets/Trammel-Crow.webp";
 import tollBrothersLogo from "@/assets/Toll-Brothers.webp";
 import triPointeLogo from "@/assets/Tri-Pointe.webp";
 import mcAdamsLogo from "@/assets/McAdams.webp";
+import woodPartnersLogo from "@/assets/Wood-Partners.webp";
 
 const partnerLogoSlots = [
   {
@@ -31,6 +32,7 @@ const partnerLogoSlots = [
   },
   {
     name: "Wood Partners",
+    image: woodPartnersLogo,
   },
 ] as const;
 
@@ -202,7 +204,6 @@ const Index = () => {
                   aria-hidden="true"
                   style={partner.image ? { backgroundImage: `url(${partner.image})` } : undefined}
                 ></div>
-                <div className="llabel">{partner.name}</div>
               </div>
             </div>
           ))}
