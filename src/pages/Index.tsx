@@ -161,7 +161,7 @@ const Index = () => {
             <div className="bcc">
               <div className="bcn">02 / Development</div>
               <div className="bct">Development Partnerships</div>
-              <div className="bcd">From residential communities to mixed-use retail developments, we partner with best-in-class institutional developers with a focus on maximizing returns while building lasting community value. </div>
+              <div className="bcd">From residential communities to mixed-use retail developments, we partner with best-in-class institutional developers with a focusl  on maximizing returns while building lasting community value. </div>
               <a href="#" className="bcta">Let's Talk Development</a>
             </div>
           </div>
