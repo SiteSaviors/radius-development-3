@@ -12,6 +12,7 @@ import trammelCrowLogo from "@/assets/Trammel-Crow.webp";
 import tollBrothersLogo from "@/assets/Toll-Brothers.webp";
 import triPointeLogo from "@/assets/Tri-Pointe.webp";
 import mcAdamsLogo from "@/assets/McAdams.webp";
+import todBg from "@/assets/TOD.jpg";
 import woodPartnersLogo from "@/assets/Wood-Partners.webp";
 
 const partnerLogoSlots = [
@@ -424,55 +425,52 @@ const Index = () => {
       <section className="closed" id="recently-closed">
         <div className="clh">
           <div>
-            <div className="ey rv">Executed Transaction</div>
+            <div className="ey rv"> Our Results</div>
             <div className="st rv d1">Recently Closed</div>
           </div>
           <p className="sd rv d2">A representative outcome illustrating Radius&apos;s land strategy, entitlement execution, and realized value creation.</p>
         </div>
         <div className="clpanel rv">
-          <div className="clvisual" aria-hidden="true">
-            <div className="clvlabel">Closed</div>
-            <div className="clvtitle">TOD Phase 1</div>
-            <div className="clvloc">Research Triangle Park, NC</div>
-            <div className="clgrid"></div>
-            <div className="clline clline-a"></div>
-            <div className="clline clline-b"></div>
-            <div className="clstop clstop-a"></div>
-            <div className="clstop clstop-b"></div>
-            <div className="clstop clstop-c"></div>
+          <div className="clvisual" aria-hidden="true" style={{ backgroundImage: `url(${todBg})` }}>
+            <div className="clvoverlay">
+              <div className="clvlabel closed">Closed</div>
+              <div className="clvtitle">TOD - Phase One</div>
+              <div className="clvloc">Research Triangle Park, NC</div>
+            </div>
           </div>
           <div className="clcontent">
-            <div className="clstatus">Closed</div>
-            <h3 className="cltitle">TOD Phase 1</h3>
-            <p className="cllocation">Research Triangle Park, NC</p>
-            <p className="clsummary">Land assembly, acquisition, and rezoning leading to a fully entitled transit-oriented development land project.</p>
+            <div className="clstatus">Transaction Spotlight</div>
+            <h3 className="cltitle">Fully-Entitled TOD land project delivered to a national multifamily developer.</h3>
+            <p className="clsummary">Radius executed the land assembly, acquisition, and rezoning strategy for TOD Phase 1, converting the site into a market-ready opportunity for institutional-scale residential delivery.</p>
 
-            <div className="clfacts">
-              <div className="clfact">
-                <div className="clfactlabel">Radius Role</div>
-                <div className="clfactvalue">Land Assembly, Acquisition, Rezoning</div>
+            <div className="clrows">
+              <div className="clrow">
+                <div className="clrowlabel">Project Scope</div>
+                <div className="clrowvalue">350 Class-A Multifamily Units</div>
               </div>
-              <div className="clfact">
-                <div className="clfactlabel">Buyer</div>
+              <div className="clrow">
+                <div className="clrowlabel">Our Role</div>
+                <div className="clrowvalue">Land Assembly, Acquisition, Rezoning</div>
+              </div>
+              <div className="clrow">
+                <div className="clrowlabel">Strategy</div>
+                <div className="clrowvalue">First phase in massive TOD (Transit Oriented Development) expansion</div>
+              </div>
+              <div className="clrow">
+                <div className="clrowlabel">Buyer</div>
                 <div className="clbuyer">
                   <span>Wood Partners</span>
                   <img src={woodPartnersLogo} alt="Wood Partners" />
                 </div>
               </div>
-              <div className="clfact">
-                <div className="clfactlabel">Result</div>
-                <div className="clfactvalue">350 Class-A multifamily units</div>
-              </div>
-              <div className="clfact">
-                <div className="clfactlabel">Strategy</div>
-                <div className="clfactvalue">First phase in a massive TOD expansion</div>
-              </div>
             </div>
 
             <div className="cloutcome">
-              <div className="cloutlabel">Outcome</div>
-              <div className="cloutvalue">~2.1x</div>
-              <div className="cloutmeta">Value creation in 3 years</div>
+              <div>
+                <div className="cloutlabel">Outcome</div>
+                <div className="cloutmeta">Value Creation in 3 Years</div>
+              </div>
+              <div className="cloutvalue">2.1x Return</div>
             </div>
           </div>
         </div>
