@@ -4,6 +4,7 @@ import jointVenturesBg from "@/assets/joint-ventures.jpg";
 import landEntitlementBg from "@/assets/land-entitlement.jpg";
 import luxRetailBg from "@/assets/lux-retail.jpg";
 import altaAriaBg from "@/assets/alta-aria.jpg";
+import caryEstatesBg from "@/assets/CARY-E.jpg";
 import franklinBg from "@/assets/Franklin.jpg";
 import shilohBg from "@/assets/Shiloh.jpg";
 import terracesBg from "@/assets/TERRACES.jpg";
@@ -47,8 +48,8 @@ const featuredProjects = [
     imagePosition: "center 42%",
     highlights: [
       { text: "Mixed-Use", tone: "mint" },
-      { text: "2000+ Residential Units", tone: "gold" },
-      { text: "225,000 Sq Ft Retail Space", tone: "slate" },
+      { text: "2000+ Residential Units", tone: "blue" },
+      { text: "225,000 Sq Ft Retail Space", tone: "gold" },
     ],
   },
   {
@@ -60,6 +61,11 @@ const featuredProjects = [
     image: franklinBg,
     imagePosition: "center 40%",
     layout: "fp-wide-top",
+    highlights: [
+      { text: "Residential", tone: "blue" },
+      { text: "High-Growth Corridor", tone: "slate" },
+      { text: "Retail Integration", tone: "gold" },
+    ],
   },
   {
     name: "Alta Aria",
@@ -70,6 +76,10 @@ const featuredProjects = [
     image: altaAriaBg,
     imagePosition: "center 42%",
     layout: "fp-small-a",
+    highlights: [
+      { text: "Residential", tone: "blue" },
+      { text: "Phase I", tone: "slate" },
+    ],
   },
   {
     name: "Terraces At West Cary",
@@ -80,38 +90,64 @@ const featuredProjects = [
     image: terracesBg,
     imagePosition: "center 34%",
     layout: "fp-small-b",
+    highlights: [
+      { text: "Residential", tone: "blue" },
+      { text: "Land Assembly", tone: "mint" },
+    ],
   },
   {
-    name: "Cedar Crossing",
-    status: "Under Development",
+    name: "RDU Town Center",
+    status: "Open Project",
+    statusTone: "open-project",
     description: "Town center land strategy progressing through phased entitlement and anchor planning.",
     href: "#",
     theme: "fp-05",
     layout: "fp-tall-a",
+    highlights: [
+      { text: "Town Center", tone: "gold" },
+      { text: "Entitlement", tone: "mint" },
+    ],
   },
   {
-    name: "Parkline Commons",
-    status: "Under Development",
+    name: "Cary Estates",
+    status: "Open Project",
+    statusTone: "open-project",
     description: "Retail-adjacent mixed-use site moving through partner structuring.",
     href: "#",
     theme: "fp-06",
+    image: caryEstatesBg,
+    imagePosition: "center 42%",
     layout: "fp-tall-b",
+    highlights: [
+      { text: "Residential", tone: "blue" },
+      { text: "Land Position", tone: "mint" },
+    ],
   },
   {
-    name: "Juniper Point",
-    status: "Under Development",
+    name: "Cary Land",
+    status: "Open Project",
+    statusTone: "open-project",
     description: "Pipeline multifamily and neighborhood retail concept in early execution planning.",
     href: "#",
     theme: "fp-07",
     layout: "fp-under-left",
+    highlights: [
+      { text: "Multifamily", tone: "blue" },
+      { text: "Neighborhood Retail", tone: "gold" },
+    ],
   },
   {
-    name: "Summit Exchange",
-    status: "Under Development",
+    name: "Pittard Sears",
+    status: "Open Project",
+    statusTone: "open-project",
     description: "Institutional-quality development position advancing toward market-facing delivery.",
     href: "#",
     theme: "fp-08",
     layout: "fp-under-right",
+    highlights: [
+      { text: "Institutional", tone: "slate" },
+      { text: "Land Strategy", tone: "mint" },
+    ],
   },
 ] as const;
 
@@ -328,7 +364,7 @@ const Index = () => {
               <div className="fpgridline"></div>
             </div>
             <div className="fpcontent">
-              <div className="fplabel">{primaryProject.status}</div>
+              <div className={`fplabel${primaryProject.statusTone ? ` ${primaryProject.statusTone}` : ""}`}>{primaryProject.status}</div>
               <div className="fpname">{primaryProject.name}</div>
               {primaryProject.highlights ? (
                 <div className="fptags">
@@ -364,7 +400,7 @@ const Index = () => {
                   <div className="fpgridline"></div>
                 </div>
                 <div className="fpcontent">
-                  <div className="fplabel">{project.status}</div>
+                  <div className={`fplabel${project.statusTone ? ` ${project.statusTone}` : ""}`}>{project.status}</div>
                   <div className="fpname">{project.name}</div>
                   {project.highlights ? (
                     <div className="fptags">
@@ -380,6 +416,64 @@ const Index = () => {
                 </div>
               </a>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* RECENTLY CLOSED */}
+      <section className="closed" id="recently-closed">
+        <div className="clh">
+          <div>
+            <div className="ey rv">Executed Transaction</div>
+            <div className="st rv d1">Recently Closed</div>
+          </div>
+          <p className="sd rv d2">A representative outcome illustrating Radius&apos;s land strategy, entitlement execution, and realized value creation.</p>
+        </div>
+        <div className="clpanel rv">
+          <div className="clvisual" aria-hidden="true">
+            <div className="clvlabel">Closed</div>
+            <div className="clvtitle">TOD Phase 1</div>
+            <div className="clvloc">Research Triangle Park, NC</div>
+            <div className="clgrid"></div>
+            <div className="clline clline-a"></div>
+            <div className="clline clline-b"></div>
+            <div className="clstop clstop-a"></div>
+            <div className="clstop clstop-b"></div>
+            <div className="clstop clstop-c"></div>
+          </div>
+          <div className="clcontent">
+            <div className="clstatus">Closed</div>
+            <h3 className="cltitle">TOD Phase 1</h3>
+            <p className="cllocation">Research Triangle Park, NC</p>
+            <p className="clsummary">Land assembly, acquisition, and rezoning leading to a fully entitled transit-oriented development land project.</p>
+
+            <div className="clfacts">
+              <div className="clfact">
+                <div className="clfactlabel">Radius Role</div>
+                <div className="clfactvalue">Land Assembly, Acquisition, Rezoning</div>
+              </div>
+              <div className="clfact">
+                <div className="clfactlabel">Buyer</div>
+                <div className="clbuyer">
+                  <span>Wood Partners</span>
+                  <img src={woodPartnersLogo} alt="Wood Partners" />
+                </div>
+              </div>
+              <div className="clfact">
+                <div className="clfactlabel">Result</div>
+                <div className="clfactvalue">350 Class-A multifamily units</div>
+              </div>
+              <div className="clfact">
+                <div className="clfactlabel">Strategy</div>
+                <div className="clfactvalue">First phase in a massive TOD expansion</div>
+              </div>
+            </div>
+
+            <div className="cloutcome">
+              <div className="cloutlabel">Outcome</div>
+              <div className="cloutvalue">~2.1x</div>
+              <div className="cloutmeta">Value creation in 3 years</div>
+            </div>
           </div>
         </div>
       </section>
