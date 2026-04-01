@@ -132,10 +132,10 @@ h1 em{font-style:italic;color:rgba(255,255,255,.6)}
 .st{font-family:'Cormorant Garamond',serif;font-size:clamp(32px,3.8vw,52px);font-weight:300;line-height:1.1;letter-spacing:-.02em;color:#fff}
 .sd{font-size:15px;font-weight:300;letter-spacing:.05em;color:var(--cc);line-height:1.9;max-width:none;align-self:end;padding-left:18px}
 .bento{display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px}
-.bc{position:relative;height:620px;overflow:hidden;cursor:none;border:1px solid rgba(255,255,255,.11);border-radius:18px;display:flex;flex-direction:column;background:#020202;box-shadow:inset 0 0 0 1px rgba(255,255,255,.03)}
-.bcmedia{position:relative;flex:1;min-height:336px;overflow:hidden;background:#060606}
+.bc{position:relative;height:620px;overflow:hidden;cursor:none;border:1px solid rgba(255,255,255,.11);border-radius:18px;clip-path:inset(0 round 18px);display:flex;flex-direction:column;background:#020202;box-shadow:inset 0 0 0 1px rgba(255,255,255,.03);transform:translateZ(0);backface-visibility:hidden}
+.bcmedia{position:relative;flex:1;min-height:336px;overflow:hidden;background:#060606;border-radius:inherit;transform:translateZ(0);backface-visibility:hidden}
 .bcmedia::after{content:'';position:absolute;left:0;right:0;bottom:0;height:48%;background:linear-gradient(to bottom,rgba(0,0,0,0) 0%,rgba(0,0,0,.14) 38%,rgba(0,0,0,.42) 68%,#020202 100%);pointer-events:none;z-index:1}
-.bcbg{position:absolute;inset:0;opacity:.42;transition:opacity .65s ease,transform .65s ease;background-size:cover;background-position:center;transform:scale(1.06)}
+.bcbg{position:absolute;inset:0;opacity:.42;transition:opacity .65s ease,transform .65s ease;background-size:cover;background-position:center;transform:translateZ(0) scale(1.06);border-radius:inherit;backface-visibility:hidden}
 .bc:hover .bcbg{opacity:.64;transform:scale(1)}
 .development-photo{opacity:.84;background-position:center center}
 .bc:hover .development-photo{opacity:.96}
@@ -175,6 +175,7 @@ h1 em{font-style:italic;color:rgba(255,255,255,.6)}
   position:relative;
   min-height:340px;
   border-radius:var(--fpr,40px);
+  clip-path:inset(0 round var(--fpr,40px));
   overflow:hidden;
   display:flex;
   align-items:flex-end;
@@ -186,6 +187,8 @@ h1 em{font-style:italic;color:rgba(255,255,255,.6)}
   transition:transform .45s ease,border-color .3s ease,box-shadow .3s ease;
   cursor:none;
   isolation:isolate;
+  transform:translateZ(0);
+  backface-visibility:hidden;
 }
 .fphero{
   --fpr:40px 0 0 40px;
@@ -225,6 +228,9 @@ h1 em{font-style:italic;color:rgba(255,255,255,.6)}
   position:absolute;
   inset:0;
   transition:transform .7s ease,filter .7s ease;
+  border-radius:inherit;
+  transform:translateZ(0);
+  backface-visibility:hidden;
 }
 .fpimage{
   position:absolute;
@@ -233,6 +239,9 @@ h1 em{font-style:italic;color:rgba(255,255,255,.6)}
   background-repeat:no-repeat;
   opacity:.78;
   filter:saturate(.92) brightness(.84);
+  border-radius:inherit;
+  transform:translateZ(0);
+  backface-visibility:hidden;
 }
 .fp-has-image .fpimage{
   opacity:.94;
