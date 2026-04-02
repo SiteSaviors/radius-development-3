@@ -629,31 +629,6 @@ h1 em{font-style:italic;color:rgba(255,255,255,.6)}
   color:rgba(255,255,255,.54);
 }
 
-/* TRANSACTIONS */
-.txs{padding:112px 48px;background:#000}
-.txh{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:52px}
-.txlnk{font-family:'Syne',sans-serif;font-size:9px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--cc);text-decoration:none;display:flex;align-items:center;gap:10px;transition:color .2s;cursor:none}
-.txlnk:hover{color:#fff}
-.txcols{display:grid;grid-template-columns:76px 1fr 130px 120px 115px 110px;gap:20px;padding:0 20px 13px;align-items:end;border-bottom:1px solid rgba(255,255,255,.14)}
-.txcl{font-family:'Syne',sans-serif;font-size:8px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.28)}
-.txrow{display:grid;grid-template-columns:76px 1fr 130px 120px 115px 110px;gap:20px;padding:17px 20px;align-items:center;cursor:none;border-bottom:1px solid rgba(255,255,255,.04);transition:background .25s}
-.txrow:nth-child(odd){background:rgba(255,255,255,.018)}
-.txrow:hover{background:rgba(255,255,255,.05)}
-.txth{width:76px;height:50px;border:1px solid rgba(255,255,255,.1);overflow:hidden;flex-shrink:0}
-.txth svg{width:100%;height:100%;display:block}
-.txnm{font-size:13.5px;font-weight:500;color:#fff;margin-bottom:3px}
-.txlc{font-size:10.5px;font-weight:300;letter-spacing:.08em;color:var(--cc)}
-.txv{font-family:'Inter',sans-serif;font-size:14.5px;font-weight:500;color:#fff;font-variant-numeric:tabular-nums}
-.txac{font-size:12px;font-weight:300;color:var(--cc);font-variant-numeric:tabular-nums}
-.txtp{font-size:11px;font-weight:300;letter-spacing:.05em;color:var(--cc)}
-.badge{display:inline-block;padding:3px 8px;font-family:'Syne',sans-serif;font-size:7.5px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;border:1px solid}
-.bex{color:rgba(255,255,255,.62);border-color:rgba(255,255,255,.22)}
-.bac{color:#7cc97c;border-color:rgba(124,201,124,.35);background:rgba(124,201,124,.04)}
-.bpp{color:rgba(161,161,161,.68);border-color:rgba(161,161,161,.18)}
-.txtot{display:grid;grid-template-columns:76px 1fr 130px 120px 115px 110px;gap:20px;padding:22px 20px 0;border-top:1px solid rgba(255,255,255,.14)}
-.ttlbl{grid-column:1/3;font-family:'Syne',sans-serif;font-size:9px;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:rgba(255,255,255,.35);display:flex;align-items:center}
-.tval{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:300;color:#fff;font-variant-numeric:tabular-nums}
-
 /* RETAIL */
 .rtl{padding:120px 48px;background:#000;position:relative;overflow:hidden}
 .rtlbg{position:absolute;inset:0;background:radial-gradient(ellipse 70% 80% at 62% 50%,rgba(27,42,74,.28) 0%,transparent 65%)}
@@ -855,56 +830,6 @@ footer{padding:68px 48px 40px;border-top:1px solid var(--hl);background:#000;dis
   .cloutcome{align-items:flex-start;flex-direction:column;padding:16px 16px 18px}
   .cloutvalue{font-size:22px;text-align:left}
   .cloutmeta{font-size:10px;letter-spacing:.12em}
-
-  /* Transactions */
-  .txs{padding:64px 20px}
-  .txh{flex-direction:column;align-items:flex-start;gap:20px;margin-bottom:36px}
-  .txcols{display:none}
-  .txrow{
-    grid-template-columns:1fr;
-    gap:12px;
-    padding:18px 16px;
-    border:1px solid rgba(255,255,255,.06);
-    border-bottom:1px solid rgba(255,255,255,.06);
-    margin-bottom:10px;
-    background:rgba(255,255,255,.02);
-    border-radius:16px;
-  }
-  .txrow:nth-child(odd){background:rgba(255,255,255,.02)}
-  .txth{display:none}
-  .txproject{
-    padding-bottom:12px;
-    border-bottom:1px solid rgba(255,255,255,.08);
-  }
-  .txnm{font-size:16px}
-  .txlc{font-size:11px}
-  .txmeta{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:16px;
-  }
-  .txmeta::before{
-    content:attr(data-label);
-    font-family:'Syne',sans-serif;
-    font-size:8px;
-    font-weight:700;
-    letter-spacing:.24em;
-    text-transform:uppercase;
-    color:rgba(255,255,255,.34);
-    flex-shrink:0;
-  }
-  .txv{font-size:14px;text-align:right}
-  .txac{font-size:12px;text-align:right}
-  .txtp{font-size:11px;text-align:right}
-  .txstatus{justify-content:space-between}
-  .txtot{
-    grid-template-columns:1fr 1fr;
-    gap:14px;
-    padding:20px 0 0;
-  }
-  .ttlbl{grid-column:1/-1}
-  .tval{font-size:22px}
 
   /* Retail */
   .rtl{padding:64px 20px}
