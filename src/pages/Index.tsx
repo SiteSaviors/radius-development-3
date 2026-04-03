@@ -12,6 +12,7 @@ import trammelCrowLogo from "@/assets/Trammel-Crow.webp";
 import tollBrothersLogo from "@/assets/Toll-Brothers.webp";
 import triPointeLogo from "@/assets/Tri-Pointe.webp";
 import mcAdamsLogo from "@/assets/McAdams.webp";
+import whoWeAreBg from "@/assets/3.jpg";
 import todBg from "@/assets/TOD.jpg";
 import woodPartnersLogo from "@/assets/Wood-Partners.webp";
 
@@ -36,6 +37,15 @@ const partnerLogoSlots = [
     name: "Wood Partners",
     image: woodPartnersLogo,
   },
+] as const;
+
+const platformSegments = [
+  { label: "Multi-Family", image: shilohBg, position: "center center" },
+  { label: "Industrial", image: jointVenturesBg, position: "center center" },
+  { label: "Senior Living", image: franklinBg, position: "center center" },
+  { label: "Retail", image: luxRetailBg, position: "center center" },
+  { label: "Office", image: altaAriaBg, position: "center center" },
+  { label: "Mixed-Use", image: landEntitlementBg, position: "center center" },
 ] as const;
 
 const featuredProjects = [
@@ -174,7 +184,7 @@ const Index = () => {
     };
     raf = requestAnimationFrame(anim);
 
-    const hoverEls = document.querySelectorAll(".bp,.bg,.bc,.fpcard,.li,.nbtn,.flinks a,.nlinks a,.rts");
+    const hoverEls = document.querySelectorAll(".bp,.bg,.pcard,.fpcard,.li,.nbtn,.flinks a,.nlinks a,.rts");
     const enter = () => cur.classList.add("x");
     const leave = () => cur.classList.remove("x");
     hoverEls.forEach(el => { el.addEventListener("mouseenter", enter); el.addEventListener("mouseleave", leave); });
@@ -197,12 +207,55 @@ const Index = () => {
     const obs = new IntersectionObserver(entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add("on"); }), { threshold: 0.07, rootMargin: "0px 0px -30px 0px" });
     document.querySelectorAll(".rv").forEach(el => obs.observe(el));
 
+    // COUNT-UP
+    const statDefs = [
+      { id: "wwa-val-0", end: 2,   decimals: 0, prefix: "",  suffix: "M+" },
+      { id: "wwa-val-1", end: 300, decimals: 0, prefix: "$", suffix: "M"  },
+      { id: "wwa-val-2", end: 2.2, decimals: 1, prefix: "",  suffix: "X"  },
+      { id: "wwa-val-3", end: 30,  decimals: 0, prefix: "",  suffix: "+"  },
+    ];
+    const setFinal = () => statDefs.forEach(s => {
+      const el = document.getElementById(s.id);
+      if (el) el.textContent = s.prefix + (s.decimals > 0 ? s.end.toFixed(s.decimals) : String(s.end)) + s.suffix;
+    });
+    let statsObs: IntersectionObserver | null = null;
+    const statsEl = document.getElementById("wwa-stats");
+    if (statsEl) {
+      const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (reduced) {
+        setFinal();
+      } else {
+        statsObs = new IntersectionObserver(entries => {
+          if (entries[0].isIntersecting) {
+            statsObs!.disconnect();
+            const duration = 1400;
+            const startTime = performance.now();
+            const tick = (now: number) => {
+              const progress = Math.min((now - startTime) / duration, 1);
+              const eased = 1 - Math.pow(1 - progress, 3);
+              statDefs.forEach(s => {
+                const el = document.getElementById(s.id);
+                if (!el) return;
+                const val = s.end * eased;
+                el.textContent = s.prefix + (s.decimals > 0 ? val.toFixed(s.decimals) : String(Math.floor(val))) + s.suffix;
+              });
+              if (progress < 1) requestAnimationFrame(tick);
+              else setFinal();
+            };
+            requestAnimationFrame(tick);
+          }
+        }, { threshold: 0.35 });
+        statsObs.observe(statsEl);
+      }
+    }
+
     return () => {
       document.removeEventListener("mousemove", onMove);
       cancelAnimationFrame(raf);
       hoverEls.forEach(el => { el.removeEventListener("mouseenter", enter); el.removeEventListener("mouseleave", leave); });
       window.removeEventListener("scroll", onScroll);
       obs.disconnect();
+      statsObs?.disconnect();
     };
   }, []);
 
@@ -282,6 +335,40 @@ const Index = () => {
         </div>
       </div>
 
+      {/* WHO WE ARE */}
+      <section className="wwa" id="about">
+        <div className="wwai">
+          <div className="wwacopy">
+            <div className="ey rv">Who We Are</div>
+            <div className="wwah rv d1">Building Beyond Expectations</div>
+            <p className="wwabody rv d2">Our creative approach to real estate, supported by our diverse team of best-in-class professionals with specialized expertise, has allowed us to successfully invest across several asset classes, including mixed-use, affordable housing, residential condos, commercial office space, and retail. We pride ourselves in working collaboratively across each of our business units in pursuit of our core pillars: adding value to our partners, perfecting our execution, and innovatively solving complex real estate challenges while positively impacting the communities we serve.</p>
+            <a href="#" className="bp rv d3">Learn More</a>
+          </div>
+          <div className="wwapanel rv d1">
+            <div className="wwaimg" style={{ backgroundImage: `url(${whoWeAreBg})` }}></div>
+            <div className="wwaov"></div>
+            <div className="wwastats" id="wwa-stats">
+              <div className="wwastat">
+                <div className="wwaval" id="wwa-val-0">2M+</div>
+                <div className="wwalbl">SQ FT DEVELOPED</div>
+              </div>
+              <div className="wwastat">
+                <div className="wwaval" id="wwa-val-1">$300M</div>
+                <div className="wwalbl">IN CAPITALIZED ASSETS</div>
+              </div>
+              <div className="wwastat">
+                <div className="wwaval" id="wwa-val-2">2.2X</div>
+                <div className="wwalbl">AVG RETURN MULTIPLE</div>
+              </div>
+              <div className="wwastat">
+                <div className="wwaval" id="wwa-val-3">30+</div>
+                <div className="wwalbl">YEARS COMBINED EXPERIENCE</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* PLATFORM */}
       <section className="plat" id="platform">
         <div className="sh">
@@ -291,49 +378,20 @@ const Index = () => {
           </div>
           <p className="sd rv d2">At Radius, we operate across the full lifecycle of real estate value creation—from identifying land before the market sees it, to partnering on institutional-scale development, to building iconic retail destinations.</p>
         </div>
-        <div className="bento">
-          <div className="bc rv">
-            <div className="bcmedia">
-              <div className="bcbg land-photo" style={{backgroundImage:`url(${landEntitlementBg})`}}></div>
-              <div className="bctop">
-                <svg width="26" height="26" viewBox="0 0 26 26" fill="none"><rect x=".5" y=".5" width="25" height="25" stroke="rgba(255,255,255,.22)" strokeWidth=".75"/><path d="M4 19L13 7L22 19" stroke="rgba(255,255,255,.5)" strokeWidth=".75" fill="none"/><line x1="4" y1="19" x2="22" y2="19" stroke="rgba(255,255,255,.5)" strokeWidth=".75"/></svg>
-              </div>
+        <div className="pgrid">
+          {platformSegments.map((segment, index) => (
+            <div key={segment.label} className={`pcard rv d${Math.min(index, 5)}`}>
+              <div
+                className="pcimg"
+                aria-hidden="true"
+                style={{
+                  backgroundImage: `url(${segment.image})`,
+                  backgroundPosition: segment.position,
+                }}
+              ></div>
+              <div className="pclabel">{segment.label}</div>
             </div>
-            <div className="bcc">
-              <div className="bcn">01 / Land</div>
-              <div className="bct">Land Entitlement</div>
-              <div className="bcd">We identify off-market opportunities across high growth corridors while leveraging deep local relationships and proprietary data to secure sites before they reach the broader market.</div>
-              <a href="#" className="bcta">Let's Talk Land</a>
-            </div>
-          </div>
-          <div className="bc rv d1">
-            <div className="bcmedia">
-              <div className="bcbg development-photo" style={{backgroundImage:`url(${jointVenturesBg})`}}></div>
-              <div className="bctop">
-                <svg width="26" height="26" viewBox="0 0 26 26" fill="none"><rect x=".5" y=".5" width="25" height="25" stroke="rgba(255,255,255,.22)" strokeWidth=".75"/><rect x="3" y="10" width="7" height="13" stroke="rgba(255,255,255,.5)" strokeWidth=".75" fill="none"/><rect x="14" y="6" width="9" height="17" stroke="rgba(255,255,255,.5)" strokeWidth=".75" fill="none"/><line x1="10" y1="23" x2="14" y2="23" stroke="rgba(255,255,255,.5)" strokeWidth=".75"/></svg>
-              </div>
-            </div>
-            <div className="bcc">
-              <div className="bcn">02 / Development</div>
-              <div className="bct">Development Partnerships</div>
-              <div className="bcd">From residential communities to mixed-use retail developments, we partner with best-in-class institutional developers with a focusl  on maximizing returns while building lasting community value. </div>
-              <a href="#" className="bcta">Let's Talk Development</a>
-            </div>
-          </div>
-          <div className="bc rv d2">
-            <div className="bcmedia">
-              <div className="bcbg retail-photo" style={{backgroundImage:`url(${luxRetailBg})`}}></div>
-              <div className="bctop">
-                <svg width="26" height="26" viewBox="0 0 26 26" fill="none"><rect x=".5" y=".5" width="25" height="25" stroke="rgba(255,255,255,.22)" strokeWidth=".75"/><rect x="2" y="13" width="22" height="10" stroke="rgba(255,255,255,.5)" strokeWidth=".75" fill="none"/><line x1="2" y1="13" x2="2" y2="9" stroke="rgba(255,255,255,.5)" strokeWidth=".75"/><line x1="24" y1="13" x2="24" y2="9" stroke="rgba(255,255,255,.5)" strokeWidth=".75"/><path d="M2 9Q13 3 24 9" stroke="rgba(255,255,255,.5)" strokeWidth=".75" fill="none"/><line x1="10" y1="13" x2="10" y2="23" stroke="rgba(255,255,255,.3)" strokeWidth=".5"/><line x1="16" y1="13" x2="16" y2="23" stroke="rgba(255,255,255,.3)" strokeWidth=".5"/></svg>
-              </div>
-            </div>
-            <div className="bcc">
-              <div className="bcn">03 / Retail</div>
-              <div className="bct">Retail Development</div>
-              <div className="bcd">We develop high-end, experience-driven retail centers in markets where demand is underserved. Rather than building commodity retail, we develop environments that blend retail, dining, and community into a cohesive destination.</div>
-              <a href="#" className="bcta">Let's Talk Retail</a>
-            </div>
-          </div>
+          ))}
         </div>
       </section>
 
