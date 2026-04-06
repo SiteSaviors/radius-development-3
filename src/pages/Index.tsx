@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import heroBg from "@/assets/Radius-Back.jpeg";
+import heroVideo from "@/assets/RADIUS-VIDEO.mp4";
 import jointVenturesBg from "@/assets/joint-ventures.jpg";
 import landEntitlementBg from "@/assets/land-entitlement.jpg";
 import luxRetailBg from "@/assets/lux-retail.jpg";
@@ -162,6 +163,52 @@ const featuredProjects = [
   },
 ] as const;
 
+const whyRadiusItems = [
+  {
+    number: "01",
+    title: "Speed",
+    body: "We move quickly on opportunities others cannot execute, using internal decision-making, market conviction, and capital readiness to compress timelines.",
+  },
+  {
+    number: "02",
+    title: "Structure",
+    body: "Options, phased takedowns, land banks, and joint ventures allow us to unlock value where conventional buyers cannot.",
+  },
+  {
+    number: "03",
+    title: "Access",
+    body: "Longstanding relationships with national developers and institutional partners create deal flow that rarely reaches the open market.",
+  },
+  {
+    number: "04",
+    title: "Selectivity",
+    body: "We pursue high-conviction opportunities only. Our track record reflects disciplined underwriting, not transaction volume.",
+  },
+] as const;
+
+const teamMembers = [
+  {
+    name: "James R. Harmon",
+    role: "Founder & Managing Principal",
+    theme: "team-01",
+  },
+  {
+    name: "Avery Collins",
+    role: "Partner, Development",
+    theme: "team-02",
+  },
+  {
+    name: "Lauren Mercer",
+    role: "Partner, Investments",
+    theme: "team-03",
+  },
+  {
+    name: "Daniel Rhodes",
+    role: "Director, Capital Markets",
+    theme: "team-04",
+  },
+] as const;
+
 const Index = () => {
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
   const [primaryProject, ...secondaryProjects] = featuredProjects;
@@ -184,7 +231,7 @@ const Index = () => {
     };
     raf = requestAnimationFrame(anim);
 
-    const hoverEls = document.querySelectorAll(".bp,.bg,.pcard,.fpcard,.li,.nbtn,.flinks a,.nlinks a,.rts");
+    const hoverEls = document.querySelectorAll(".bp,.bg,.pcard,.fpcard,.teamcard,.li,.nbtn,.flinks a,.nlinks a,.rts");
     const enter = () => cur.classList.add("x");
     const leave = () => cur.classList.remove("x");
     hoverEls.forEach(el => { el.addEventListener("mouseenter", enter); el.addEventListener("mouseleave", leave); });
@@ -193,6 +240,8 @@ const Index = () => {
     const sthumb = document.getElementById("sthumb")!;
     const hbg = document.getElementById("hbg")!;
     const hwm = document.getElementById("hwm")!;
+    const heroSection = document.getElementById("hero");
+    const heroVideoEl = document.getElementById("hvideo") as HTMLVideoElement | null;
     const navEl = document.querySelector("nav")!;
     const onScroll = () => {
       const pct = window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100;
@@ -202,6 +251,37 @@ const Index = () => {
       if (window.scrollY > 40) { navEl.classList.add("scrolled"); } else { navEl.classList.remove("scrolled"); }
     };
     window.addEventListener("scroll", onScroll, { passive: true });
+
+    // HERO VIDEO
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    let heroObs: IntersectionObserver | null = null;
+    const syncHeroVideo = (shouldPlay: boolean) => {
+      if (!heroVideoEl) return;
+      if (reducedMotion) {
+        heroVideoEl.pause();
+        return;
+      }
+      if (shouldPlay && !document.hidden) {
+        void heroVideoEl.play().catch(() => {});
+      } else {
+        heroVideoEl.pause();
+      }
+    };
+    const onVisibility = () => {
+      if (!heroSection) return;
+      const rect = heroSection.getBoundingClientRect();
+      const visible = rect.bottom > window.innerHeight * 0.2 && rect.top < window.innerHeight * 0.8;
+      syncHeroVideo(visible);
+    };
+    if (heroSection && heroVideoEl) {
+      heroObs = new IntersectionObserver(
+        (entries) => syncHeroVideo(entries[0]?.isIntersecting ?? false),
+        { threshold: 0.2 }
+      );
+      heroObs.observe(heroSection);
+      document.addEventListener("visibilitychange", onVisibility);
+      onVisibility();
+    }
 
     // REVEAL
     const obs = new IntersectionObserver(entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add("on"); }), { threshold: 0.07, rootMargin: "0px 0px -30px 0px" });
@@ -254,8 +334,10 @@ const Index = () => {
       cancelAnimationFrame(raf);
       hoverEls.forEach(el => { el.removeEventListener("mouseenter", enter); el.removeEventListener("mouseleave", leave); });
       window.removeEventListener("scroll", onScroll);
+      document.removeEventListener("visibilitychange", onVisibility);
       obs.disconnect();
       statsObs?.disconnect();
+      heroObs?.disconnect();
     };
   }, []);
 
@@ -299,7 +381,21 @@ const Index = () => {
 
       {/* HERO */}
       <section className="hero" id="hero">
-        <div className="hbg" id="hbg" style={{backgroundImage:`url(${heroBg})`}}></div>
+        <div className="hbg" id="hbg" style={{backgroundImage:`url(${heroBg})`}}>
+          <video
+            className="hbgv"
+            id="hvideo"
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            poster={heroBg}
+            aria-hidden="true"
+            disablePictureInPicture
+          >
+            <source src={heroVideo} type="video/mp4" />
+          </video>
+        </div>
         <div className="hwm" id="hwm">RADIUS</div>
         <div className="hinner">
           <div className="glass rv text-left">
@@ -534,147 +630,103 @@ const Index = () => {
         </div>
       </section>
 
-      {/* RETAIL */}
-      <section className="rtl" id="retail">
-        <div className="rtlbg"></div>
-        <div className="rtlgrid"></div>
-        <div className="rtli">
-          <div className="wfwrap rv">
-            <svg viewBox="0 0 520 440" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <defs><pattern id="mg" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M20 0L0 0 0 20" fill="none" stroke="rgba(255,255,255,.035)" strokeWidth=".5"/></pattern></defs>
-              <rect width="520" height="440" fill="url(#mg)"/>
-              <rect x="20" y="20" width="480" height="400" fill="none" stroke="rgba(255,255,255,.14)" strokeWidth=".75" strokeDasharray="5,4"/>
-              <rect x="20" y="188" width="480" height="22" fill="rgba(255,255,255,.03)"/>
-              <line x1="20" y1="188" x2="500" y2="188" stroke="rgba(255,255,255,.22)" strokeWidth=".75"/>
-              <line x1="20" y1="210" x2="500" y2="210" stroke="rgba(255,255,255,.22)" strokeWidth=".75"/>
-              <line x1="20" y1="199" x2="500" y2="199" stroke="rgba(255,255,255,.09)" strokeWidth=".5" strokeDasharray="12,8"/>
-              <rect x="248" y="20" width="16" height="400" fill="rgba(255,255,255,.025)"/>
-              <line x1="248" y1="20" x2="248" y2="420" stroke="rgba(255,255,255,.18)" strokeWidth=".75"/>
-              <line x1="264" y1="20" x2="264" y2="420" stroke="rgba(255,255,255,.18)" strokeWidth=".75"/>
-              <rect x="30" y="30" width="208" height="148" fill="rgba(27,42,74,.14)" stroke="rgba(255,255,255,.35)" strokeWidth=".75"/>
-              <rect x="40" y="40" width="188" height="128" fill="none" stroke="rgba(255,255,255,.1)" strokeWidth=".4"/>
-              <text x="134" y="107" fontFamily="monospace" fontSize="8" fill="rgba(255,255,255,.32)" textAnchor="middle" letterSpacing="2">ANCHOR TENANT</text>
-              <text x="134" y="122" fontFamily="monospace" fontSize="7.5" fill="rgba(255,255,255,.2)" textAnchor="middle" letterSpacing="1">85,000 SF</text>
-              <rect x="274" y="30" width="216" height="64" fill="rgba(27,42,74,.1)" stroke="rgba(255,255,255,.28)" strokeWidth=".75"/>
-              <line x1="328" y1="30" x2="328" y2="94" stroke="rgba(255,255,255,.14)" strokeWidth=".5"/>
-              <line x1="382" y1="30" x2="382" y2="94" stroke="rgba(255,255,255,.14)" strokeWidth=".5"/>
-              <line x1="436" y1="30" x2="436" y2="94" stroke="rgba(255,255,255,.14)" strokeWidth=".5"/>
-              <text x="300" y="65" fontFamily="monospace" fontSize="6.5" fill="rgba(255,255,255,.25)" textAnchor="middle">SHOP A</text>
-              <text x="354" y="65" fontFamily="monospace" fontSize="6.5" fill="rgba(255,255,255,.25)" textAnchor="middle">SHOP B</text>
-              <text x="408" y="65" fontFamily="monospace" fontSize="6.5" fill="rgba(255,255,255,.25)" textAnchor="middle">SHOP C</text>
-              <text x="461" y="65" fontFamily="monospace" fontSize="6.5" fill="rgba(255,255,255,.25)" textAnchor="middle">QSR</text>
-              <rect x="274" y="104" width="76" height="74" fill="rgba(27,42,74,.12)" stroke="rgba(255,255,255,.3)" strokeWidth=".75"/>
-              <text x="312" y="140" fontFamily="monospace" fontSize="6.5" fill="rgba(255,255,255,.28)" textAnchor="middle">OUTPARCEL</text>
-              <text x="312" y="153" fontFamily="monospace" fontSize="6.5" fill="rgba(255,255,255,.18)" textAnchor="middle">3,200 SF</text>
-              <rect x="364" y="104" width="76" height="74" fill="rgba(27,42,74,.12)" stroke="rgba(255,255,255,.3)" strokeWidth=".75"/>
-              <text x="402" y="140" fontFamily="monospace" fontSize="6.5" fill="rgba(255,255,255,.28)" textAnchor="middle">OUTPARCEL</text>
-              <text x="402" y="153" fontFamily="monospace" fontSize="6.5" fill="rgba(255,255,255,.18)" textAnchor="middle">4,100 SF</text>
-              <rect x="30" y="220" width="100" height="168" fill="rgba(27,42,74,.1)" stroke="rgba(255,255,255,.28)" strokeWidth=".75"/>
-              <text x="80" y="310" fontFamily="monospace" fontSize="6.5" fill="rgba(255,255,255,.25)" textAnchor="middle">JR. ANCHOR</text>
-              <text x="80" y="324" fontFamily="monospace" fontSize="6.5" fill="rgba(255,255,255,.18)" textAnchor="middle">24,000 SF</text>
-              <rect x="142" y="220" width="96" height="168" fill="none" stroke="rgba(255,255,255,.2)" strokeWidth=".75"/>
-              <line x1="142" y1="262" x2="238" y2="262" stroke="rgba(255,255,255,.1)" strokeWidth=".4"/>
-              <line x1="142" y1="304" x2="238" y2="304" stroke="rgba(255,255,255,.1)" strokeWidth=".4"/>
-              <line x1="142" y1="346" x2="238" y2="346" stroke="rgba(255,255,255,.1)" strokeWidth=".4"/>
-              <text x="190" y="246" fontFamily="monospace" fontSize="6.5" fill="rgba(255,255,255,.2)" textAnchor="middle">INLINE A</text>
-              <text x="190" y="288" fontFamily="monospace" fontSize="6.5" fill="rgba(255,255,255,.2)" textAnchor="middle">INLINE B</text>
-              <text x="190" y="330" fontFamily="monospace" fontSize="6.5" fill="rgba(255,255,255,.2)" textAnchor="middle">INLINE C</text>
-              <text x="190" y="372" fontFamily="monospace" fontSize="6.5" fill="rgba(255,255,255,.2)" textAnchor="middle">INLINE D</text>
-              <rect x="274" y="220" width="78" height="78" fill="rgba(27,42,74,.12)" stroke="rgba(255,255,255,.3)" strokeWidth=".75"/>
-              <text x="313" y="260" fontFamily="monospace" fontSize="6.5" fill="rgba(255,255,255,.28)" textAnchor="middle">PAD SITE</text>
-              <text x="313" y="273" fontFamily="monospace" fontSize="6.5" fill="rgba(255,255,255,.18)" textAnchor="middle">QSR / BANK</text>
-              <rect x="368" y="220" width="78" height="78" fill="rgba(27,42,74,.12)" stroke="rgba(255,255,255,.3)" strokeWidth=".75"/>
-              <text x="407" y="260" fontFamily="monospace" fontSize="6.5" fill="rgba(255,255,255,.28)" textAnchor="middle">PAD SITE</text>
-              <text x="407" y="273" fontFamily="monospace" fontSize="6.5" fill="rgba(255,255,255,.18)" textAnchor="middle">MEDICAL</text>
-              <rect x="274" y="312" width="216" height="76" fill="rgba(255,255,255,.012)" stroke="rgba(255,255,255,.1)" strokeWidth=".5"/>
-              <g stroke="rgba(255,255,255,.09)" strokeWidth=".4">
-                <line x1="290" y1="312" x2="290" y2="388"/><line x1="306" y1="312" x2="306" y2="388"/>
-                <line x1="322" y1="312" x2="322" y2="388"/><line x1="338" y1="312" x2="338" y2="388"/>
-                <line x1="354" y1="312" x2="354" y2="388"/><line x1="370" y1="312" x2="370" y2="388"/>
-                <line x1="386" y1="312" x2="386" y2="388"/><line x1="402" y1="312" x2="402" y2="388"/>
-                <line x1="418" y1="312" x2="418" y2="388"/><line x1="434" y1="312" x2="434" y2="388"/>
-                <line x1="450" y1="312" x2="450" y2="388"/><line x1="466" y1="312" x2="466" y2="388"/>
-              </g>
-              <text x="382" y="356" fontFamily="monospace" fontSize="6.5" fill="rgba(255,255,255,.18)" textAnchor="middle">PARKING FIELD</text>
-              <line x1="30" y1="428" x2="238" y2="428" stroke="rgba(255,255,255,.14)" strokeWidth=".5"/>
-              <line x1="30" y1="424" x2="30" y2="432" stroke="rgba(255,255,255,.14)" strokeWidth=".5"/>
-              <line x1="238" y1="424" x2="238" y2="432" stroke="rgba(255,255,255,.14)" strokeWidth=".5"/>
-              <text x="134" y="438" fontFamily="monospace" fontSize="6.5" fill="rgba(255,255,255,.18)" textAnchor="middle">175,000 SF GLA</text>
-              <g transform="translate(486,36)"><circle cx="0" cy="0" r="11" fill="none" stroke="rgba(255,255,255,.18)" strokeWidth=".5"/><path d="M0,-9L3,4L0,1L-3,4Z" fill="rgba(255,255,255,.4)"/><path d="M0,-9L-3,4L0,1L3,4Z" fill="rgba(255,255,255,.15)"/><text x="0" y="-13" fontFamily="monospace" fontSize="6" fill="rgba(255,255,255,.4)" textAnchor="middle">N</text></g>
-            </svg>
+      {/* WHY RADIUS */}
+      <section className="wyr" id="retail">
+        <div className="wyri">
+          <div className="wyrleft">
+            <div className="wyrhead">
+              <div className="ey rv">Why Radius</div>
+              <div className="st rv d1">Built for Speed, Structure, and Scale</div>
+              <p className="wyrintro rv d2">Principal-led execution, creative structuring, and longstanding institutional relationships allow Radius to move with unusual precision across the land cycle.</p>
+            </div>
+            <div className="wyrlist">
+              {whyRadiusItems.map((item, index) => (
+                <div key={item.number} className={`wyritem rv d${Math.min(index + 1, 4)}`}>
+                  <div className="wyrnum">{item.number}</div>
+                  <div className="wyrcopy">
+                    <div className="wyrtitle">{item.title}</div>
+                    <p className="wyrbody">{item.body}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
-          <div>
-            <div className="ey rv">Retail Platform</div>
-            <div className="st rv d1">The Outparcel<br/>Intelligence Engine</div>
-            <p className="sd rv d2" style={{marginTop:"22px"}}>Radius has built the region's most sophisticated retail land platform — identifying, entitling, and delivering outparcels and inline retail sites at the intersection of residential growth corridors.</p>
-            <div className="rtstats rv d3">
-              <div className="rts"><div className="rtsn">47</div><div className="rtsl">Active Retail Sites</div></div>
-              <div className="rts"><div className="rtsn">2.8M</div><div className="rtsl">Sq Ft in Development</div></div>
-              <div className="rts"><div className="rtsn">$1.2B</div><div className="rtsl">Retail Portfolio Value</div></div>
-              <div className="rts"><div className="rtsn">12</div><div className="rtsl">Metro Markets</div></div>
+
+          <div className="wyrrail">
+            <div className="wyrstat rv d2">
+              <div className="wyrstatnum">2.2x</div>
+              <div className="wyrstatlabel">Average Return Multiple</div>
+            </div>
+            <div className="wyrstat rv d3">
+              <div className="wyrstatnum wyrstatnum-sm">18 mo.</div>
+              <div className="wyrstatlabel">Average Hold Period</div>
+            </div>
+            <div className="wyrquote rv d4">
+              <div className="wyrquotemark">"</div>
+              <p className="wyrquotetext">The best land deals rarely make it to market. We are built to see them early and execute with precision.</p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* FOUNDER */}
-      <section className="fnd" id="about">
-        <div className="fwm">Conviction</div>
-        <div className="fi">
-          <div>
-            <span className="fqm rv">"</span>
-            <p className="fq rv d1">"We don't speculate on land. We underwrite it with the same discipline a private equity fund applies to leveraged acquisitions — with the speed and conviction only a principal can bring."</p>
-            <div className="rv d2">
-              <div className="fan">James R. Harmon</div>
-              <div className="fat">Founder &amp; Managing Principal, Radius Development Group</div>
+      {/* OUR TEAM */}
+      <section className="team" id="team">
+        <div className="teami">
+          <div className="teammedia rv d1">
+            <div className="teamgrid">
+              {teamMembers.map((member, index) => (
+                <div key={member.name} className={`teamcard ${member.theme} rv d${Math.min(index + 1, 4)}`}>
+                  <div className="teamimage" aria-hidden="true"></div>
+                  <div className="teammeta">
+                    <div className="teamname">{member.name}</div>
+                    <div className="teamrole">{member.role}</div>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
-          <div className="fr rv d1">
-            <p className="fb">For over two decades, Radius Development Group has operated at the nexus of institutional capital and complex land markets. We are not a brokerage. We are not a REIT. We are a principal-led platform that takes calculated, high-conviction positions in the land cycle — and executes with precision.</p>
-            <p className="fb">Our edge is structural: deep market intelligence, preferred relationships with national builders, and a legal and entitlement infrastructure that compresses time-to-close and de-risks execution for our capital partners.</p>
-            <div className="fsig">
-              <svg viewBox="0 0 160 58" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M8,34 C14,18 18,12 24,16 C30,20 26,36 32,34 C38,32 40,20 46,22 C52,24 48,40 54,38 C59,36 62,26 68,24 C74,22 72,36 78,34 C84,32 86,20 94,18 C102,16 100,30 105,32 C110,34 114,28 118,24 C122,20 124,18 128,20 C132,22 130,36 136,33 C140,31 144,24 150,26" stroke="rgba(255,255,255,.72)" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
-                <path d="M18,40 C22,42 28,44 34,42" stroke="rgba(255,255,255,.38)" strokeWidth=".8" strokeLinecap="round"/>
-                <path d="M152,27 C156,30 156,36 152,38" stroke="rgba(255,255,255,.42)" strokeWidth=".8" strokeLinecap="round"/>
-              </svg>
-              <p>James R. Harmon — Managing Principal</p>
-            </div>
+
+          <div className="teamcopy">
+            <div className="ey rv">Our Team</div>
+            <div className="st rv d1">Experienced Operators, Structured for Execution</div>
+            <p className="teambody rv d2">Radius is built around a senior team with deep experience across land acquisition, entitlement strategy, structured development, and capital execution. We combine institutional rigor with principal-led decisiveness, giving our partners a team that can move quickly without compromising discipline.</p>
+            <a href="#about" className="bp rv d3">About Us</a>
           </div>
         </div>
       </section>
 
       {/* FOOTER */}
       <footer id="contact">
-        <div>
-          <div className="flogo">Radius Development</div>
+        <div className="fbrand">
+          <div className="flogo">radius</div>
           <p className="ftag">Principal-led land investment and development platform operating across the Sun Belt and Mountain West.</p>
+          <p className="fmeta">Land strategy, development execution, and institutional partnerships across high-growth markets.</p>
         </div>
-        <div>
+        <div className="fcol">
           <div className="fct">Platform</div>
           <ul className="flinks">
-            <li><a href="#">Land Acquisition</a></li>
-            <li><a href="#">Vertical Development</a></li>
-            <li><a href="#">Retail Strategy</a></li>
-            <li><a href="#">Capital Partnerships</a></li>
+            <li><a href="#platform">What We Do</a></li>
+            <li><a href="#featured-projects">Current Projects</a></li>
+            <li><a href="#retail">Why Radius</a></li>
+            <li><a href="#team">Our Team</a></li>
           </ul>
         </div>
-        <div>
-          <div className="fct">Transactions</div>
-          <ul className="flinks">
-            <li><a href="#">Deal Sheet</a></li>
-            <li><a href="#">Portfolio Overview</a></li>
-            <li><a href="#">Active Opportunities</a></li>
-            <li><a href="#">Exit Summaries</a></li>
-          </ul>
-        </div>
-        <div>
+        <div className="fcol">
           <div className="fct">Company</div>
           <ul className="flinks">
-            <li><a href="#">About Radius</a></li>
-            <li><a href="#">Leadership</a></li>
+            <li><a href="#about">Who We Are</a></li>
+            <li><a href="#team">Leadership</a></li>
+            <li><a href="#contact">Contact</a></li>
             <li><a href="#">Market Coverage</a></li>
+          </ul>
+        </div>
+        <div className="fcol">
+          <div className="fct">Access</div>
+          <ul className="flinks">
+            <li><a href="#">Investor Portal</a></li>
             <li><a href="#">Request Access</a></li>
+            <li><a href="#featured-projects">Active Pipeline</a></li>
+            <li><a href="#contact">General Inquiries</a></li>
           </ul>
         </div>
       </footer>
