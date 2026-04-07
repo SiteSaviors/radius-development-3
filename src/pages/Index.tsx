@@ -21,6 +21,7 @@ import teamPhoto139 from "@/assets/139.jpg";
 import teamPhoto140 from "@/assets/140.jpg";
 import teamPhoto141 from "@/assets/141.jpg";
 import teamPhoto142 from "@/assets/142.jpg";
+import investorCtaBg from "@/assets/investor.jpg";
 
 const partnerLogoSlots = [
   {
@@ -755,6 +756,23 @@ const Index = () => {
             <div className="st rv d1">Experienced Operators, Structured for Execution</div>
             <p className="teambody rv d2">Radius is built around a senior team with deep experience across land acquisition, entitlement strategy, structured development, and capital execution. We combine institutional rigor with principal-led decisiveness, giving our partners a team that can move quickly without compromising discipline.</p>
             <a href="#about" className="bp rv d3">About Us</a>
+          </div>
+        </div>
+      </section>
+
+      <section className="investorcta">
+        <div className="investorctai">
+          <LazyBackground className="investorcta-bg rv d1" image={investorCtaBg} ariaHidden />
+          <div className="investorcard rv d2">
+            <div className="ey rv">Investor Access</div>
+            <div className="st rv d3">Interested in Learning More?</div>
+            <p className="investorbody rv d4">
+              We&apos;re always looking to partner with accredited investors who share our vision for Central Texas. Join us to access exclusive opportunities, local expertise, and a team committed to helping you achieve your goals.
+            </p>
+            <div className="investoractions rv d4">
+              <a href="#" className="bp">Become an Investor</a>
+              <a href="#" className="bp">Investor Portal</a>
+            </div>
           </div>
         </div>
       </section>

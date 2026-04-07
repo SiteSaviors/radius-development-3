@@ -231,7 +231,7 @@ h1 em{font-style:italic;color:rgba(255,255,255,.6)}
   z-index:1;
   display:grid;
   grid-template-columns:minmax(0,.92fr) minmax(0,.92fr) minmax(0,.82fr) minmax(0,.82fr);
-  grid-template-rows:251px 251px 265px 311px;
+  grid-template-rows:251px 251px 305px 311px;
   gap:18px;
   min-height:auto;
   align-items:stretch;
@@ -866,7 +866,7 @@ h1 em{font-style:italic;color:rgba(255,255,255,.6)}
 }
 
 /* OUR TEAM */
-.team{padding:120px 48px 120px 0;background:#020202;position:relative;overflow:hidden}
+.team{padding:72px 48px 120px 0;background:#020202;position:relative;overflow:hidden}
 .teami{display:grid;grid-template-columns:minmax(0,1.06fr) minmax(360px,.94fr);gap:72px;align-items:center}
 .teammedia{
   position:relative;
@@ -977,6 +977,93 @@ h1 em{font-style:italic;color:rgba(255,255,255,.6)}
   line-height:1.9;
   color:rgba(255,255,255,.62);
   margin-bottom:34px;
+}
+
+/* INVESTOR CTA */
+.investorcta{
+  position:relative;
+  padding:0 48px 88px;
+  background:#020202;
+  overflow:visible;
+}
+.investorctai{
+  position:relative;
+  min-height:430px;
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  padding:34px 24px 34px 34px;
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:40px;
+  background:
+    linear-gradient(180deg,rgba(255,255,255,.028) 0%,rgba(255,255,255,.012) 100%),
+    linear-gradient(120deg,rgba(27,42,74,.18) 0%,transparent 58%),
+    #070707;
+  overflow:visible;
+}
+.investorctai::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  border-radius:inherit;
+  background-image:
+    linear-gradient(rgba(255,255,255,.022) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.02) 1px,transparent 1px);
+  background-size:26px 26px;
+  opacity:.22;
+  pointer-events:none;
+}
+.investorcta-bg{
+  position:absolute;
+  inset:0;
+  border-radius:inherit;
+  background-size:cover;
+  background-position:center 52%;
+  background-repeat:no-repeat;
+  transform:scale(1.02);
+}
+.investorctai::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  border-radius:inherit;
+  background:
+    linear-gradient(90deg,rgba(0,0,0,.08) 0%,rgba(0,0,0,.16) 30%,rgba(0,0,0,.3) 62%,rgba(0,0,0,.52) 100%),
+    linear-gradient(180deg,rgba(255,255,255,.025) 0%,rgba(255,255,255,0) 24%,rgba(0,0,0,.14) 100%);
+  pointer-events:none;
+}
+.investorcard{
+  position:relative;
+  z-index:2;
+  width:min(100%,520px);
+  margin-right:0;
+  padding:34px 34px 36px;
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:30px;
+  background:
+    linear-gradient(180deg,rgba(255,255,255,.05) 0%,rgba(255,255,255,.015) 100%),
+    rgba(7,7,7,.92);
+  box-shadow:0 28px 64px rgba(0,0,0,.22);
+}
+.investorcard .st{
+  max-width:480px;
+  margin-top:14px;
+  font-size:clamp(30px,3vw,42px);
+}
+.investorbody{
+  margin-top:20px;
+  max-width:470px;
+  font-size:12.5px;
+  font-weight:300;
+  letter-spacing:.055em;
+  line-height:1.85;
+  color:rgba(255,255,255,.68);
+  margin-bottom:30px;
+}
+.investoractions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:14px;
 }
 
 /* FOOTER */
@@ -1200,7 +1287,7 @@ footer{padding:72px 48px 42px;border-top:1px solid var(--hl);background:#000;dis
   .wyrquotetext{font-size:clamp(20px,5.4vw,24px);max-width:none}
 
   /* Our Team */
-  .team{padding:64px 20px}
+  .team{padding:40px 20px 64px}
   .teami{grid-template-columns:1fr;gap:36px}
   .teammedia{
     min-height:0;
@@ -1216,6 +1303,29 @@ footer{padding:72px 48px 42px;border-top:1px solid var(--hl);background:#000;dis
   .teamrole{font-size:8px;letter-spacing:.15em}
   .teamcopy{padding-right:0}
   .teambody{max-width:none;font-size:12px;line-height:1.8;margin-bottom:28px}
+
+  /* Investor CTA */
+  .investorcta{padding:0 20px 64px}
+  .investorctai{
+    min-height:320px;
+    padding:18px;
+    border-radius:28px;
+    overflow:hidden;
+  }
+  .investorcta-bg{background-position:center}
+  .investorcard{
+    width:100%;
+    margin-right:0;
+    padding:24px 22px 24px;
+    border-radius:22px;
+    background:
+      linear-gradient(180deg,rgba(255,255,255,.07) 0%,rgba(255,255,255,.025) 100%),
+      rgba(8,8,8,.62);
+  }
+  .investorcard .st{margin-top:12px;font-size:clamp(28px,7vw,36px)}
+  .investorbody{max-width:none;margin-top:16px;margin-bottom:24px;font-size:12px;line-height:1.78}
+  .investoractions{flex-direction:column}
+  .investoractions .bp{width:100%;justify-content:center}
 
   /* Footer */
   footer{grid-template-columns:1fr;gap:32px;padding:48px 20px 32px}
