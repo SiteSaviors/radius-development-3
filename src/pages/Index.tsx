@@ -1,6 +1,5 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from "react";
 import heroBg from "@/assets/Radius-Back.jpeg";
-import heroVideo from "@/assets/RADIUS-VIDEO.mp4";
 import jointVenturesBg from "@/assets/joint-ventures.jpg";
 import landEntitlementBg from "@/assets/land-entitlement.jpg";
 import luxRetailBg from "@/assets/lux-retail.jpg";
@@ -42,15 +41,6 @@ const partnerLogoSlots = [
     name: "Wood Partners",
     image: woodPartnersLogo,
   },
-] as const;
-
-const platformSegments = [
-  { label: "Multi-Family", image: shilohBg, position: "center center" },
-  { label: "Industrial", image: jointVenturesBg, position: "center center" },
-  { label: "Senior Living", image: franklinBg, position: "center center" },
-  { label: "Retail", image: luxRetailBg, position: "center center" },
-  { label: "Office", image: altaAriaBg, position: "center center" },
-  { label: "Mixed-Use", image: landEntitlementBg, position: "center center" },
 ] as const;
 
 const featuredProjects = [
@@ -217,6 +207,55 @@ const teamMembers = [
   },
 ] as const;
 
+type LazyBackgroundProps = {
+  className: string;
+  image: string;
+  style?: CSSProperties;
+  eager?: boolean;
+  ariaHidden?: boolean;
+  children?: ReactNode;
+};
+
+const LazyBackground = ({ className, image, style, eager = false, ariaHidden, children }: LazyBackgroundProps) => {
+  const [loaded, setLoaded] = useState(eager);
+  const containerRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    if (loaded) return;
+
+    const node = containerRef.current;
+    if (!node) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((entry) => entry.isIntersecting)) {
+          setLoaded(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "240px 0px" }
+    );
+
+    observer.observe(node);
+
+    return () => observer.disconnect();
+  }, [loaded]);
+
+  return (
+    <div
+      ref={containerRef}
+      className={className}
+      aria-hidden={ariaHidden}
+      style={{
+        ...style,
+        ...(loaded ? { backgroundImage: `url(${image})` } : undefined),
+      }}
+    >
+      {children}
+    </div>
+  );
+};
+
 const Index = () => {
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
   const [primaryProject, ...secondaryProjects] = featuredProjects;
@@ -248,8 +287,6 @@ const Index = () => {
     const sthumb = document.getElementById("sthumb")!;
     const hbg = document.getElementById("hbg")!;
     const hwm = document.getElementById("hwm")!;
-    const heroSection = document.getElementById("hero");
-    const heroVideoEl = document.getElementById("hvideo") as HTMLVideoElement | null;
     const navEl = document.querySelector("nav")!;
     const onScroll = () => {
       const pct = window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100;
@@ -259,37 +296,6 @@ const Index = () => {
       if (window.scrollY > 40) { navEl.classList.add("scrolled"); } else { navEl.classList.remove("scrolled"); }
     };
     window.addEventListener("scroll", onScroll, { passive: true });
-
-    // HERO VIDEO
-    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    let heroObs: IntersectionObserver | null = null;
-    const syncHeroVideo = (shouldPlay: boolean) => {
-      if (!heroVideoEl) return;
-      if (reducedMotion) {
-        heroVideoEl.pause();
-        return;
-      }
-      if (shouldPlay && !document.hidden) {
-        void heroVideoEl.play().catch(() => {});
-      } else {
-        heroVideoEl.pause();
-      }
-    };
-    const onVisibility = () => {
-      if (!heroSection) return;
-      const rect = heroSection.getBoundingClientRect();
-      const visible = rect.bottom > window.innerHeight * 0.2 && rect.top < window.innerHeight * 0.8;
-      syncHeroVideo(visible);
-    };
-    if (heroSection && heroVideoEl) {
-      heroObs = new IntersectionObserver(
-        (entries) => syncHeroVideo(entries[0]?.isIntersecting ?? false),
-        { threshold: 0.2 }
-      );
-      heroObs.observe(heroSection);
-      document.addEventListener("visibilitychange", onVisibility);
-      onVisibility();
-    }
 
     // REVEAL
     const obs = new IntersectionObserver(entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add("on"); }), { threshold: 0.07, rootMargin: "0px 0px -30px 0px" });
@@ -342,10 +348,8 @@ const Index = () => {
       cancelAnimationFrame(raf);
       hoverEls.forEach(el => { el.removeEventListener("mouseenter", enter); el.removeEventListener("mouseleave", leave); });
       window.removeEventListener("scroll", onScroll);
-      document.removeEventListener("visibilitychange", onVisibility);
       obs.disconnect();
       statsObs?.disconnect();
-      heroObs?.disconnect();
     };
   }, []);
 
@@ -389,24 +393,10 @@ const Index = () => {
 
       {/* HERO */}
       <section className="hero" id="hero">
-        <div className="hbg" id="hbg" style={{backgroundImage:`url(${heroBg})`}}>
-          <video
-            className="hbgv"
-            id="hvideo"
-            muted
-            loop
-            playsInline
-            preload="metadata"
-            poster={heroBg}
-            aria-hidden="true"
-            disablePictureInPicture
-          >
-            <source src={heroVideo} type="video/mp4" />
-          </video>
-        </div>
+        <div className="hbg" id="hbg" style={{backgroundImage:`url(${heroBg})`}}></div>
         <div className="hwm" id="hwm">RADIUS</div>
         <div className="hinner">
-          <div className="glass rv text-left">
+          <div className="glass text-left">
             <div className="ey">Land &nbsp;·&nbsp; Development &nbsp;·&nbsp; Retail</div>
             <h1>We Find High Value Development Opportunities Before the Market Sees Them</h1>
             <p className="hsp">Land acquisition, development partnerships, and scalable retail concepts across high-growth markets.</p>
@@ -449,7 +439,7 @@ const Index = () => {
             <a href="#" className="bp rv d3">Learn More</a>
           </div>
           <div className="wwapanel rv d1">
-            <div className="wwaimg" style={{ backgroundImage: `url(${whoWeAreBg})` }}></div>
+            <LazyBackground className="wwaimg" image={whoWeAreBg} ariaHidden />
             <div className="wwaov"></div>
             <div className="wwastats" id="wwa-stats">
               <div className="wwastat">
@@ -485,7 +475,7 @@ const Index = () => {
         <div className="bento">
           <div className="bc rv">
             <div className="bcmedia">
-              <div className="bcbg land-photo" style={{backgroundImage:`url(${landEntitlementBg})`}}></div>
+              <LazyBackground className="bcbg land-photo" image={landEntitlementBg} ariaHidden />
               <div className="bctop">
                 <svg width="26" height="26" viewBox="0 0 26 26" fill="none"><rect x=".5" y=".5" width="25" height="25" stroke="rgba(255,255,255,.22)" strokeWidth=".75"/><path d="M4 19L13 7L22 19" stroke="rgba(255,255,255,.5)" strokeWidth=".75" fill="none"/><line x1="4" y1="19" x2="22" y2="19" stroke="rgba(255,255,255,.5)" strokeWidth=".75"/></svg>
               </div>
@@ -499,7 +489,7 @@ const Index = () => {
           </div>
           <div className="bc rv d1">
             <div className="bcmedia">
-              <div className="bcbg development-photo" style={{backgroundImage:`url(${jointVenturesBg})`}}></div>
+              <LazyBackground className="bcbg development-photo" image={jointVenturesBg} ariaHidden />
               <div className="bctop">
                 <svg width="26" height="26" viewBox="0 0 26 26" fill="none"><rect x=".5" y=".5" width="25" height="25" stroke="rgba(255,255,255,.22)" strokeWidth=".75"/><rect x="3" y="10" width="7" height="13" stroke="rgba(255,255,255,.5)" strokeWidth=".75" fill="none"/><rect x="14" y="6" width="9" height="17" stroke="rgba(255,255,255,.5)" strokeWidth=".75" fill="none"/><line x1="10" y1="23" x2="14" y2="23" stroke="rgba(255,255,255,.5)" strokeWidth=".75"/></svg>
               </div>
@@ -513,7 +503,7 @@ const Index = () => {
           </div>
           <div className="bc rv d2">
             <div className="bcmedia">
-              <div className="bcbg retail-photo" style={{backgroundImage:`url(${luxRetailBg})`}}></div>
+              <LazyBackground className="bcbg retail-photo" image={luxRetailBg} ariaHidden />
               <div className="bctop">
                 <svg width="26" height="26" viewBox="0 0 26 26" fill="none"><rect x=".5" y=".5" width="25" height="25" stroke="rgba(255,255,255,.22)" strokeWidth=".75"/><rect x="2" y="13" width="22" height="10" stroke="rgba(255,255,255,.5)" strokeWidth=".75" fill="none"/><line x1="2" y1="13" x2="2" y2="9" stroke="rgba(255,255,255,.5)" strokeWidth=".75"/><line x1="24" y1="13" x2="24" y2="9" stroke="rgba(255,255,255,.5)" strokeWidth=".75"/><path d="M2 9Q13 3 24 9" stroke="rgba(255,255,255,.5)" strokeWidth=".75" fill="none"/><line x1="10" y1="13" x2="10" y2="23" stroke="rgba(255,255,255,.3)" strokeWidth=".5"/><line x1="16" y1="13" x2="16" y2="23" stroke="rgba(255,255,255,.3)" strokeWidth=".5"/></svg>
               </div>
@@ -542,18 +532,17 @@ const Index = () => {
             href={primaryProject.href}
             className={`fpcard fphero rv ${primaryProject.theme}${primaryProject.image ? " fp-has-image" : ""}`}
           >
-            <div className="fpmedia" aria-hidden="true">
-              {primaryProject.image ? (
-                <div
-                  className="fpimage"
-                  style={{
-                    backgroundImage: `url(${primaryProject.image})`,
-                    backgroundPosition: primaryProject.imagePosition,
-                  }}
-                ></div>
-              ) : null}
-              <div className="fpglow"></div>
-              <div className="fpgridline"></div>
+              <div className="fpmedia" aria-hidden="true">
+                {primaryProject.image ? (
+                  <LazyBackground
+                    className="fpimage"
+                    image={primaryProject.image}
+                    style={{ backgroundPosition: primaryProject.imagePosition }}
+                    ariaHidden
+                  />
+                ) : null}
+                <div className="fpglow"></div>
+                <div className="fpgridline"></div>
             </div>
             <div className="fpcontent">
               <div className={`fplabel${primaryProject.statusTone ? ` ${primaryProject.statusTone}` : ""}`}>{primaryProject.status}</div>
@@ -580,13 +569,12 @@ const Index = () => {
               >
                 <div className="fpmedia" aria-hidden="true">
                   {project.image ? (
-                    <div
+                    <LazyBackground
                       className="fpimage"
-                      style={{
-                        backgroundImage: `url(${project.image})`,
-                        backgroundPosition: project.imagePosition,
-                      }}
-                    ></div>
+                      image={project.image}
+                      style={{ backgroundPosition: project.imagePosition }}
+                      ariaHidden
+                    />
                   ) : null}
                   <div className="fpglow"></div>
                   <div className="fpgridline"></div>
@@ -622,13 +610,13 @@ const Index = () => {
           <p className="sd rv d2">A representative outcome illustrating Radius&apos;s land strategy, entitlement execution, and realized value creation.</p>
         </div>
         <div className="clpanel rv">
-          <div className="clvisual" aria-hidden="true" style={{ backgroundImage: `url(${todBg})` }}>
+          <LazyBackground className="clvisual" image={todBg} ariaHidden>
             <div className="clvoverlay">
               <div className="clvlabel closed">Closed</div>
               <div className="clvtitle">TOD - Phase One</div>
               <div className="clvloc">Research Triangle Park, NC</div>
             </div>
-          </div>
+          </LazyBackground>
           <div className="clcontent">
             <div className="clstatus">Transaction Spotlight</div>
             <h3 className="cltitle">Fully-Entitled TOD land project delivered to a national multifamily developer.</h3>
@@ -713,7 +701,7 @@ const Index = () => {
             <div className="teamgrid">
               {teamMembers.map((member, index) => (
                 <div key={member.name} className={`teamcard ${member.theme} rv d${Math.min(index + 1, 4)}`}>
-                  <div className="teamimage" aria-hidden="true" style={{ backgroundImage: `url(${member.image})` }}></div>
+                  <LazyBackground className="teamimage" image={member.image} ariaHidden />
                   <div className="teammeta">
                     <div className="teamname">{member.name}</div>
                     <div className="teamrole">{member.role}</div>
