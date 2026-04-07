@@ -4,7 +4,6 @@ import heroVideo from "@/assets/RADIUS-VIDEO.mp4";
 import jointVenturesBg from "@/assets/joint-ventures.jpg";
 import landEntitlementBg from "@/assets/land-entitlement.jpg";
 import luxRetailBg from "@/assets/lux-retail.jpg";
-import altaAriaBg from "@/assets/alta-aria.jpg";
 import caryEstatesBg from "@/assets/CARY-E.jpg";
 import franklinBg from "@/assets/Franklin.jpg";
 import shilohBg from "@/assets/Shiloh.jpg";
@@ -75,20 +74,6 @@ const featuredProjects = [
     ],
   },
   {
-    name: "Alta Aria",
-    status: "Under Development",
-    description: "Retail-led development site being structured for phased execution.",
-    href: "#",
-    theme: "fp-03",
-    image: altaAriaBg,
-    imagePosition: "center 42%",
-    layout: "fp-small-a",
-    highlights: [
-      { text: "Residential", tone: "blue" },
-      { text: "Phase I", tone: "slate" },
-    ],
-  },
-  {
     name: "Terraces At West Cary",
     status: "Under Development",
     description: "Strategic land assembly moving toward partner-ready delivery.",
@@ -96,14 +81,14 @@ const featuredProjects = [
     theme: "fp-04",
     image: terracesBg,
     imagePosition: "center 34%",
-    layout: "fp-small-b",
+    layout: "fp-wide-middle",
     highlights: [
       { text: "Residential", tone: "blue" },
       { text: "Land Assembly", tone: "mint" },
     ],
   },
   {
-    name: "RDU Town Center",
+    name: "Pittard Sears",
     status: "Open Project",
     statusTone: "open-project",
     description: "Town center land strategy progressing through phased entitlement and anchor planning.",
@@ -131,26 +116,13 @@ const featuredProjects = [
     ],
   },
   {
-    name: "Cary Land",
-    status: "Open Project",
-    statusTone: "open-project",
-    description: "Pipeline multifamily and neighborhood retail concept in early execution planning.",
-    href: "#",
-    theme: "fp-07",
-    layout: "fp-under-left",
-    highlights: [
-      { text: "Multifamily", tone: "blue" },
-      { text: "Neighborhood Retail", tone: "gold" },
-    ],
-  },
-  {
-    name: "Pittard Sears",
+    name: "RDU Town Center",
     status: "Open Project",
     statusTone: "open-project",
     description: "Institutional-quality development position advancing toward market-facing delivery.",
     href: "#",
     theme: "fp-08",
-    layout: "fp-under-right",
+    layout: "fp-wide-bottom",
     highlights: [
       { text: "Institutional", tone: "slate" },
       { text: "Land Strategy", tone: "mint" },
@@ -337,14 +309,19 @@ const Index = () => {
 
     // COUNT-UP
     const statDefs = [
-      { id: "wwa-val-0", end: 2,   decimals: 0, prefix: "",  suffix: "M+" },
-      { id: "wwa-val-1", end: 300, decimals: 0, prefix: "$", suffix: "M"  },
-      { id: "wwa-val-2", end: 2.2, decimals: 1, prefix: "",  suffix: "X"  },
-      { id: "wwa-val-3", end: 30,  decimals: 0, prefix: "",  suffix: "+"  },
+      { id: "wwa-val-0", end: 1.1, decimals: 1, prefix: "", suffix: "B" },
+      { id: "wwa-val-1", end: 300000, decimals: 0, prefix: "", suffix: "" },
+      { id: "wwa-val-2", end: 2200, decimals: 0, prefix: "", suffix: "" },
+      { id: "wwa-val-3", end: 2.2, decimals: 1, prefix: "", suffix: "X" },
     ];
+    const formatStatValue = (value: number, decimals: number) =>
+      value.toLocaleString("en-US", {
+        minimumFractionDigits: decimals,
+        maximumFractionDigits: decimals,
+      });
     const setFinal = () => statDefs.forEach(s => {
       const el = document.getElementById(s.id);
-      if (el) el.textContent = s.prefix + (s.decimals > 0 ? s.end.toFixed(s.decimals) : String(s.end)) + s.suffix;
+      if (el) el.textContent = s.prefix + formatStatValue(s.end, s.decimals) + s.suffix;
     });
     let statsObs: IntersectionObserver | null = null;
     const statsEl = document.getElementById("wwa-stats");
@@ -365,7 +342,8 @@ const Index = () => {
                 const el = document.getElementById(s.id);
                 if (!el) return;
                 const val = s.end * eased;
-                el.textContent = s.prefix + (s.decimals > 0 ? val.toFixed(s.decimals) : String(Math.floor(val))) + s.suffix;
+                const displayValue = s.decimals > 0 ? Number(val.toFixed(s.decimals)) : Math.floor(val);
+                el.textContent = s.prefix + formatStatValue(displayValue, s.decimals) + s.suffix;
               });
               if (progress < 1) requestAnimationFrame(tick);
               else setFinal();
@@ -493,20 +471,20 @@ const Index = () => {
             <div className="wwaov"></div>
             <div className="wwastats" id="wwa-stats">
               <div className="wwastat">
-                <div className="wwaval" id="wwa-val-0">2M+</div>
+                <div className="wwaval" id="wwa-val-0">1.1B</div>
+                <div className="wwalbl">ACTIVE PIPELINE</div>
+              </div>
+              <div className="wwastat">
+                <div className="wwaval" id="wwa-val-1">300,000</div>
                 <div className="wwalbl">SQ FT DEVELOPED</div>
               </div>
               <div className="wwastat">
-                <div className="wwaval" id="wwa-val-1">$300M</div>
-                <div className="wwalbl">IN CAPITALIZED ASSETS</div>
+                <div className="wwaval" id="wwa-val-2">2,200</div>
+                <div className="wwalbl">RESIDENTIAL UNITS</div>
               </div>
               <div className="wwastat">
-                <div className="wwaval" id="wwa-val-2">2.2X</div>
-                <div className="wwalbl">AVG RETURN MULTIPLE</div>
-              </div>
-              <div className="wwastat">
-                <div className="wwaval" id="wwa-val-3">30+</div>
-                <div className="wwalbl">YEARS COMBINED EXPERIENCE</div>
+                <div className="wwaval" id="wwa-val-3">2.2X</div>
+                <div className="wwalbl">LAND VALUE CREATION</div>
               </div>
             </div>
           </div>
@@ -647,6 +625,9 @@ const Index = () => {
               </a>
             ))}
           </div>
+        </div>
+        <div className="fpcta rv d3">
+          <a href="#" className="bp">View All Projects</a>
         </div>
       </section>
 
