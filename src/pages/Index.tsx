@@ -231,7 +231,7 @@ const Index = () => {
     };
     raf = requestAnimationFrame(anim);
 
-    const hoverEls = document.querySelectorAll(".bp,.bg,.pcard,.fpcard,.teamcard,.li,.nbtn,.flinks a,.nlinks a,.rts");
+    const hoverEls = document.querySelectorAll(".bp,.bg,.bc,.fpcard,.teamcard,.li,.nbtn,.flinks a,.nlinks a,.rts");
     const enter = () => cur.classList.add("x");
     const leave = () => cur.classList.remove("x");
     hoverEls.forEach(el => { el.addEventListener("mouseenter", enter); el.addEventListener("mouseleave", leave); });
@@ -474,20 +474,49 @@ const Index = () => {
           </div>
           <p className="sd rv d2">At Radius, we operate across the full lifecycle of real estate value creation—from identifying land before the market sees it, to partnering on institutional-scale development, to building iconic retail destinations.</p>
         </div>
-        <div className="pgrid">
-          {platformSegments.map((segment, index) => (
-            <div key={segment.label} className={`pcard rv d${Math.min(index, 5)}`}>
-              <div
-                className="pcimg"
-                aria-hidden="true"
-                style={{
-                  backgroundImage: `url(${segment.image})`,
-                  backgroundPosition: segment.position,
-                }}
-              ></div>
-              <div className="pclabel">{segment.label}</div>
+        <div className="bento">
+          <div className="bc rv">
+            <div className="bcmedia">
+              <div className="bcbg land-photo" style={{backgroundImage:`url(${landEntitlementBg})`}}></div>
+              <div className="bctop">
+                <svg width="26" height="26" viewBox="0 0 26 26" fill="none"><rect x=".5" y=".5" width="25" height="25" stroke="rgba(255,255,255,.22)" strokeWidth=".75"/><path d="M4 19L13 7L22 19" stroke="rgba(255,255,255,.5)" strokeWidth=".75" fill="none"/><line x1="4" y1="19" x2="22" y2="19" stroke="rgba(255,255,255,.5)" strokeWidth=".75"/></svg>
+              </div>
             </div>
-          ))}
+            <div className="bcc">
+              <div className="bcn">01 / Land</div>
+              <div className="bct">Land Entitlement</div>
+              <div className="bcd">We identify off-market opportunities across high growth corridors while leveraging deep local relationships and proprietary data to secure sites before they reach the broader market.</div>
+              <a href="#" className="bcta">Let&apos;s Talk Land</a>
+            </div>
+          </div>
+          <div className="bc rv d1">
+            <div className="bcmedia">
+              <div className="bcbg development-photo" style={{backgroundImage:`url(${jointVenturesBg})`}}></div>
+              <div className="bctop">
+                <svg width="26" height="26" viewBox="0 0 26 26" fill="none"><rect x=".5" y=".5" width="25" height="25" stroke="rgba(255,255,255,.22)" strokeWidth=".75"/><rect x="3" y="10" width="7" height="13" stroke="rgba(255,255,255,.5)" strokeWidth=".75" fill="none"/><rect x="14" y="6" width="9" height="17" stroke="rgba(255,255,255,.5)" strokeWidth=".75" fill="none"/><line x1="10" y1="23" x2="14" y2="23" stroke="rgba(255,255,255,.5)" strokeWidth=".75"/></svg>
+              </div>
+            </div>
+            <div className="bcc">
+              <div className="bcn">02 / Development</div>
+              <div className="bct">Development Partnerships</div>
+              <div className="bcd">From residential communities to mixed-use retail developments, we partner with best-in-class institutional developers with a focus on maximizing returns while building lasting community value.</div>
+              <a href="#" className="bcta">Let&apos;s Talk Development</a>
+            </div>
+          </div>
+          <div className="bc rv d2">
+            <div className="bcmedia">
+              <div className="bcbg retail-photo" style={{backgroundImage:`url(${luxRetailBg})`}}></div>
+              <div className="bctop">
+                <svg width="26" height="26" viewBox="0 0 26 26" fill="none"><rect x=".5" y=".5" width="25" height="25" stroke="rgba(255,255,255,.22)" strokeWidth=".75"/><rect x="2" y="13" width="22" height="10" stroke="rgba(255,255,255,.5)" strokeWidth=".75" fill="none"/><line x1="2" y1="13" x2="2" y2="9" stroke="rgba(255,255,255,.5)" strokeWidth=".75"/><line x1="24" y1="13" x2="24" y2="9" stroke="rgba(255,255,255,.5)" strokeWidth=".75"/><path d="M2 9Q13 3 24 9" stroke="rgba(255,255,255,.5)" strokeWidth=".75" fill="none"/><line x1="10" y1="13" x2="10" y2="23" stroke="rgba(255,255,255,.3)" strokeWidth=".5"/><line x1="16" y1="13" x2="16" y2="23" stroke="rgba(255,255,255,.3)" strokeWidth=".5"/></svg>
+              </div>
+            </div>
+            <div className="bcc">
+              <div className="bcn">03 / Retail</div>
+              <div className="bct">Retail Development</div>
+              <div className="bcd">We develop high-end, experience-driven retail centers where demand is underserved. Rather than building commodity retail, we develop environments that blend retail, dining, and community into a cohesive destination.</div>
+              <a href="#" className="bcta">Let&apos;s Talk Retail</a>
+            </div>
+          </div>
         </div>
       </section>
 
