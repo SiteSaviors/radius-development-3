@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from "react";
 import heroBg from "@/assets/Radius-Back.jpeg";
+import heroVideo from "@/assets/RADIUS-VIDEO.mp4";
 import jointVenturesBg from "@/assets/joint-ventures.jpg";
 import landEntitlementBg from "@/assets/land-entitlement.jpg";
 import luxRetailBg from "@/assets/lux-retail.jpg";
@@ -287,6 +288,8 @@ const Index = () => {
     const sthumb = document.getElementById("sthumb")!;
     const hbg = document.getElementById("hbg")!;
     const hwm = document.getElementById("hwm")!;
+    const heroSection = document.getElementById("hero");
+    const heroVideoEl = document.getElementById("hvideo") as HTMLVideoElement | null;
     const navEl = document.querySelector("nav")!;
     const onScroll = () => {
       const pct = window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100;
@@ -296,6 +299,37 @@ const Index = () => {
       if (window.scrollY > 40) { navEl.classList.add("scrolled"); } else { navEl.classList.remove("scrolled"); }
     };
     window.addEventListener("scroll", onScroll, { passive: true });
+
+    // HERO VIDEO
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    let heroObs: IntersectionObserver | null = null;
+    const syncHeroVideo = (shouldPlay: boolean) => {
+      if (!heroVideoEl) return;
+      if (reducedMotion) {
+        heroVideoEl.pause();
+        return;
+      }
+      if (shouldPlay && !document.hidden) {
+        void heroVideoEl.play().catch(() => {});
+      } else {
+        heroVideoEl.pause();
+      }
+    };
+    const onVisibility = () => {
+      if (!heroSection) return;
+      const rect = heroSection.getBoundingClientRect();
+      const visible = rect.bottom > window.innerHeight * 0.2 && rect.top < window.innerHeight * 0.8;
+      syncHeroVideo(visible);
+    };
+    if (heroSection && heroVideoEl) {
+      heroObs = new IntersectionObserver(
+        (entries) => syncHeroVideo(entries[0]?.isIntersecting ?? false),
+        { threshold: 0.2 }
+      );
+      heroObs.observe(heroSection);
+      document.addEventListener("visibilitychange", onVisibility);
+      onVisibility();
+    }
 
     // REVEAL
     const obs = new IntersectionObserver(entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add("on"); }), { threshold: 0.07, rootMargin: "0px 0px -30px 0px" });
@@ -348,8 +382,10 @@ const Index = () => {
       cancelAnimationFrame(raf);
       hoverEls.forEach(el => { el.removeEventListener("mouseenter", enter); el.removeEventListener("mouseleave", leave); });
       window.removeEventListener("scroll", onScroll);
+      document.removeEventListener("visibilitychange", onVisibility);
       obs.disconnect();
       statsObs?.disconnect();
+      heroObs?.disconnect();
     };
   }, []);
 
@@ -393,7 +429,21 @@ const Index = () => {
 
       {/* HERO */}
       <section className="hero" id="hero">
-        <div className="hbg" id="hbg" style={{backgroundImage:`url(${heroBg})`}}></div>
+        <div className="hbg" id="hbg" style={{backgroundImage:`url(${heroBg})`}}>
+          <video
+            className="hbgv"
+            id="hvideo"
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            poster={heroBg}
+            aria-hidden="true"
+            disablePictureInPicture
+          >
+            <source src={heroVideo} type="video/mp4" />
+          </video>
+        </div>
         <div className="hwm" id="hwm">RADIUS</div>
         <div className="hinner">
           <div className="glass text-left">
