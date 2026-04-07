@@ -880,6 +880,16 @@ h1 em{font-style:italic;color:rgba(255,255,255,.6)}
   transition:transform .45s ease,filter .45s ease;
   filter:saturate(.92) contrast(1.02) brightness(.94);
 }
+.teamimage::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(circle at var(--team-glow-x,50%) var(--team-glow-y,24%),rgba(255,255,255,.16) 0%,transparent 18%),
+    linear-gradient(180deg,rgba(255,255,255,.02) 0%,rgba(0,0,0,.18) 100%),
+    linear-gradient(140deg,var(--team-tint-start,rgba(36,52,82,.18)) 0%,var(--team-tint-end,rgba(11,16,23,.18)) 100%);
+  pointer-events:none;
+}
 .teamcard::after{
   content:'';
   position:absolute;
@@ -912,30 +922,10 @@ h1 em{font-style:italic;color:rgba(255,255,255,.6)}
   text-transform:uppercase;
   color:rgba(255,255,255,.54);
 }
-.team-01 .teamimage{
-  background:
-    radial-gradient(circle at 42% 28%,rgba(255,255,255,.22) 0%,transparent 18%),
-    linear-gradient(180deg,rgba(255,255,255,.02) 0%,rgba(0,0,0,.28) 100%),
-    linear-gradient(140deg,#243452 0%,#0b1017 100%);
-}
-.team-02 .teamimage{
-  background:
-    radial-gradient(circle at 68% 22%,rgba(255,255,255,.18) 0%,transparent 16%),
-    linear-gradient(180deg,rgba(255,255,255,.02) 0%,rgba(0,0,0,.28) 100%),
-    linear-gradient(140deg,#31483e 0%,#0b0f0d 100%);
-}
-.team-03 .teamimage{
-  background:
-    radial-gradient(circle at 34% 30%,rgba(255,255,255,.18) 0%,transparent 16%),
-    linear-gradient(180deg,rgba(255,255,255,.02) 0%,rgba(0,0,0,.28) 100%),
-    linear-gradient(140deg,#4a2e37 0%,#0f0c0f 100%);
-}
-.team-04 .teamimage{
-  background:
-    radial-gradient(circle at 58% 24%,rgba(255,255,255,.18) 0%,transparent 16%),
-    linear-gradient(180deg,rgba(255,255,255,.02) 0%,rgba(0,0,0,.28) 100%),
-    linear-gradient(140deg,#3a3f53 0%,#0c0d12 100%);
-}
+.team-01{--team-glow-x:42%;--team-glow-y:28%;--team-tint-start:rgba(36,52,82,.18);--team-tint-end:rgba(11,16,23,.18)}
+.team-02{--team-glow-x:68%;--team-glow-y:22%;--team-tint-start:rgba(49,72,62,.18);--team-tint-end:rgba(11,15,13,.18)}
+.team-03{--team-glow-x:34%;--team-glow-y:30%;--team-tint-start:rgba(74,46,55,.18);--team-tint-end:rgba(15,12,15,.18)}
+.team-04{--team-glow-x:58%;--team-glow-y:24%;--team-tint-start:rgba(58,63,83,.18);--team-tint-end:rgba(12,13,18,.18)}
 .teamcopy{
   padding-right:16px;
 }
