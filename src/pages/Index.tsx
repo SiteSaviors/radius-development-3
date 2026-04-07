@@ -16,6 +16,10 @@ import mcAdamsLogo from "@/assets/McAdams.webp";
 import whoWeAreBg from "@/assets/3.jpg";
 import todBg from "@/assets/TOD.jpg";
 import woodPartnersLogo from "@/assets/Wood-Partners.webp";
+import teamPhoto139 from "@/assets/139.jpg";
+import teamPhoto140 from "@/assets/140.jpg";
+import teamPhoto141 from "@/assets/141.jpg";
+import teamPhoto142 from "@/assets/142.jpg";
 
 const partnerLogoSlots = [
   {
@@ -188,24 +192,28 @@ const whyRadiusItems = [
 
 const teamMembers = [
   {
-    name: "James R. Harmon",
-    role: "Founder & Managing Principal",
+    name: "Ricky Joshi",
+    role: "General Partner",
     theme: "team-01",
+    image: teamPhoto139,
   },
   {
-    name: "Avery Collins",
-    role: "Partner, Development",
+    name: "Gaurang Gala",
+    role: "General Partner",
     theme: "team-02",
+    image: teamPhoto140,
   },
   {
-    name: "Lauren Mercer",
-    role: "Partner, Investments",
+    name: "Tarek Morshed",
+    role: "General Partner",
     theme: "team-03",
+    image: teamPhoto141,
   },
   {
-    name: "Daniel Rhodes",
-    role: "Director, Capital Markets",
+    name: "Elizabeth Eichen",
+    role: "Head of Investor Relations",
     theme: "team-04",
+    image: teamPhoto142,
   },
 ] as const;
 
@@ -705,7 +713,7 @@ const Index = () => {
             <div className="teamgrid">
               {teamMembers.map((member, index) => (
                 <div key={member.name} className={`teamcard ${member.theme} rv d${Math.min(index + 1, 4)}`}>
-                  <div className="teamimage" aria-hidden="true"></div>
+                  <div className="teamimage" aria-hidden="true" style={{ backgroundImage: `url(${member.image})` }}></div>
                   <div className="teammeta">
                     <div className="teamname">{member.name}</div>
                     <div className="teamrole">{member.role}</div>
