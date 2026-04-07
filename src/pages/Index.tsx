@@ -6,6 +6,8 @@ import landEntitlementBg from "@/assets/land-entitlement.jpg";
 import luxRetailBg from "@/assets/lux-retail.jpg";
 import caryEstatesBg from "@/assets/CARY-E.jpg";
 import franklinBg from "@/assets/Franklin.jpg";
+import pittardBg from "@/assets/Pittard.jpg";
+import rduTownBg from "@/assets/RDU-Town.jpg";
 import shilohBg from "@/assets/Shiloh.jpg";
 import terracesBg from "@/assets/TERRACES.jpg";
 import trammelCrowLogo from "@/assets/Trammel-Crow.webp";
@@ -66,7 +68,7 @@ const featuredProjects = [
     theme: "fp-02",
     image: franklinBg,
     imagePosition: "center 40%",
-    layout: "fp-wide-top",
+    layout: "fp-left-middle",
     highlights: [
       { text: "Residential", tone: "blue" },
       { text: "High-Growth Corridor", tone: "slate" },
@@ -81,7 +83,7 @@ const featuredProjects = [
     theme: "fp-04",
     image: terracesBg,
     imagePosition: "center 34%",
-    layout: "fp-wide-middle",
+    layout: "fp-right-middle",
     highlights: [
       { text: "Residential", tone: "blue" },
       { text: "Land Assembly", tone: "mint" },
@@ -94,7 +96,9 @@ const featuredProjects = [
     description: "Town center land strategy progressing through phased entitlement and anchor planning.",
     href: "#",
     theme: "fp-05",
-    layout: "fp-tall-a",
+    image: pittardBg,
+    imagePosition: "center center",
+    layout: "fp-square-a",
     highlights: [
       { text: "Town Center", tone: "gold" },
       { text: "Entitlement", tone: "mint" },
@@ -109,7 +113,7 @@ const featuredProjects = [
     theme: "fp-06",
     image: caryEstatesBg,
     imagePosition: "center 42%",
-    layout: "fp-tall-b",
+    layout: "fp-square-b",
     highlights: [
       { text: "Residential", tone: "blue" },
       { text: "Land Position", tone: "mint" },
@@ -122,6 +126,8 @@ const featuredProjects = [
     description: "Institutional-quality development position advancing toward market-facing delivery.",
     href: "#",
     theme: "fp-08",
+    image: rduTownBg,
+    imagePosition: "center center",
     layout: "fp-wide-bottom",
     highlights: [
       { text: "Institutional", tone: "slate" },
@@ -641,13 +647,15 @@ const Index = () => {
           <p className="sd rv d2">A representative outcome illustrating Radius&apos;s land strategy, entitlement execution, and realized value creation.</p>
         </div>
         <div className="clpanel rv">
-          <LazyBackground className="clvisual" image={todBg} ariaHidden>
-            <div className="clvoverlay">
-              <div className="clvlabel closed">Closed</div>
-              <div className="clvtitle">TOD - Phase One</div>
-              <div className="clvloc">Research Triangle Park, NC</div>
-            </div>
-          </LazyBackground>
+          <div className="clmedia rv d1">
+            <LazyBackground className="clvisual" image={todBg} ariaHidden>
+              <div className="clvoverlay">
+                <div className="clvlabel closed">Closed</div>
+                <div className="clvtitle">TOD - Phase One</div>
+                <div className="clvloc">Research Triangle Park, NC</div>
+              </div>
+            </LazyBackground>
+          </div>
           <div className="clcontent">
             <div className="clstatus">Transaction Spotlight</div>
             <h3 className="cltitle">Fully-Entitled TOD land project delivered to a national multifamily developer.</h3>
