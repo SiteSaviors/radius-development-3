@@ -1,15 +1,10 @@
-import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from "react";
+import { useEffect } from "react";
+import { Link } from "react-router-dom";
 import heroBg from "@/assets/RADIUS-VIDEO-poster.jpg";
 import heroVideo from "@/assets/RADIUS-VIDEO.mp4";
 import jointVenturesBg from "@/assets/joint-ventures.jpg";
 import landEntitlementBg from "@/assets/land-entitlement.jpg";
 import luxRetailBg from "@/assets/lux-retail.jpg";
-import caryEstatesBg from "@/assets/CARY-E.jpg";
-import franklinBg from "@/assets/Franklin.jpg";
-import pittardBg from "@/assets/Pittard.jpg";
-import rduTownBg from "@/assets/RDU-Town.jpg";
-import shilohBg from "@/assets/Shiloh.jpg";
-import terracesBg from "@/assets/TERRACES.jpg";
 import trammelCrowLogo from "@/assets/Trammel-Crow.webp";
 import tollBrothersLogo from "@/assets/Toll-Brothers.webp";
 import triPointeLogo from "@/assets/Tri-Pointe.webp";
@@ -22,6 +17,11 @@ import teamPhoto140 from "@/assets/140.jpg";
 import teamPhoto141 from "@/assets/141.jpg";
 import teamPhoto142 from "@/assets/142.jpg";
 import investorCtaBg from "@/assets/investor.jpg";
+import LazyBackground from "@/components/media/LazyBackground";
+import SiteFooter from "@/components/site/SiteFooter";
+import SiteHeader from "@/components/site/SiteHeader";
+import { projects } from "@/content/projects";
+import useRadiusCursor from "@/hooks/useRadiusCursor";
 
 const partnerLogoSlots = [
   {
@@ -43,97 +43,6 @@ const partnerLogoSlots = [
   {
     name: "Wood Partners",
     image: woodPartnersLogo,
-  },
-] as const;
-
-const featuredProjects = [
-  {
-    name: "The Shiloh",
-    status: "Under Development",
-    description: "Mixed-use land position advancing through entitlement and early planning.",
-    href: "#",
-    theme: "fp-01",
-    image: shilohBg,
-    imagePosition: "center 42%",
-    highlights: [
-      { text: "Mixed-Use", tone: "mint" },
-      { text: "2000+ Residential Units", tone: "blue" },
-      { text: "225,000 Sq Ft Retail Space", tone: "gold" },
-    ],
-  },
-  {
-    name: "The Franklin",
-    status: "Under Development",
-    description: "Residential and retail pipeline asset in a high-growth Sun Belt corridor.",
-    href: "#",
-    theme: "fp-02",
-    image: franklinBg,
-    imagePosition: "center 40%",
-    layout: "fp-left-middle",
-    highlights: [
-      { text: "Residential", tone: "blue" },
-      { text: "High-Growth Corridor", tone: "slate" },
-      { text: "Retail Integration", tone: "gold" },
-    ],
-  },
-  {
-    name: "Terraces At West Cary",
-    status: "Under Development",
-    description: "Strategic land assembly moving toward partner-ready delivery.",
-    href: "#",
-    theme: "fp-04",
-    image: terracesBg,
-    imagePosition: "center 34%",
-    layout: "fp-right-middle",
-    highlights: [
-      { text: "Residential", tone: "blue" },
-      { text: "Land Assembly", tone: "mint" },
-    ],
-  },
-  {
-    name: "Pittard Sears",
-    status: "Open Project",
-    statusTone: "open-project",
-    description: "Town center land strategy progressing through phased entitlement and anchor planning.",
-    href: "#",
-    theme: "fp-05",
-    image: pittardBg,
-    imagePosition: "center center",
-    layout: "fp-square-a",
-    highlights: [
-      { text: "Town Center", tone: "gold" },
-      { text: "Entitlement", tone: "mint" },
-    ],
-  },
-  {
-    name: "Cary Estates",
-    status: "Open Project",
-    statusTone: "open-project",
-    description: "Retail-adjacent mixed-use site moving through partner structuring.",
-    href: "#",
-    theme: "fp-06",
-    image: caryEstatesBg,
-    imagePosition: "center 42%",
-    layout: "fp-square-b",
-    highlights: [
-      { text: "Residential", tone: "blue" },
-      { text: "Land Position", tone: "mint" },
-    ],
-  },
-  {
-    name: "RDU Town Center",
-    status: "Open Project",
-    statusTone: "open-project",
-    description: "Institutional-quality development position advancing toward market-facing delivery.",
-    href: "#",
-    theme: "fp-08",
-    image: rduTownBg,
-    imagePosition: "center center",
-    layout: "fp-wide-bottom",
-    highlights: [
-      { text: "Institutional", tone: "slate" },
-      { text: "Land Strategy", tone: "mint" },
-    ],
   },
 ] as const;
 
@@ -187,97 +96,38 @@ const teamMembers = [
   },
 ] as const;
 
-type LazyBackgroundProps = {
-  className: string;
-  image: string;
-  style?: CSSProperties;
-  eager?: boolean;
-  ariaHidden?: boolean;
-  children?: ReactNode;
-};
-
-const LazyBackground = ({ className, image, style, eager = false, ariaHidden, children }: LazyBackgroundProps) => {
-  const [loaded, setLoaded] = useState(eager);
-  const containerRef = useRef<HTMLDivElement | null>(null);
-
-  useEffect(() => {
-    if (loaded) return;
-
-    const node = containerRef.current;
-    if (!node) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries.some((entry) => entry.isIntersecting)) {
-          setLoaded(true);
-          observer.disconnect();
-        }
-      },
-      { rootMargin: "240px 0px" }
-    );
-
-    observer.observe(node);
-
-    return () => observer.disconnect();
-  }, [loaded]);
-
-  return (
-    <div
-      ref={containerRef}
-      className={className}
-      aria-hidden={ariaHidden}
-      style={{
-        ...style,
-        ...(loaded ? { backgroundImage: `url(${image})` } : undefined),
-      }}
-    >
-      {children}
-    </div>
-  );
-};
+const homepageProjectPresentation = {
+  "the-shiloh": { theme: "fp-01" },
+  "the-franklin": { theme: "fp-02", layout: "fp-left-middle" },
+  "terraces-at-west-cary": { theme: "fp-04", layout: "fp-right-middle" },
+  "pittard-sears": { theme: "fp-05", layout: "fp-square-a" },
+  "cary-estates": { theme: "fp-06", layout: "fp-square-b" },
+  "rdu-town-center": { theme: "fp-08", layout: "fp-wide-bottom" },
+} as const;
 
 const Index = () => {
-  const [mobileNavOpen, setMobileNavOpen] = useState(false);
-  const [primaryProject, ...secondaryProjects] = featuredProjects;
+  const homepageProjects = projects.map((project) => ({
+    ...project,
+    ...homepageProjectPresentation[project.slug as keyof typeof homepageProjectPresentation],
+  }));
+  const [primaryProject, ...secondaryProjects] = homepageProjects;
+
+  useRadiusCursor();
 
   useEffect(() => {
-    // CURSOR
-    const cur = document.getElementById("cur")!;
-    const cdot = document.getElementById("cdot")!;
-    let mx = -200, my = -200, cx = -200, cy = -200;
-    const onMove = (e: MouseEvent) => {
-      mx = e.clientX; my = e.clientY;
-      cdot.style.left = mx + "px"; cdot.style.top = my + "px";
-    };
-    document.addEventListener("mousemove", onMove);
-    let raf: number;
-    const anim = () => {
-      cx += (mx - cx) * 0.11; cy += (my - cy) * 0.11;
-      cur.style.left = cx + "px"; cur.style.top = cy + "px";
-      raf = requestAnimationFrame(anim);
-    };
-    raf = requestAnimationFrame(anim);
-
-    const hoverEls = document.querySelectorAll(".bp,.bg,.bc,.fpcard,.teamcard,.li,.nbtn,.flinks a,.nlinks a,.rts");
-    const enter = () => cur.classList.add("x");
-    const leave = () => cur.classList.remove("x");
-    hoverEls.forEach(el => { el.addEventListener("mouseenter", enter); el.addEventListener("mouseleave", leave); });
-
-    // SCROLL
     const sthumb = document.getElementById("sthumb")!;
     const hbg = document.getElementById("hbg")!;
     const hwm = document.getElementById("hwm")!;
     const heroSection = document.getElementById("hero");
     const heroVideoEl = document.getElementById("hvideo") as HTMLVideoElement | null;
-    const navEl = document.querySelector("nav")!;
     const onScroll = () => {
       const pct = window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100;
       sthumb.style.height = Math.min(pct, 100) + "%";
       hbg.style.transform = `translateY(${window.scrollY * 0.22}px)`;
       hwm.style.transform = `translateY(calc(-50% + ${window.scrollY * 0.1}px))`;
-      if (window.scrollY > 40) { navEl.classList.add("scrolled"); } else { navEl.classList.remove("scrolled"); }
     };
     window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
 
     // HERO VIDEO
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -363,9 +213,6 @@ const Index = () => {
     }
 
     return () => {
-      document.removeEventListener("mousemove", onMove);
-      cancelAnimationFrame(raf);
-      hoverEls.forEach(el => { el.removeEventListener("mouseenter", enter); el.removeEventListener("mouseleave", leave); });
       window.removeEventListener("scroll", onScroll);
       document.removeEventListener("visibilitychange", onVisibility);
       obs.disconnect();
@@ -381,36 +228,7 @@ const Index = () => {
       {/* SCROLL PROGRESS */}
       <div id="sbar"><div id="sthumb"></div></div>
 
-      {/* NAV */}
-      <nav>
-        <div className="nlogo">radius</div>
-        <ul className="nlinks">
-          <li><a href="#platform">What We Do</a></li>
-          <li><a href="#featured-projects">Current Projects</a></li>
-          <li><a href="#retail">Segments</a></li>
-          <li><a href="#about">About Us</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-        <button className="nbtn">Investor Portal</button>
-        <button
-          type="button"
-          className={`mnavt${mobileNavOpen ? " open" : ""}`}
-          aria-expanded={mobileNavOpen}
-          aria-label="Toggle navigation"
-          onClick={() => setMobileNavOpen((open) => !open)}
-        >
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-        <div className={`mnav${mobileNavOpen ? " open" : ""}`}>
-          <a href="#platform" onClick={() => setMobileNavOpen(false)}>What We Do</a>
-          <a href="#featured-projects" onClick={() => setMobileNavOpen(false)}>Current Projects</a>
-          <a href="#retail" onClick={() => setMobileNavOpen(false)}>Segments</a>
-          <a href="#about" onClick={() => setMobileNavOpen(false)}>About Us</a>
-          <a href="#contact" onClick={() => setMobileNavOpen(false)}>Contact</a>
-        </div>
-      </nav>
+      <SiteHeader currentPath="/" />
 
       {/* HERO */}
       <section className="hero" id="hero">
@@ -436,7 +254,7 @@ const Index = () => {
             <h1>We Find High Value Development Opportunities Before the Market Sees Them</h1>
             <p className="hsp">Land acquisition, development partnerships, and scalable retail concepts across high-growth markets.</p>
             <div className="hbtns">
-              <a href="#" className="bp">View Projects</a>
+              <Link to="/projects" className="bp">View Projects</Link>
               <a href="#" className="bg">Investor Portal &nbsp;→</a>
             </div>
           </div>
@@ -563,8 +381,8 @@ const Index = () => {
           <p className="sd rv d2">Current projects moving through entitlement, strategic development structuring, and retail execution across high-growth markets.</p>
         </div>
         <div className="fplayout">
-          <a
-            href={primaryProject.href}
+          <Link
+            to={`/projects/${primaryProject.slug}`}
             className={`fpcard fphero rv ${primaryProject.theme}${primaryProject.image ? " fp-has-image" : ""}`}
           >
               <div className="fpmedia" aria-hidden="true">
@@ -582,24 +400,24 @@ const Index = () => {
             <div className="fpcontent">
               <div className={`fplabel${primaryProject.statusTone ? ` ${primaryProject.statusTone}` : ""}`}>{primaryProject.status}</div>
               <div className="fpname">{primaryProject.name}</div>
-              {primaryProject.highlights ? (
+              {primaryProject.highlightTags ? (
                 <div className="fptags">
-                  {primaryProject.highlights.map((highlight) => (
+                  {primaryProject.highlightTags.map((highlight) => (
                     <div key={highlight.text} className={`fptag ${highlight.tone}`}>
                       {highlight.text}
                     </div>
                   ))}
                 </div>
               ) : (
-                <p className="fpdesc">{primaryProject.description}</p>
+                <p className="fpdesc">{primaryProject.shortDescription}</p>
               )}
             </div>
-          </a>
+          </Link>
           <div className="fpstack">
             {secondaryProjects.map((project, index) => (
-              <a
+              <Link
                 key={project.name}
-                href={project.href}
+                to={`/projects/${project.slug}`}
                 className={`fpcard fpside rv d${Math.min(index + 1, 5)} ${project.theme} ${project.layout}${project.image ? " fp-has-image" : ""}`}
               >
                 <div className="fpmedia" aria-hidden="true">
@@ -617,24 +435,24 @@ const Index = () => {
                 <div className="fpcontent">
                   <div className={`fplabel${project.statusTone ? ` ${project.statusTone}` : ""}`}>{project.status}</div>
                   <div className="fpname">{project.name}</div>
-                  {project.highlights ? (
+                  {project.highlightTags ? (
                     <div className="fptags">
-                      {project.highlights.map((highlight) => (
+                      {project.highlightTags.map((highlight) => (
                         <div key={highlight.text} className={`fptag ${highlight.tone}`}>
                           {highlight.text}
                         </div>
                       ))}
                     </div>
                   ) : (
-                    <p className="fpdesc">{project.description}</p>
+                    <p className="fpdesc">{project.shortDescription}</p>
                   )}
                 </div>
-              </a>
+              </Link>
             ))}
           </div>
         </div>
         <div className="fpcta rv d3">
-          <a href="#" className="bp">View All Projects</a>
+          <Link to="/projects" className="bp">View All Projects</Link>
         </div>
       </section>
 
@@ -777,45 +595,7 @@ const Index = () => {
         </div>
       </section>
 
-      {/* FOOTER */}
-      <footer id="contact">
-        <div className="fbrand">
-          <div className="flogo">radius</div>
-          <p className="ftag">Principal-led land investment and development platform operating across the Sun Belt and Mountain West.</p>
-          <p className="fmeta">Land strategy, development execution, and institutional partnerships across high-growth markets.</p>
-        </div>
-        <div className="fcol">
-          <div className="fct">Platform</div>
-          <ul className="flinks">
-            <li><a href="#platform">What We Do</a></li>
-            <li><a href="#featured-projects">Current Projects</a></li>
-            <li><a href="#retail">Why Radius</a></li>
-            <li><a href="#team">Our Team</a></li>
-          </ul>
-        </div>
-        <div className="fcol">
-          <div className="fct">Company</div>
-          <ul className="flinks">
-            <li><a href="#about">Who We Are</a></li>
-            <li><a href="#team">Leadership</a></li>
-            <li><a href="#contact">Contact</a></li>
-            <li><a href="#">Market Coverage</a></li>
-          </ul>
-        </div>
-        <div className="fcol">
-          <div className="fct">Access</div>
-          <ul className="flinks">
-            <li><a href="#">Investor Portal</a></li>
-            <li><a href="#">Request Access</a></li>
-            <li><a href="#featured-projects">Active Pipeline</a></li>
-            <li><a href="#contact">General Inquiries</a></li>
-          </ul>
-        </div>
-      </footer>
-      <div className="fbot">
-        <span className="fcp">© 2025 Radius Development Group. All rights reserved.</span>
-        <span className="fcp">Phoenix, AZ &nbsp;·&nbsp; Denver, CO &nbsp;·&nbsp; Las Vegas, NV &nbsp;·&nbsp; Salt Lake City, UT</span>
-      </div>
+      <SiteFooter currentPath="/" />
     </>
   );
 };
