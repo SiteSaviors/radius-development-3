@@ -2,14 +2,21 @@ import { useEffect, useMemo, useState } from "react";
 import SiteFooter from "@/components/site/SiteFooter";
 import SiteHeader from "@/components/site/SiteHeader";
 import ProjectArchiveCard from "@/components/projects/ProjectArchiveCard";
-import { projectCategories, projects, type ProjectCategory, type ProjectStatus } from "@/content/projects";
+import {
+  getProjectFilterCategories,
+  projectFilterCategories,
+  projects,
+  type ProjectFilterCategory,
+  type ProjectStatus,
+} from "@/content/projects";
 import LazyBackground from "@/components/media/LazyBackground";
 import useRadiusCursor from "@/hooks/useRadiusCursor";
+import projectsHeroBg from "@/assets/8.jpg";
 import investorCtaBg from "@/assets/investor.jpg";
 
 const Projects = () => {
   const [statusFilter, setStatusFilter] = useState<"All" | ProjectStatus>("All");
-  const [categoryFilter, setCategoryFilter] = useState<"All" | ProjectCategory>("All");
+  const [categoryFilter, setCategoryFilter] = useState<"All" | ProjectFilterCategory>("All");
 
   useRadiusCursor();
 
@@ -20,7 +27,8 @@ const Projects = () => {
   const filteredProjects = useMemo(() => {
     return projects.filter((project) => {
       const statusMatches = statusFilter === "All" || project.status === statusFilter;
-      const categoryMatches = categoryFilter === "All" || project.categories.includes(categoryFilter);
+      const categoryMatches =
+        categoryFilter === "All" || getProjectFilterCategories(project).includes(categoryFilter);
       return statusMatches && categoryMatches;
     });
   }, [statusFilter, categoryFilter]);
@@ -33,6 +41,7 @@ const Projects = () => {
 
       <main className="projects-page">
         <section className="projects-hero">
+          <LazyBackground className="projects-hero-media" image={projectsHeroBg} eager ariaHidden />
           <div className="projects-hero-copy">
             <div className="ey">Current Projects</div>
             <h1 className="projects-hero-title">Projects Shaped by Land Strategy</h1>
@@ -63,7 +72,7 @@ const Projects = () => {
             <div className="projects-filter-group">
               <div className="projects-filter-label">Category</div>
               <div className="projects-filter-row">
-                {(["All", ...projectCategories] as const).map((category) => (
+                {(["All", ...projectFilterCategories] as const).map((category) => (
                   <button
                     key={category}
                     type="button"

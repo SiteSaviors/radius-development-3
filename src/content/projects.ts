@@ -41,6 +41,13 @@ export type Project = {
   };
 };
 
+export type ProjectFilterCategory =
+  | "Mixed-Use"
+  | "Residential"
+  | "Commercial"
+  | "Retail"
+  | "Land Assembly";
+
 export const projects: Project[] = [
   {
     slug: "the-shiloh",
@@ -207,6 +214,26 @@ export const projects: Project[] = [
 
 export const projectBySlug = Object.fromEntries(projects.map((project) => [project.slug, project])) as Record<string, Project>;
 
-export const projectCategories = Array.from(
-  new Set(projects.flatMap((project) => project.categories))
-) as ProjectCategory[];
+const projectCategoryToFilterCategory: Record<ProjectCategory, ProjectFilterCategory[]> = {
+  "Mixed-Use": ["Mixed-Use"],
+  "Residential": ["Residential"],
+  "Town Center": ["Commercial"],
+  "Institutional": ["Commercial"],
+  "Retail": ["Retail"],
+  "Land Strategy": ["Land Assembly"],
+  "Land Assembly": ["Land Assembly"],
+  "Entitlement": ["Commercial"],
+};
+
+export const projectFilterCategories: ProjectFilterCategory[] = [
+  "Mixed-Use",
+  "Residential",
+  "Commercial",
+  "Retail",
+  "Land Assembly",
+];
+
+export const getProjectFilterCategories = (project: Project): ProjectFilterCategory[] =>
+  Array.from(
+    new Set(project.categories.flatMap((category) => projectCategoryToFilterCategory[category]))
+  );

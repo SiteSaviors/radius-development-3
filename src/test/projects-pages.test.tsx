@@ -45,7 +45,7 @@ describe("projects pages", () => {
     expect(screen.getByText("The Shiloh")).toBeInTheDocument();
     expect(screen.queryByText("Pittard Sears")).not.toBeInTheDocument();
 
-    fireEvent.click(screen.getByRole("button", { name: "Town Center" }));
+    fireEvent.click(screen.getByRole("button", { name: "Commercial" }));
     expect(screen.getByText("No projects match the selected filters.")).toBeInTheDocument();
 
     fireEvent.click(screen.getByRole("button", { name: "Reset Filters" }));
