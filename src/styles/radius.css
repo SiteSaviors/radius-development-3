@@ -41,8 +41,34 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;justify-content
 nav.scrolled{background:rgba(0,0,0,.92);border-bottom-color:rgba(255,255,255,.05);backdrop-filter:blur(24px)}
 .nlogo{font-family:'Safira March',serif;font-size:40px;font-weight:400;letter-spacing:.04em;text-transform:lowercase;color:#fff;line-height:1;text-decoration:none}
 .nlinks{display:flex;gap:40px;list-style:none}
-.nlinks a{font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:#fff;text-decoration:none;transition:color .2s}
+.nlinks a{
+  position:relative;
+  display:inline-block;
+  font-family:'Syne',sans-serif;
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:#fff;
+  text-decoration:none;
+  transition:color .2s;
+}
+.nlinks a::after{
+  content:'';
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:-8px;
+  height:1px;
+  background:#fff;
+  transform:scaleX(0);
+  transform-origin:left center;
+  transition:transform .28s ease;
+}
 .nlinks a:hover{color:#fff}
+.nlinks a:hover::after{
+  transform:scaleX(1);
+}
 .nbtn{font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#fff;background:var(--ac);border:none;padding:11px 26px;cursor:none;transition:background .2s;text-decoration:none}
 .nbtn:hover{background:#243a68}
 .mnavt,.mnav{display:none}
