@@ -35,7 +35,7 @@ const SiteHeader = ({ currentPath }: SiteHeaderProps) => {
       <ul className="nlinks">
         <li><a href={platformHref}>What We Do</a></li>
         <li><Link to="/projects">Current Projects</Link></li>
-        <li><a href={segmentsHref}>Our Team</a></li>
+        <li><a href={segmentsHref}>Company</a></li>
         <li><a href={aboutHref}>News</a></li>
         <li><a href={contactHref}>Contact</a></li>
       </ul>
@@ -54,8 +54,8 @@ const SiteHeader = ({ currentPath }: SiteHeaderProps) => {
       <div className={`mnav${mobileNavOpen ? " open" : ""}`}>
         <a href={platformHref} onClick={() => setMobileNavOpen(false)}>What We Do</a>
         <Link to="/projects" onClick={() => setMobileNavOpen(false)}>Current Projects</Link>
-        <a href={segmentsHref} onClick={() => setMobileNavOpen(false)}>Segments</a>
-        <a href={aboutHref} onClick={() => setMobileNavOpen(false)}>About Us</a>
+        <a href={segmentsHref} onClick={() => setMobileNavOpen(false)}>company</a>
+        <a href={aboutHref} onClick={() => setMobileNavOpen(false)}>News</a>
         <a href={contactHref} onClick={() => setMobileNavOpen(false)}>Contact</a>
       </div>
     </nav>
