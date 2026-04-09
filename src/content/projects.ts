@@ -2,7 +2,7 @@ import caryEstatesBg from "@/assets/CARY-E.jpg";
 import franklinBg from "@/assets/Franklin.jpg";
 import pittardBg from "@/assets/Pittard.jpg";
 import rduTownBg from "@/assets/RDU-Town.jpg";
-import shilohBg from "@/assets/SHILOH.jpg";
+import shilohBg from "@/assets/Shiloh.jpg";
 import terracesBg from "@/assets/TERRACES.jpg";
 
 export type ProjectStatus = "Under Development" | "Open Project";
