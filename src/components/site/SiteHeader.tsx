@@ -10,7 +10,6 @@ const SiteHeader = ({ currentPath }: SiteHeaderProps) => {
   const [scrolled, setScrolled] = useState(currentPath !== "/");
   const isHome = currentPath === "/";
 
-  const platformHref = isHome ? "#platform" : "/#platform";
   const segmentsHref = isHome ? "#retail" : "/#retail";
   const aboutHref = isHome ? "#about" : "/#about";
   const contactHref = isHome ? "#contact" : "/#contact";
@@ -33,7 +32,7 @@ const SiteHeader = ({ currentPath }: SiteHeaderProps) => {
     <nav className={scrolled ? "scrolled" : ""}>
       <Link to="/" className="nlogo">radius</Link>
       <ul className="nlinks">
-        <li><a href={platformHref}>What We Do</a></li>
+        <li><Link to="/what-we-do">What We Do</Link></li>
         <li><Link to="/projects">Current Projects</Link></li>
         <li><a href={segmentsHref}>Company</a></li>
         <li><a href={aboutHref}>News</a></li>
@@ -52,7 +51,7 @@ const SiteHeader = ({ currentPath }: SiteHeaderProps) => {
         <span></span>
       </button>
       <div className={`mnav${mobileNavOpen ? " open" : ""}`}>
-        <a href={platformHref} onClick={() => setMobileNavOpen(false)}>What We Do</a>
+        <Link to="/what-we-do" onClick={() => setMobileNavOpen(false)}>What We Do</Link>
         <Link to="/projects" onClick={() => setMobileNavOpen(false)}>Current Projects</Link>
         <a href={segmentsHref} onClick={() => setMobileNavOpen(false)}>company</a>
         <a href={aboutHref} onClick={() => setMobileNavOpen(false)}>News</a>

@@ -35,7 +35,7 @@ describe("projects pages", () => {
     expect(screen.getByText("RDU Town Center")).toBeInTheDocument();
 
     expect(screen.getAllByRole("link", { name: "Current Projects" })[0]).toHaveAttribute("href", "/projects");
-    expect(screen.getAllByRole("link", { name: "What We Do" })[0]).toHaveAttribute("href", "/#platform");
+    expect(screen.getAllByRole("link", { name: "What We Do" })[0]).toHaveAttribute("href", "/what-we-do");
   });
 
   it("filters by status and category, shows empty state, and resets", () => {

@@ -6,7 +6,6 @@ type SiteFooterProps = {
 
 const SiteFooter = ({ currentPath }: SiteFooterProps) => {
   const isHome = currentPath === "/";
-  const whatWeDoHref = isHome ? "#platform" : "/#platform";
   const whyRadiusHref = isHome ? "#retail" : "/#retail";
   const aboutHref = isHome ? "#about" : "/#about";
   const teamHref = isHome ? "#team" : "/#team";
@@ -23,7 +22,7 @@ const SiteFooter = ({ currentPath }: SiteFooterProps) => {
         <div className="fcol">
           <div className="fct">Platform</div>
           <ul className="flinks">
-            <li><a href={whatWeDoHref}>What We Do</a></li>
+            <li><Link to="/what-we-do">What We Do</Link></li>
             <li><Link to="/projects">Current Projects</Link></li>
             <li><a href={whyRadiusHref}>Why Radius</a></li>
             <li><a href={teamHref}>Our Team</a></li>

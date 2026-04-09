@@ -340,7 +340,7 @@ const Index = () => {
               <div className="bcn">01 / Land</div>
               <div className="bct">Land Entitlement</div>
               <div className="bcd">We identify off-market opportunities across high growth corridors while leveraging deep local relationships and proprietary data to secure sites before they reach the broader market.</div>
-              <a href="#" className="bcta">Let&apos;s Talk Land</a>
+              <Link to="/what-we-do" className="bcta">Let&apos;s Talk Land</Link>
             </div>
           </div>
           <div className="bc rv d1">
@@ -354,7 +354,7 @@ const Index = () => {
               <div className="bcn">02 / Development</div>
               <div className="bct">Development Partnerships</div>
               <div className="bcd">From residential communities to mixed-use retail developments, we partner with best-in-class institutional developers with a focus on maximizing returns while building lasting community value.</div>
-              <a href="#" className="bcta">Let&apos;s Talk Development</a>
+              <Link to="/what-we-do" className="bcta">Let&apos;s Talk Development</Link>
             </div>
           </div>
           <div className="bc rv d2">
@@ -368,7 +368,7 @@ const Index = () => {
               <div className="bcn">03 / Retail</div>
               <div className="bct">Retail Development</div>
               <div className="bcd">We develop high-end, experience-driven retail centers where demand is underserved. Rather than building commodity retail, we develop environments that blend retail, dining, and community into a cohesive destination.</div>
-              <a href="#" className="bcta">Let&apos;s Talk Retail</a>
+              <Link to="/what-we-do" className="bcta">Let&apos;s Talk Retail</Link>
             </div>
           </div>
         </div>
