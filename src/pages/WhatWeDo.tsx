@@ -3,6 +3,7 @@ import whatWeDoHeroBg from "@/assets/Radius-Back.jpeg";
 import LazyBackground from "@/components/media/LazyBackground";
 import SiteFooter from "@/components/site/SiteFooter";
 import SiteHeader from "@/components/site/SiteHeader";
+import { cn } from "@/lib/utils";
 import {
   whatWeDoCta,
   whatWeDoHero,
@@ -93,60 +94,51 @@ const WhatWeDo = () => {
             </div>
 
             <div className="wwd-universe-stage">
-              <div className="wwd-universe-board" aria-hidden="true"></div>
-
-              {whatWeDoUniverseSectors.map((sector) => {
-                const isActive = activeUniverseSectorId === sector.id;
-
-                if (isActive) {
-                  return (
-                    <article
-                      key={sector.id}
-                      className={`wwd-universe-card wwd-universe-card--${sector.id} is-active`}
-                      id={`wwd-universe-panel-${sector.id}`}
-                    >
-                      <span className="wwd-universe-card-shape" aria-hidden="true"></span>
-                      <div className="wwd-universe-card-content">
-                        <h3 className="wwd-universe-card-title">{sector.title}</h3>
-                        <ul
-                          className={`wwd-universe-card-list${sector.items.length > 4 ? " has-columns" : ""}`}
+              <div className={cn('wwd-universe-board', { 'wwd-universe-board--active': !!activeUniverseSectorId })}>
+                <div className="wwd-universe-plate">
+                  <div className="wwd-universe-row">
+                    {whatWeDoUniverseSectors.map((sector) => {
+                      const isActive = activeUniverseSectorId === sector.id;
+                      return (
+                        <div
+                          key={sector.id}
+                          className={cn(`wwd-universe-col wwd-universe-col--${sector.id}`, { 'is-active': isActive })}
+                          tabIndex={0}
+                          role="button"
+                          aria-expanded={isActive}
+                          aria-controls={`wwd-uc-content-${sector.id}`}
+                          onClick={() => setActiveUniverseSectorId(isActive ? null : sector.id)}
+                          onKeyDown={(e) => {
+                            if (e.key === 'Enter' || e.key === ' ') {
+                              e.preventDefault();
+                              setActiveUniverseSectorId(isActive ? null : sector.id);
+                            }
+                          }}
                         >
-                          {sector.items.map((item) => (
-                            <li key={item}>{item}</li>
-                          ))}
-                        </ul>
-                        <button
-                          type="button"
-                          className="wwd-universe-card-close"
-                          aria-label={`Collapse ${sector.title}`}
-                          onClick={() => setActiveUniverseSectorId(null)}
-                        >
-                          <span aria-hidden="true">+</span>
-                        </button>
-                      </div>
-                    </article>
-                  );
-                }
-
-                return (
-                  <button
-                    key={sector.id}
-                    type="button"
-                    className={`wwd-universe-card wwd-universe-card--${sector.id}`}
-                    aria-expanded="false"
-                    aria-controls={`wwd-universe-panel-${sector.id}`}
-                    onClick={() => setActiveUniverseSectorId(sector.id)}
-                  >
-                    <span className="wwd-universe-card-shape" aria-hidden="true"></span>
-                    <span className="wwd-universe-card-content">
-                      <span className="wwd-universe-card-title">{sector.title}</span>
-                      <span className="wwd-universe-card-icon" aria-hidden="true">
-                        +
-                      </span>
-                    </span>
-                  </button>
-                );
-              })}
+                          <span className="wwd-uc-bg" aria-hidden="true"></span>
+                          <span className="wwd-uc-title" id={`wwd-uc-title-${sector.id}`}>
+                            {sector.title}
+                          </span>
+                          <div
+                            className={cn('wwd-uc-content', { 'has-columns': sector.items.length > 4 })}
+                            id={`wwd-uc-content-${sector.id}`}
+                            aria-hidden={!isActive}
+                            aria-labelledby={`wwd-uc-title-${sector.id}`}
+                          >
+                            <h3 className="wwd-uc-content-title">{sector.title}</h3>
+                            <ul className="wwd-uc-list">
+                              {sector.items.map((item) => (
+                                <li key={item}>{item}</li>
+                              ))}
+                            </ul>
+                          </div>
+                          <span className="wwd-uc-icon" aria-hidden="true">+</span>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </section>
