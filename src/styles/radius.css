@@ -1443,20 +1443,20 @@ h1 em{font-style:italic;color:rgba(255,255,255,.6)}
   color:rgba(255,255,255,.86);
 }
 .wwd-universe-card--residential{
-  top:150px;
+  top:160px;
   left:50%;
   transform:translateX(-50%);
 }
 .wwd-universe-card--retail{
-  top:294px;
-  left:136px;
+  top:285px;
+  left:calc(50% - 450px);
 }
 .wwd-universe-card--commercial{
-  top:294px;
-  right:136px;
+  top:285px;
+  right:calc(50% - 450px);
 }
 .wwd-universe-card--mixed-use{
-  top:438px;
+  top:410px;
   left:50%;
   transform:translateX(-50%);
 }
