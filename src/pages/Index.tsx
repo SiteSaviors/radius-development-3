@@ -251,7 +251,10 @@ const Index = () => {
         <div className="hinner">
           <div className="glass text-left">
             <div className="ey">Land &nbsp;·&nbsp; Development &nbsp;·&nbsp; Retail</div>
-            <h1>We Find High Value Development Opportunities Before the Market Sees Them</h1>
+            <h1>
+              We Find High Value Development Opportunities{" "}
+              <span className="hero-headline-accent">Before the Market Sees Them</span>
+            </h1>
             <p className="hsp">Land acquisition, development partnerships, and scalable retail concepts across high-growth markets.</p>
             <div className="hbtns">
               <Link to="/projects" className="bp">View Projects</Link>

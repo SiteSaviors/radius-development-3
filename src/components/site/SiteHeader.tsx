@@ -33,10 +33,10 @@ const SiteHeader = ({ currentPath }: SiteHeaderProps) => {
     <nav className={scrolled ? "scrolled" : ""}>
       <Link to="/" className="nlogo">radius</Link>
       <ul className="nlinks">
-        <li><a href={platformHref}>What We Do</a></li>
+        <li><a href={platformHref}>Capabilities</a></li>
         <li><Link to="/projects">Current Projects</Link></li>
-        <li><a href={segmentsHref}>Segments</a></li>
-        <li><a href={aboutHref}>About Us</a></li>
+        <li><a href={segmentsHref}>Our Team</a></li>
+        <li><a href={aboutHref}>News</a></li>
         <li><a href={contactHref}>Contact</a></li>
       </ul>
       <a href="#" className="nbtn">Investor Portal</a>
