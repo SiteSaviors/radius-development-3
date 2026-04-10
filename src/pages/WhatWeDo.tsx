@@ -7,7 +7,6 @@ import { cn } from "@/lib/utils";
 import {
   whatWeDoCta,
   whatWeDoHero,
-  whatWeDoIntro,
   whatWeDoProcessIntro,
   whatWeDoProcessSteps,
   whatWeDoUniverse,
@@ -24,6 +23,77 @@ const WhatWeDo = () => {
     window.scrollTo(0, 0);
   }, []);
 
+  useEffect(() => {
+    const heroMedia = document.querySelector<HTMLElement>(".wwd-hero-media");
+    if (!heroMedia) return;
+
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reducedMotion) {
+      heroMedia.style.setProperty("--wwd-hero-shift", "0px");
+      return;
+    }
+
+    let raf = 0;
+
+    const syncHeroParallax = () => {
+      const shift = Math.min(window.scrollY * 0.18, 120);
+      heroMedia.style.setProperty("--wwd-hero-shift", `${shift}px`);
+    };
+
+    const onScroll = () => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(syncHeroParallax);
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    syncHeroParallax();
+
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      cancelAnimationFrame(raf);
+    };
+  }, []);
+
+  useEffect(() => {
+    const introSection = document.querySelector<HTMLElement>(".wwd-intro-transition");
+    const introBrandStack = document.querySelector<HTMLElement>(".wwd-intro-brand-stack");
+    if (!introSection || !introBrandStack) return;
+
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reducedMotion) {
+      introBrandStack.style.setProperty("--wwd-intro-brand-shift", "0px");
+      return;
+    }
+
+    let raf = 0;
+
+    const syncIntroBrand = () => {
+      const rect = introSection.getBoundingClientRect();
+      const viewportHeight = window.innerHeight;
+      const progress = Math.min(
+        Math.max((viewportHeight - rect.top) / (viewportHeight + rect.height), 0),
+        1
+      );
+      const maxShift = window.innerWidth < 768 ? 48 : 140;
+      introBrandStack.style.setProperty("--wwd-intro-brand-shift", `${-maxShift * progress}px`);
+    };
+
+    const onScroll = () => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(syncIntroBrand);
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    syncIntroBrand();
+
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      cancelAnimationFrame(raf);
+    };
+  }, []);
+
   return (
     <>
       <div id="cur"></div>
@@ -33,20 +103,20 @@ const WhatWeDo = () => {
       <main className="wwd-page">
         <section className="wwd-hero">
           <LazyBackground className="wwd-hero-media" image={whatWeDoHeroBg} eager ariaHidden />
-          <div className="wwd-hero-copy">
-            <div className="wwd-hero-eyebrow">{whatWeDoHero.eyebrow}</div>
-            <h1 className="wwd-hero-title">{whatWeDoHero.title}</h1>
-            <p className="wwd-hero-body">{whatWeDoHero.body}</p>
+          <div className="wwd-hero-shell">
+            <div className="wwd-hero-copy">
+              <div className="wwd-hero-eyebrow">{whatWeDoHero.eyebrow}</div>
+              <h1 className="wwd-hero-title">{whatWeDoHero.title}</h1>
+              {whatWeDoHero.body ? <p className="wwd-hero-body">{whatWeDoHero.body}</p> : null}
+            </div>
           </div>
         </section>
 
-        <section className="wwd-intro">
-          <div className="wwd-intro-inner">
-            <h2 className="wwd-intro-title">{whatWeDoIntro.title}</h2>
-            <div className="wwd-intro-body">
-              {whatWeDoIntro.paragraphs.map((paragraph) => (
-                <p key={paragraph}>{paragraph}</p>
-              ))}
+        <section className="wwd-intro wwd-intro-transition" aria-label="Radius brand transition">
+          <div className="wwd-intro-brand" aria-hidden="true">
+            <div className="wwd-intro-brand-stack">
+              <div className="wwd-intro-brand-text">radius</div>
+              <div className="wwd-intro-brand-text">radius</div>
             </div>
           </div>
         </section>

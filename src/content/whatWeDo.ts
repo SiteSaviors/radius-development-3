@@ -42,8 +42,8 @@ export type WhatWeDoCtaContent = {
 
 export const whatWeDoHero: WhatWeDoHeroContent = {
   eyebrow: "WHAT WE DO",
-  title: "We Transform Land into High-Yield Real Estate Developments.",
-  body: "Radius operates across the land and development lifecycle with a focus on sourcing, structuring, entitlement, and execution clarity.",
+  title: "Future Focused Real Estate",
+  body: "",
 };
 
 export const whatWeDoIntro: WhatWeDoIntroContent = {
