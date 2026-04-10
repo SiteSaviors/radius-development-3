@@ -86,7 +86,7 @@ export const whatWeDoProcessSteps: WhatWeDoProcessStep[] = [
 ];
 
 export const whatWeDoUniverse: WhatWeDoUniverseContent = {
-  title: "Private Real Estate Development Universe",
+  title: "Radius Development Universe",
   body: "Radius operates across four primary sectors, with each opportunity shaped through disciplined land strategy, development judgment, and execution readiness.",
 };
 

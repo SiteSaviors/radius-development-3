@@ -51,39 +51,6 @@ const WhatWeDo = () => {
           </div>
         </section>
 
-        <section className="wwd-process-head">
-          <div className="wwd-process-head-inner">
-            <h2 className="wwd-process-title">{whatWeDoProcessIntro.title}</h2>
-            <p className="wwd-process-body">
-              {whatWeDoProcessIntro.bodyStart}
-              <span className="wwd-process-highlight">{whatWeDoProcessIntro.bodyHighlight}</span>
-              {whatWeDoProcessIntro.bodyEnd}
-            </p>
-          </div>
-        </section>
-
-        <section className="wwd-process">
-          <div className="wwd-process-inner">
-            <div className="wwd-process-track" aria-hidden="true">
-              <div className="wwd-process-line"></div>
-            </div>
-            {whatWeDoProcessSteps.map((step, index) => {
-              return (
-                <article
-                  key={step.step}
-                  className={`wwd-step${index === 0 ? " is-active" : ""}`}
-                >
-                  <div className="wwd-step-marker">
-                    <div className="wwd-step-counter">{step.step}</div>
-                  </div>
-                  <h3 className="wwd-step-title">{step.title}</h3>
-                  <p className="wwd-step-body">{step.body}</p>
-                </article>
-              );
-            })}
-          </div>
-        </section>
-
         <section className="wwd-universe" aria-labelledby="wwd-universe-title">
           <div className="wwd-universe-inner">
             <div className="wwd-universe-head">
@@ -120,7 +87,7 @@ const WhatWeDo = () => {
                             {sector.title}
                           </span>
                           <div
-                            className={cn('wwd-uc-content', { 'has-columns': sector.items.length > 4 })}
+                            className={cn('wwd-uc-content', { 'has-columns': sector.items.length >= 4 })}
                             id={`wwd-uc-content-${sector.id}`}
                             aria-hidden={!isActive}
                             aria-labelledby={`wwd-uc-title-${sector.id}`}
@@ -140,6 +107,39 @@ const WhatWeDo = () => {
                 </div>
               </div>
             </div>
+          </div>
+        </section>
+
+        <section className="wwd-process-head">
+          <div className="wwd-process-head-inner">
+            <h2 className="wwd-process-title">{whatWeDoProcessIntro.title}</h2>
+            <p className="wwd-process-body">
+              {whatWeDoProcessIntro.bodyStart}
+              <span className="wwd-process-highlight">{whatWeDoProcessIntro.bodyHighlight}</span>
+              {whatWeDoProcessIntro.bodyEnd}
+            </p>
+          </div>
+        </section>
+
+        <section className="wwd-process">
+          <div className="wwd-process-inner">
+            <div className="wwd-process-track" aria-hidden="true">
+              <div className="wwd-process-line"></div>
+            </div>
+            {whatWeDoProcessSteps.map((step, index) => {
+              return (
+                <article
+                  key={step.step}
+                  className={`wwd-step${index === 0 ? " is-active" : ""}`}
+                >
+                  <div className="wwd-step-marker">
+                    <div className="wwd-step-counter">{step.step}</div>
+                  </div>
+                  <h3 className="wwd-step-title">{step.title}</h3>
+                  <p className="wwd-step-body">{step.body}</p>
+                </article>
+              );
+            })}
           </div>
         </section>
 
