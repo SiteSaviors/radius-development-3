@@ -1,3 +1,6 @@
+import whatWeDoBridgeImage from "@/assets/Franklin.jpg";
+import whatWeDoBridgeMirrorImage from "@/assets/Pittard.jpg";
+
 export type WhatWeDoProcessStep = {
   step: string;
   title: string;
@@ -40,6 +43,12 @@ export type WhatWeDoCtaContent = {
   href: string;
 };
 
+export type WhatWeDoBridgeContent = {
+  image: string;
+  alt: string;
+  caption?: string;
+};
+
 export const whatWeDoHero: WhatWeDoHeroContent = {
   eyebrow: "WHAT WE DO",
   title: "Future Focused Real Estate",
@@ -47,7 +56,7 @@ export const whatWeDoHero: WhatWeDoHeroContent = {
 };
 
 export const whatWeDoIntro: WhatWeDoIntroContent = {
-  title: "Vision. Execution. Value.",
+  title: "We don't merely acquire value. We create it.",
   paragraphs: [
     "Radius approaches each opportunity with a value-creation mindset rooted in land strategy, development intelligence, and institutional alignment.",
     "From early sourcing to downstream execution, our role is to make complex opportunities cleaner, stronger, and more actionable.",
@@ -65,29 +74,49 @@ export const whatWeDoProcessIntro: WhatWeDoProcessIntroContent = {
 export const whatWeDoProcessSteps: WhatWeDoProcessStep[] = [
   {
     step: "01",
-    title: "Site Sourcing",
-    body: "Radius identifies and acquires viable land positions only after rigorous diligence on location strength, entitlement path, market demand, and execution risk. We secure the opportunity first so investment and development partners are reviewing a site that has already been pressure-tested.",
+    title: "Acquire with Edge",
+    body: "Source and control high-quality land positions through proprietary channels, local relationships, and disciplined underwriting. We focus on assets in structurally advantaged markets with clear demand drivers and favorable long-term fundamentals. Every acquisition is grounded in a defined path to value creation.",
   },
   {
     step: "02",
-    title: "Planning And Permits",
-    body: "Once we understand the site, we handle zoning, permitting, and move on to the development plans. We work with local officials to get approvals moving and make sure everything meets code. This step lays the groundwork for a smooth and compliant build.",
+    title: "Entitle for Maximum Value",
+    body: "Drive the entitlement and planning process to unlock the highest and best use of each site. We manage zoning, approvals, and site design with precision, reducing risk, increasing certainty, and positioning the asset for institutional-quality execution. This phase transforms land into a financeable, development-ready investment.",
   },
   {
     step: "03",
-    title: "Development And Construction",
-    body: "After permits, we start with the ground. Our team manages the whole construction process, including grading, utilities, roads, and more. We stay hands-on, coordinate with subcontractors, and keep everything moving so the project stays on schedule.",
+    title: "Select the Optimal Strategy",
+    body: "Determine the highest-value execution path based on market dynamics, capital efficiency, and risk-adjusted returns. We maintain full flexibility, pursuing vertical development, structuring joint ventures with leading operators, or monetizing the asset through a sale. Capital is allocated where it is most effective, not constrained by a fixed model.",
   },
   {
     step: "04",
-    title: "Final Review And Handover",
-    body: "Before wrapping up, we walk the site, check all the details, and make sure everything meets the plan that was discussed earlier. Once it's done, we hand over a clean, ready-to-go site, no loose ends, just a finished job you can move forward with.",
+    title: "Execute & Realize Returns",
+    body: "Execute with speed and discipline to capture value and deliver strong outcomes. We focus on clean transactions, aligned partnerships, and efficient capital recycling, whether through a land sale, structured JV, or selective long-term hold. Each project is managed with a clear objective: maximize returns while preserving optionality.",
   },
 ];
 
 export const whatWeDoUniverse: WhatWeDoUniverseContent = {
   title: "Radius Development Universe",
   body: "Radius operates across four primary sectors, with each opportunity shaped through disciplined land strategy, development judgment, and execution readiness.",
+};
+
+export const whatWeDoBridge: WhatWeDoBridgeContent = {
+  image: whatWeDoBridgeImage,
+  alt: "The Franklin mixed-use development exterior at sunset",
+  caption: "The Franklin",
+};
+
+export const whatWeDoMirrorIntro: WhatWeDoIntroContent = {
+  title: "Strategy. Entitlements. Delivery.",
+  paragraphs: [
+    "Radius advances opportunities from first-look diligence through entitlement and execution with a disciplined, principal-led development process.",
+    "We align land strategy, approvals, and planning early so projects move forward with clearer timelines, stronger economics, and fewer surprises.",
+  ],
+};
+
+export const whatWeDoMirrorBridge: WhatWeDoBridgeContent = {
+  image: whatWeDoBridgeMirrorImage,
+  alt: "Pittard residential land plan showing lot layout and circulation",
+  caption: "Pittard",
 };
 
 export const whatWeDoUniverseSectors: WhatWeDoUniverseSector[] = [

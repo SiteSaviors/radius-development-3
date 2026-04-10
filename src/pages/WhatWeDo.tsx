@@ -1,12 +1,16 @@
 import { useEffect, useState } from "react";
-import whatWeDoHeroBg from "@/assets/Radius-Back.jpeg";
+import whatWeDoHeroBg from "@/assets/wwd-hero.jpg";
 import LazyBackground from "@/components/media/LazyBackground";
 import SiteFooter from "@/components/site/SiteFooter";
 import SiteHeader from "@/components/site/SiteHeader";
 import { cn } from "@/lib/utils";
 import {
+  whatWeDoBridge,
   whatWeDoCta,
   whatWeDoHero,
+  whatWeDoIntro,
+  whatWeDoMirrorBridge,
+  whatWeDoMirrorIntro,
   whatWeDoProcessIntro,
   whatWeDoProcessSteps,
   whatWeDoUniverse,
@@ -55,37 +59,47 @@ const WhatWeDo = () => {
   }, []);
 
   useEffect(() => {
-    const introSection = document.querySelector<HTMLElement>(".wwd-intro-transition");
-    const introBrandStack = document.querySelector<HTMLElement>(".wwd-intro-brand-stack");
-    if (!introSection || !introBrandStack) return;
+    const brandSections = Array.from(document.querySelectorAll<HTMLElement>(".wwd-brand-strip"));
+    if (brandSections.length === 0) return;
 
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reducedMotion) {
-      introBrandStack.style.setProperty("--wwd-intro-brand-shift", "0px");
+      brandSections.forEach((section) => {
+        section
+          .querySelector<HTMLElement>(".wwd-intro-brand-stack")
+          ?.style.setProperty("--wwd-intro-brand-shift", "0px");
+      });
       return;
     }
 
     let raf = 0;
 
-    const syncIntroBrand = () => {
-      const rect = introSection.getBoundingClientRect();
+    const syncBrandStrips = () => {
       const viewportHeight = window.innerHeight;
-      const progress = Math.min(
-        Math.max((viewportHeight - rect.top) / (viewportHeight + rect.height), 0),
-        1
-      );
       const maxShift = window.innerWidth < 768 ? 48 : 140;
-      introBrandStack.style.setProperty("--wwd-intro-brand-shift", `${-maxShift * progress}px`);
+
+      brandSections.forEach((section) => {
+        const brandStack = section.querySelector<HTMLElement>(".wwd-intro-brand-stack");
+        if (!brandStack) return;
+
+        const rect = section.getBoundingClientRect();
+        const progress = Math.min(
+          Math.max((viewportHeight - rect.top) / (viewportHeight + rect.height), 0),
+          1
+        );
+
+        brandStack.style.setProperty("--wwd-intro-brand-shift", `${-maxShift * progress}px`);
+      });
     };
 
     const onScroll = () => {
       cancelAnimationFrame(raf);
-      raf = requestAnimationFrame(syncIntroBrand);
+      raf = requestAnimationFrame(syncBrandStrips);
     };
 
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll);
-    syncIntroBrand();
+    syncBrandStrips();
 
     return () => {
       window.removeEventListener("scroll", onScroll);
@@ -112,11 +126,83 @@ const WhatWeDo = () => {
           </div>
         </section>
 
-        <section className="wwd-intro wwd-intro-transition" aria-label="Radius brand transition">
+        <section className="wwd-intro wwd-intro-transition wwd-brand-strip" aria-label="Radius brand transition">
           <div className="wwd-intro-brand" aria-hidden="true">
             <div className="wwd-intro-brand-stack">
               <div className="wwd-intro-brand-text">radius</div>
               <div className="wwd-intro-brand-text">radius</div>
+              <div className="wwd-intro-brand-text">radius</div>
+            </div>
+          </div>
+        </section>
+
+        <section className="wwd-bridge" aria-labelledby="wwd-bridge-title">
+          <div className="wwd-bridge-inner">
+            <div className="wwd-bridge-copy-shell">
+              <div className="wwd-bridge-copy">
+                <h2 id="wwd-bridge-title" className="wwd-bridge-title">
+                  {whatWeDoIntro.title}
+                </h2>
+                <div className="wwd-bridge-body">
+                  {whatWeDoIntro.paragraphs.map((paragraph) => (
+                    <p key={paragraph}>{paragraph}</p>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <div className="wwd-bridge-media-wrap">
+              <figure className="wwd-bridge-media-card">
+                <img
+                  className="wwd-bridge-media"
+                  src={whatWeDoBridge.image}
+                  alt={whatWeDoBridge.alt}
+                />
+                {whatWeDoBridge.caption ? (
+                  <figcaption className="wwd-bridge-caption">{whatWeDoBridge.caption}</figcaption>
+                ) : null}
+              </figure>
+            </div>
+          </div>
+        </section>
+
+        <section className="wwd-bridge wwd-bridge--mirrored" aria-labelledby="wwd-bridge-mirror-title">
+          <div className="wwd-bridge-strip wwd-brand-strip wwd-bridge-strip--mirrored" aria-hidden="true">
+            <div className="wwd-intro-brand wwd-intro-brand--mirrored">
+              <div className="wwd-intro-brand-stack wwd-intro-brand-stack--mirrored">
+                <div className="wwd-intro-brand-text">radius</div>
+                <div className="wwd-intro-brand-text">radius</div>
+                <div className="wwd-intro-brand-text">radius</div>
+              </div>
+            </div>
+          </div>
+          <div className="wwd-bridge-inner">
+            <div className="wwd-bridge-copy-shell wwd-bridge-copy-shell--mirrored">
+              <div className="wwd-bridge-copy">
+                <h2 id="wwd-bridge-mirror-title" className="wwd-bridge-title">
+                  {whatWeDoMirrorIntro.title}
+                </h2>
+                <div className="wwd-bridge-body">
+                  {whatWeDoMirrorIntro.paragraphs.map((paragraph) => (
+                    <p key={paragraph}>{paragraph}</p>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <div className="wwd-bridge-media-wrap wwd-bridge-media-wrap--mirrored">
+              <figure className="wwd-bridge-media-card">
+                <img
+                  className="wwd-bridge-media"
+                  src={whatWeDoMirrorBridge.image}
+                  alt={whatWeDoMirrorBridge.alt}
+                />
+                {whatWeDoMirrorBridge.caption ? (
+                  <figcaption className="wwd-bridge-caption wwd-bridge-caption--left">
+                    {whatWeDoMirrorBridge.caption}
+                  </figcaption>
+                ) : null}
+              </figure>
             </div>
           </div>
         </section>

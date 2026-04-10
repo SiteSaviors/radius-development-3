@@ -26,36 +26,57 @@ const renderHomePage = () =>
   );
 
 describe("what we do page", () => {
-  it("renders the standalone route with the process list and closing CTA", () => {
+  it("renders the standalone route with the bridge section, process list, and closing CTA", () => {
     renderWhatWeDoPage();
 
+    expect(screen.getByRole("heading", { name: "Future Focused Real Estate" })).toBeInTheDocument();
+    expect(screen.getByRole("region", { name: "We don't merely acquire value. We create it." })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "We don't merely acquire value. We create it." })).toBeInTheDocument();
     expect(
-      screen.getByRole("heading", { name: "We Create Value Before the Market Fully Prices It" })
+      screen.getByText(/Radius approaches each opportunity with a value-creation mindset/i)
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("img", { name: "The Franklin mixed-use development exterior at sunset" })
+    ).toBeInTheDocument();
+    expect(screen.getByRole("region", { name: "Strategy. Entitlements. Delivery." })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "Strategy. Entitlements. Delivery." })).toBeInTheDocument();
+    expect(
+      screen.getByRole("img", { name: "Pittard residential land plan showing lot layout and circulation" })
     ).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "Our Step-By-Step Approach To Land Development" })).toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: "Site Sourcing" })).toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: "Final Review And Handover" })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "Acquire with Edge" })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "Execute & Realize Returns" })).toBeInTheDocument();
     expect(screen.getAllByRole("heading", { level: 3 })).toHaveLength(4);
     expect(screen.getByRole("link", { name: "Contact Radius" })).toHaveAttribute("href", "/#contact");
   });
 
-  it("renders the universe section closed by default and expands a selected sector in place", () => {
+  it("renders the bridge section before the universe section and keeps universe interactions intact", () => {
     renderWhatWeDoPage();
 
-    expect(screen.getByRole("heading", { name: "Private Real Estate Development Universe" })).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: "Residential" })).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: "Commercial" })).toBeInTheDocument();
-    expect(screen.queryByText("Multifamily")).not.toBeInTheDocument();
+    const bridgeSection = screen.getByRole("region", { name: "We don't merely acquire value. We create it." });
+    const mirroredBridgeSection = screen.getByRole("region", { name: "Strategy. Entitlements. Delivery." });
+    const universeSection = screen.getByRole("region", { name: "Radius Development Universe" });
+    const residentialButton = screen.getByRole("button", { name: "Residential" });
+    const residentialContent = document.getElementById("wwd-uc-content-residential");
 
-    fireEvent.click(screen.getByRole("button", { name: "Residential" }));
+    expect(bridgeSection.compareDocumentPosition(mirroredBridgeSection) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+    expect(mirroredBridgeSection.compareDocumentPosition(universeSection) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+    expect(screen.getByRole("heading", { name: "Radius Development Universe" })).toBeInTheDocument();
+    expect(residentialButton).toHaveAttribute("aria-expanded", "false");
+    expect(residentialContent).toHaveAttribute("aria-hidden", "true");
+    expect(screen.getByRole("button", { name: "Commercial" })).toBeInTheDocument();
+
+    fireEvent.click(residentialButton);
 
     expect(screen.getByRole("heading", { name: "Residential" })).toBeInTheDocument();
     expect(screen.getByText("Multifamily")).toBeInTheDocument();
+    expect(residentialButton).toHaveAttribute("aria-expanded", "true");
+    expect(residentialContent).toHaveAttribute("aria-hidden", "false");
 
-    fireEvent.click(screen.getByRole("button", { name: "Collapse Residential" }));
+    fireEvent.click(residentialButton);
 
-    expect(screen.queryByText("Multifamily")).not.toBeInTheDocument();
-    expect(screen.getByRole("button", { name: "Residential" })).toBeInTheDocument();
+    expect(residentialButton).toHaveAttribute("aria-expanded", "false");
+    expect(residentialContent).toHaveAttribute("aria-hidden", "true");
   });
 
   it("uses the standalone what we do route in shared header and footer links", () => {
