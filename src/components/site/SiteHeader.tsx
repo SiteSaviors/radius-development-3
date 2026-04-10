@@ -7,7 +7,11 @@ type SiteHeaderProps = {
 
 const SiteHeader = ({ currentPath }: SiteHeaderProps) => {
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(currentPath !== "/");
+  const startsTransparent =
+    currentPath === "/" ||
+    currentPath === "/what-we-do" ||
+    currentPath === "/projects";
+  const [scrolled, setScrolled] = useState(!startsTransparent);
   const isHome = currentPath === "/";
 
   const segmentsHref = isHome ? "#retail" : "/#retail";
@@ -16,13 +20,13 @@ const SiteHeader = ({ currentPath }: SiteHeaderProps) => {
 
   useEffect(() => {
     const onScroll = () => {
-      setScrolled(currentPath !== "/" || window.scrollY > 40);
+      setScrolled(!startsTransparent || window.scrollY > 40);
     };
 
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
-  }, [currentPath]);
+  }, [startsTransparent]);
 
   useEffect(() => {
     setMobileNavOpen(false);
