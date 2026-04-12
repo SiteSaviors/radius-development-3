@@ -1210,7 +1210,7 @@ h1 em{font-style:italic;color:rgba(255,255,255,.6)}
   margin:0 auto;
 }
 .company-mission-copy{
-  flex:0 0 360px;
+  flex:0 0 440px;
 }
 .company-mission-title{
   font-family:'Poppins',sans-serif;
@@ -1241,40 +1241,43 @@ h1 em{font-style:italic;color:rgba(255,255,255,.6)}
   overflow:visible;
 }
 .company-mission-segment{
-  cursor:pointer;
-}
-.company-mission-segment:focus-visible{
+  cursor:none;
   outline:none;
+}
+.company-mission-segment path{
+  transition:fill .22s ease;
 }
 .company-mission-segment:focus-visible path{
   stroke:#ffffff;
-  stroke-width:5px;
+  stroke-width:6px;
 }
 .company-mission-wheel-label{
   font-family:'Poppins',sans-serif;
   font-size:13px;
   font-weight:500;
+  letter-spacing:.01em;
 }
 .company-mission-wheel-icon{
   font-family:'Montserrat',sans-serif;
-  font-size:21px;
+  font-size:18px;
   font-weight:300;
   pointer-events:none;
 }
 .company-mission-center-wordmark{
   font-family:'Safira March',serif;
-  font-size:52px;
+  font-size:36px;
   font-weight:400;
   letter-spacing:.04em;
-  fill:#1B2A4A;
-  opacity:.92;
+  fill:#ffffff;
+  opacity:1;
   text-transform:lowercase;
 }
 .company-mission-center-description{
   font-family:'Montserrat',sans-serif;
-  font-size:13.5px;
-  font-weight:500;
-  fill:#4a5568;
+  font-size:11.5px;
+  font-weight:400;
+  fill:#ffffff;
+  letter-spacing:.01em;
 }
 .wwd-intro,
 .wwd-process-head,

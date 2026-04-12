@@ -54,12 +54,10 @@ const Company = () => {
       <main className="company-page">
         <section className="wwd-hero">
           <LazyBackground className="wwd-hero-media" image={companyHeroBg} eager ariaHidden />
-          <div className="wwd-hero-shell">
-            <div className="wwd-hero-copy">
-              <div className="wwd-hero-eyebrow">{companyHero.eyebrow}</div>
-              <h1 className="wwd-hero-title">{companyHero.title}</h1>
-              {companyHero.body ? <p className="wwd-hero-body">{companyHero.body}</p> : null}
-            </div>
+          <div className="wwd-hero-copy">
+            <div className="wwd-hero-eyebrow">{companyHero.eyebrow}</div>
+            <h1 className="wwd-hero-title">{companyHero.title}</h1>
+            {companyHero.body ? <p className="wwd-hero-body">{companyHero.body}</p> : null}
           </div>
         </section>
 

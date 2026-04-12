@@ -7,15 +7,16 @@ type CompanyMissionWheelProps = {
   ariaLabel?: string;
 };
 
-const CX = 320;
+const CX = 330;
 const CY = 300;
-const RI = 113;
-const RD = 193;
-const RA = 263;
-const RLBL = 250;
-const RICO = 172;
-const RICR = 19;
-const GAP = 0.038;
+const RI = 82;
+const RD = 224;
+const RMID = (RI + RD) / 2; // true radial midpoint = 153
+const RICR = 12;
+const LABEL_FONT_SIZE = 13;
+const LABEL_LINE_HEIGHT = 16;
+const ICON_GAP = 10; // px between bottom of icon circle and top of label block
+const GAP = 0.032;
 
 const polar = (radius: number, angle: number): [number, number] => [
   CX + radius * Math.cos(angle),
@@ -24,14 +25,13 @@ const polar = (radius: number, angle: number): [number, number] => [
 
 const formatCoord = (value: number) => value.toFixed(2);
 
-const buildPath = (index: number, isActive: boolean, segmentAngle: number, startAngle: number) => {
-  const outerRadius = isActive ? RA : RD;
+const buildPath = (index: number, segmentAngle: number, startAngle: number) => {
   const angleStart = startAngle + index * segmentAngle + GAP;
   const angleEnd = startAngle + (index + 1) * segmentAngle - GAP;
   const largeArc = angleEnd - angleStart > Math.PI ? 1 : 0;
   const [innerStartX, innerStartY] = polar(RI, angleStart);
-  const [outerStartX, outerStartY] = polar(outerRadius, angleStart);
-  const [outerEndX, outerEndY] = polar(outerRadius, angleEnd);
+  const [outerStartX, outerStartY] = polar(RD, angleStart);
+  const [outerEndX, outerEndY] = polar(RD, angleEnd);
   const [innerEndX, innerEndY] = polar(RI, angleEnd);
 
   return [
@@ -40,7 +40,7 @@ const buildPath = (index: number, isActive: boolean, segmentAngle: number, start
     "L",
     `${formatCoord(outerStartX)},${formatCoord(outerStartY)}`,
     "A",
-    `${outerRadius},${outerRadius} 0 ${largeArc},1 ${formatCoord(outerEndX)},${formatCoord(outerEndY)}`,
+    `${RD},${RD} 0 ${largeArc},1 ${formatCoord(outerEndX)},${formatCoord(outerEndY)}`,
     "L",
     `${formatCoord(innerEndX)},${formatCoord(innerEndY)}`,
     "A",
@@ -73,7 +73,7 @@ const CompanyMissionWheel = ({
   return (
     <svg
       className="company-mission-wheel"
-      viewBox="0 0 640 600"
+      viewBox="0 0 600 600"
       xmlns="http://www.w3.org/2000/svg"
       role="img"
       aria-label={ariaLabel}
@@ -82,11 +82,15 @@ const CompanyMissionWheel = ({
         {values.map((value, index) => {
           const isActive = index === activeIndex;
           const midAngle = startAngle + (index + 0.5) * segmentAngle;
-          const [labelX, labelY] = polar(RLBL, midAngle);
-          const [iconX, iconY] = polar(RICO, midAngle);
-          const cos = Math.cos(midAngle);
-          const textAnchor = cos > 0.28 ? "start" : cos < -0.28 ? "end" : "middle";
-          const labelBaseY = labelY - (value.labelLines.length - 1) * 8.5;
+          const [groupX, groupY] = polar(RMID, midAngle);
+          // Total group height: icon diameter + gap + label block
+          const labelBlockHeight = value.labelLines.length * LABEL_LINE_HEIGHT;
+          const groupHeight = RICR * 2 + ICON_GAP + labelBlockHeight;
+          // Center the group around groupY
+          const iconCY = groupY - groupHeight / 2 + RICR;
+          const labelTopY = iconCY + RICR + ICON_GAP;
+          // First baseline = labelTopY + ascender (~0.72 of font size)
+          const labelBaseY = labelTopY + LABEL_FONT_SIZE * 0.72;
 
           return (
             <g
@@ -94,17 +98,16 @@ const CompanyMissionWheel = ({
               className={`company-mission-segment${isActive ? " is-active" : ""}`}
               role="button"
               tabIndex={0}
-              focusable="true"
               aria-label={value.labelLines.join(" ")}
               aria-pressed={isActive}
               onClick={() => toggleValue(index)}
               onKeyDown={(event) => handleKeyDown(event, index)}
             >
               <path
-                d={buildPath(index, isActive, segmentAngle, startAngle)}
+                d={buildPath(index, segmentAngle, startAngle)}
                 fill={isActive ? value.activeColor : value.inactiveColor}
                 stroke="#ffffff"
-                strokeWidth="3.5"
+                strokeWidth="4"
                 strokeLinejoin="round"
               />
 
@@ -113,10 +116,10 @@ const CompanyMissionWheel = ({
                   <text
                     key={`${value.id}-${line}`}
                     className="company-mission-wheel-label"
-                    x={formatCoord(labelX)}
-                    y={formatCoord(labelBaseY + lineIndex * 17)}
-                    textAnchor={textAnchor}
-                    fill={isActive ? "#ffffff" : "rgba(255,255,255,.76)"}
+                    x={formatCoord(groupX)}
+                    y={formatCoord(labelBaseY + lineIndex * LABEL_LINE_HEIGHT)}
+                    textAnchor="middle"
+                    fill="#ffffff"
                   >
                     {line}
                   </text>
@@ -125,17 +128,17 @@ const CompanyMissionWheel = ({
 
               <g aria-hidden="true">
                 <circle
-                  cx={formatCoord(iconX)}
-                  cy={formatCoord(iconY)}
+                  cx={formatCoord(groupX)}
+                  cy={formatCoord(iconCY)}
                   r={RICR}
-                  fill={isActive ? "#ffffff" : value.iconColor}
-                  stroke={isActive ? value.activeColor : "none"}
+                  fill={isActive ? "#ffffff" : "rgba(255,255,255,.18)"}
+                  stroke={isActive ? value.activeColor : "rgba(255,255,255,.4)"}
                   strokeWidth="1.5"
                 />
                 <text
                   className="company-mission-wheel-icon"
-                  x={formatCoord(iconX)}
-                  y={formatCoord(iconY)}
+                  x={formatCoord(groupX)}
+                  y={formatCoord(iconCY)}
                   textAnchor="middle"
                   dominantBaseline="central"
                   fill={isActive ? value.activeColor : "#ffffff"}
@@ -153,9 +156,9 @@ const CompanyMissionWheel = ({
         cy={CY}
         r={RI}
         className="company-mission-center-ring"
-        fill="#f6f6f6"
-        stroke="rgba(27,42,74,.18)"
-        strokeWidth="2"
+        fill="#1a3320"
+        stroke="#ffffff"
+        strokeWidth="4"
       />
 
       {activeIndex === -1 ? (
@@ -176,7 +179,7 @@ const CompanyMissionWheel = ({
               <tspan
                 key={`${values[activeIndex].id}-${line}`}
                 x={CX}
-                y={CY - ((values[activeIndex].descriptionLines.length - 1) * 18) / 2 + index * 18}
+                y={CY - ((values[activeIndex].descriptionLines.length - 1) * 16) / 2 + index * 16}
               >
                 {line}
               </tspan>
