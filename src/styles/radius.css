@@ -1293,6 +1293,28 @@ h1 em{font-style:italic;color:rgba(255,255,255,.6)}
 .wwd-bridge--mirrored{
   z-index:2;
 }
+.wwd-bridge-strip{
+  position:absolute;
+  left:0;
+  right:0;
+  top:302px;
+  height:296px;
+  background:#c9c9c5;
+  overflow:hidden;
+  z-index:1;
+  pointer-events:none;
+}
+.wwd-bridge-strip--mirrored .wwd-intro-brand-stack{
+  left:auto;
+  right:-2%;
+  top:-6%;
+}
+.wwd-bridge-strip--mirrored .wwd-intro-brand-text{
+  left:auto;
+  right:6%;
+  top:-8%;
+  text-align:right;
+}
 .wwd-bridge-inner{
   position:relative;
   max-width:1520px;
@@ -2499,6 +2521,18 @@ footer{padding:72px 48px 42px;border-top:1px solid var(--hl);background:#000;dis
   }
   .wwd-bridge{padding:0 0 60px}
   .wwd-bridge--mirrored{z-index:2}
+  .wwd-bridge-strip{
+    top:184px;
+    height:200px;
+  }
+  .wwd-bridge-strip--mirrored .wwd-intro-brand-stack{
+    right:-10%;
+    top:-2%;
+  }
+  .wwd-bridge-strip--mirrored .wwd-intro-brand-text{
+    right:2%;
+    top:-2%;
+  }
   .wwd-bridge-inner{
     min-height:410px;
     padding:0 20px 28px;

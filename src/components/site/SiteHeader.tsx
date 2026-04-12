@@ -9,6 +9,7 @@ const SiteHeader = ({ currentPath }: SiteHeaderProps) => {
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
   const startsTransparent =
     currentPath === "/" ||
+    currentPath === "/company" ||
     currentPath === "/what-we-do" ||
     currentPath === "/projects";
   const [scrolled, setScrolled] = useState(!startsTransparent);
@@ -38,7 +39,7 @@ const SiteHeader = ({ currentPath }: SiteHeaderProps) => {
       <ul className="nlinks">
         <li><Link to="/what-we-do">What We Do</Link></li>
         <li><Link to="/projects">Current Projects</Link></li>
-        <li><a href={segmentsHref}>Company</a></li>
+        <li><Link to="/company">Company</Link></li>
         <li><a href={aboutHref}>News</a></li>
         <li><a href={contactHref}>Contact</a></li>
       </ul>
@@ -57,7 +58,7 @@ const SiteHeader = ({ currentPath }: SiteHeaderProps) => {
       <div className={`mnav${mobileNavOpen ? " open" : ""}`}>
         <Link to="/what-we-do" onClick={() => setMobileNavOpen(false)}>What We Do</Link>
         <Link to="/projects" onClick={() => setMobileNavOpen(false)}>Current Projects</Link>
-        <a href={segmentsHref} onClick={() => setMobileNavOpen(false)}>company</a>
+        <Link to="/company" onClick={() => setMobileNavOpen(false)}>company</Link>
         <a href={aboutHref} onClick={() => setMobileNavOpen(false)}>News</a>
         <a href={contactHref} onClick={() => setMobileNavOpen(false)}>Contact</a>
       </div>

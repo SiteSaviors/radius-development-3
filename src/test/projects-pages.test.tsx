@@ -36,6 +36,7 @@ describe("projects pages", () => {
 
     expect(screen.getAllByRole("link", { name: "Current Projects" })[0]).toHaveAttribute("href", "/projects");
     expect(screen.getAllByRole("link", { name: "What We Do" })[0]).toHaveAttribute("href", "/what-we-do");
+    expect(screen.getAllByRole("link", { name: /company/i })[0]).toHaveAttribute("href", "/company");
   });
 
   it("filters by status and category, shows empty state, and resets", () => {

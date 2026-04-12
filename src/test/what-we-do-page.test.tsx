@@ -85,6 +85,8 @@ describe("what we do page", () => {
     const whatWeDoLinks = screen.getAllByRole("link", { name: "What We Do" });
     expect(whatWeDoLinks[0]).toHaveAttribute("href", "/what-we-do");
     expect(whatWeDoLinks[1]).toHaveAttribute("href", "/what-we-do");
+    expect(screen.getAllByRole("link", { name: /company/i })[0]).toHaveAttribute("href", "/company");
+    expect(screen.getAllByRole("link", { name: /company/i })[1]).toHaveAttribute("href", "/company");
   });
 
   it("routes homepage capability ctas to the standalone page", () => {
