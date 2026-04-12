@@ -1,9 +1,10 @@
 import { useEffect } from "react";
 import companyHeroBg from "@/assets/wwd-hero.jpg";
+import CompanyMissionWheel from "@/components/company/CompanyMissionWheel";
 import LazyBackground from "@/components/media/LazyBackground";
 import SiteFooter from "@/components/site/SiteFooter";
 import SiteHeader from "@/components/site/SiteHeader";
-import { whatWeDoHero } from "@/content/whatWeDo";
+import { companyHero, companyMission } from "@/content/company";
 import useRadiusCursor from "@/hooks/useRadiusCursor";
 
 const Company = () => {
@@ -55,9 +56,32 @@ const Company = () => {
           <LazyBackground className="wwd-hero-media" image={companyHeroBg} eager ariaHidden />
           <div className="wwd-hero-shell">
             <div className="wwd-hero-copy">
-              <div className="wwd-hero-eyebrow">{whatWeDoHero.eyebrow}</div>
-              <h1 className="wwd-hero-title">{whatWeDoHero.title}</h1>
-              {whatWeDoHero.body ? <p className="wwd-hero-body">{whatWeDoHero.body}</p> : null}
+              <div className="wwd-hero-eyebrow">{companyHero.eyebrow}</div>
+              <h1 className="wwd-hero-title">{companyHero.title}</h1>
+              {companyHero.body ? <p className="wwd-hero-body">{companyHero.body}</p> : null}
+            </div>
+          </div>
+        </section>
+
+        <section className="company-mission" aria-labelledby="company-mission-title">
+          <div className="company-mission-inner">
+            <div className="company-mission-copy">
+              <h2 id="company-mission-title" className="company-mission-title">
+                {companyMission.title}
+              </h2>
+              <div className="company-mission-body">
+                {companyMission.paragraphs.map((paragraph) => (
+                  <p key={paragraph}>{paragraph}</p>
+                ))}
+              </div>
+            </div>
+
+            <div className="company-mission-wheel-wrap">
+              <CompanyMissionWheel
+                values={companyMission.values}
+                centerLabel={companyMission.centerLabel}
+                ariaLabel="Interactive mission values wheel"
+              />
             </div>
           </div>
         </section>

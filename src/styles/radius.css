@@ -1197,6 +1197,85 @@ h1 em{font-style:italic;color:rgba(255,255,255,.6)}
   letter-spacing:.02em;
   color:rgba(255,255,255,.76);
 }
+.company-page{background:#020202;min-height:100vh}
+.company-mission{
+  padding:80px 48px;
+  background:#020202;
+}
+.company-mission-inner{
+  display:flex;
+  align-items:center;
+  gap:56px;
+  max-width:1200px;
+  margin:0 auto;
+}
+.company-mission-copy{
+  flex:0 0 360px;
+}
+.company-mission-title{
+  font-family:'Poppins',sans-serif;
+  font-size:clamp(30px,3.1vw,46px);
+  font-weight:600;
+  line-height:1.04;
+  letter-spacing:-.045em;
+  color:#fff;
+  margin:0 0 28px;
+}
+.company-mission-body{
+  display:grid;
+  gap:20px;
+}
+.company-mission-body p{
+  font-size:14px;
+  line-height:1.8;
+  color:var(--cc);
+  margin:0;
+}
+.company-mission-wheel-wrap{
+  flex:1;
+  min-width:340px;
+}
+.company-mission-wheel{
+  display:block;
+  width:100%;
+  overflow:visible;
+}
+.company-mission-segment{
+  cursor:pointer;
+}
+.company-mission-segment:focus-visible{
+  outline:none;
+}
+.company-mission-segment:focus-visible path{
+  stroke:#ffffff;
+  stroke-width:5px;
+}
+.company-mission-wheel-label{
+  font-family:'Poppins',sans-serif;
+  font-size:13px;
+  font-weight:500;
+}
+.company-mission-wheel-icon{
+  font-family:'Montserrat',sans-serif;
+  font-size:21px;
+  font-weight:300;
+  pointer-events:none;
+}
+.company-mission-center-wordmark{
+  font-family:'Safira March',serif;
+  font-size:52px;
+  font-weight:400;
+  letter-spacing:.04em;
+  fill:#1B2A4A;
+  opacity:.92;
+  text-transform:lowercase;
+}
+.company-mission-center-description{
+  font-family:'Montserrat',sans-serif;
+  font-size:13.5px;
+  font-weight:500;
+  fill:#4a5568;
+}
 .wwd-intro,
 .wwd-process-head,
 .wwd-cta{
@@ -2502,6 +2581,22 @@ footer{padding:72px 48px 42px;border-top:1px solid var(--hl);background:#000;dis
   }
   .wwd-hero-title{font-size:clamp(34px,10vw,48px);line-height:.94;max-width:8ch}
   .wwd-hero-body{max-width:100%;font-size:13px;line-height:1.78}
+  .company-mission{
+    padding:48px 24px;
+  }
+  .company-mission-inner{
+    flex-direction:column;
+    align-items:stretch;
+    gap:36px;
+  }
+  .company-mission-copy{
+    flex:none;
+    width:100%;
+  }
+  .company-mission-wheel-wrap{
+    width:100%;
+    min-width:0;
+  }
   .wwd-intro,
   .wwd-process-head,
   .wwd-cta{padding:64px 20px}
