@@ -53,7 +53,7 @@ export const whatWeDoHero: WhatWeDoHeroContent = {
   eyebrow: "WHAT WE DO",
   title: "Future Focused Real Estate",
   body:
-    "We operate across acquisition, entitlement, development, and execution with a disciplined approach to uncovering and advancing high-conviction opportunities. Our work is grounded in thoughtful strategy, institutional rigor, and the ability to move decisively where value can be shaped early.",
+    "Whether we’re creating new retail, office, multifamily, or mixed-use projects or revitalizing existing properties, we’re driven by the opportunity to bring great places to life.",
 };
 
 export const whatWeDoIntro: WhatWeDoIntroContent = {

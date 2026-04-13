@@ -152,9 +152,9 @@ const WhatWeDo = () => {
             </div>
 
             <div className="wwd-bridge-media-wrap">
-              <figure className="wwd-bridge-media-card">
+              <figure className="wwd-bridge-media-card wwd-bridge-media-card--franklin">
                 <img
-                  className="wwd-bridge-media"
+                  className="wwd-bridge-media wwd-bridge-media--top"
                   src={whatWeDoBridge.image}
                   alt={whatWeDoBridge.alt}
                 />
@@ -204,6 +204,39 @@ const WhatWeDo = () => {
                 ) : null}
               </figure>
             </div>
+          </div>
+        </section>
+
+        <section className="wwd-process-head">
+          <div className="wwd-process-head-inner">
+            <h2 className="wwd-process-title">{whatWeDoProcessIntro.title}</h2>
+            <p className="wwd-process-body">
+              {whatWeDoProcessIntro.bodyStart}
+              <span className="wwd-process-highlight">{whatWeDoProcessIntro.bodyHighlight}</span>
+              {whatWeDoProcessIntro.bodyEnd}
+            </p>
+          </div>
+        </section>
+
+        <section className="wwd-process">
+          <div className="wwd-process-inner">
+            <div className="wwd-process-track" aria-hidden="true">
+              <div className="wwd-process-line"></div>
+            </div>
+            {whatWeDoProcessSteps.map((step, index) => {
+              return (
+                <article
+                  key={step.step}
+                  className={`wwd-step${index === 0 ? " is-active" : ""}`}
+                >
+                  <div className="wwd-step-marker">
+                    <div className="wwd-step-counter">{step.step}</div>
+                  </div>
+                  <h3 className="wwd-step-title">{step.title}</h3>
+                  <p className="wwd-step-body">{step.body}</p>
+                </article>
+              );
+            })}
           </div>
         </section>
 
@@ -263,39 +296,6 @@ const WhatWeDo = () => {
                 </div>
               </div>
             </div>
-          </div>
-        </section>
-
-        <section className="wwd-process-head">
-          <div className="wwd-process-head-inner">
-            <h2 className="wwd-process-title">{whatWeDoProcessIntro.title}</h2>
-            <p className="wwd-process-body">
-              {whatWeDoProcessIntro.bodyStart}
-              <span className="wwd-process-highlight">{whatWeDoProcessIntro.bodyHighlight}</span>
-              {whatWeDoProcessIntro.bodyEnd}
-            </p>
-          </div>
-        </section>
-
-        <section className="wwd-process">
-          <div className="wwd-process-inner">
-            <div className="wwd-process-track" aria-hidden="true">
-              <div className="wwd-process-line"></div>
-            </div>
-            {whatWeDoProcessSteps.map((step, index) => {
-              return (
-                <article
-                  key={step.step}
-                  className={`wwd-step${index === 0 ? " is-active" : ""}`}
-                >
-                  <div className="wwd-step-marker">
-                    <div className="wwd-step-counter">{step.step}</div>
-                  </div>
-                  <h3 className="wwd-step-title">{step.title}</h3>
-                  <p className="wwd-step-body">{step.body}</p>
-                </article>
-              );
-            })}
           </div>
         </section>
 
