@@ -52,7 +52,8 @@ export type WhatWeDoBridgeContent = {
 export const whatWeDoHero: WhatWeDoHeroContent = {
   eyebrow: "WHAT WE DO",
   title: "Future Focused Real Estate",
-  body: "",
+  body:
+    "We operate across acquisition, entitlement, development, and execution with a disciplined approach to uncovering and advancing high-conviction opportunities. Our work is grounded in thoughtful strategy, institutional rigor, and the ability to move decisively where value can be shaped early.",
 };
 
 export const whatWeDoIntro: WhatWeDoIntroContent = {

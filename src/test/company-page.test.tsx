@@ -1,6 +1,7 @@
 import { fireEvent, render, screen, within } from "@testing-library/react";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
 import { describe, expect, it } from "vitest";
+import { companyHero } from "@/content/company";
 import Company from "@/pages/Company";
 
 const renderCompanyPage = () =>
@@ -16,7 +17,7 @@ describe("company page", () => {
   it("renders the standalone company route with the duplicated hero, mission section, and route-aware company links", () => {
     renderCompanyPage();
 
-    const heroHeading = screen.getByRole("heading", { name: "Future Focused Real Estate" });
+    const heroHeading = screen.getByRole("heading", { name: companyHero.title });
     const numbersSection = screen.getByRole("region", { name: "Radius By The Numbers" });
     const aboutSection = screen.getByRole("region", { name: "Principal-led land strategy built for long-term value." });
     const missionSection = screen.getByRole("region", { name: "Our Mission" });
@@ -62,7 +63,8 @@ describe("company page", () => {
     expect(screen.getByText("Gaurang Gala")).toBeInTheDocument();
     expect(screen.getByText("Tarek Morshed")).toBeInTheDocument();
     expect(screen.getByText("Elizabeth Eichen")).toBeInTheDocument();
-    expect(screen.getAllByText("Additional Team Member")).toHaveLength(2);
+    expect(screen.getByText("Kyle Trebing")).toBeInTheDocument();
+    expect(screen.getAllByText("Additional Team Member")).toHaveLength(1);
     expect(screen.getAllByRole("button", { name: /Learn more about/i })).toHaveLength(6);
     expect(screen.getAllByRole("link", { name: /company/i })[0]).toHaveAttribute("href", "/company");
     expect(screen.getAllByRole("link", { name: /company/i })[1]).toHaveAttribute("href", "/company");

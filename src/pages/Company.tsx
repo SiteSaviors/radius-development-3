@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import companyHeroBg from "@/assets/wwd-hero.jpg";
+import companyHeroBg from "@/assets/company-hero.jpg";
 import CompanyMissionWheel from "@/components/company/CompanyMissionWheel";
 import CompanyTeamGrid from "@/components/company/CompanyTeamGrid";
 import LazyBackground from "@/components/media/LazyBackground";

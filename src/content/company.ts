@@ -4,6 +4,7 @@ import teamPhoto139 from "@/assets/139.jpg";
 import teamPhoto140 from "@/assets/140.jpg";
 import teamPhoto141 from "@/assets/141.jpg";
 import teamPhoto142 from "@/assets/142.jpg";
+import teamPhotoKyle from "@/assets/kyle.jpeg";
 
 export type CompanyHeroContent = {
   eyebrow: string;
@@ -69,8 +70,9 @@ export type CompanyTeamContent = {
 
 export const companyHero: CompanyHeroContent = {
   eyebrow: "COMPANY",
-  title: "Future Focused Real Estate",
-  body: "",
+  title: "Exceptional is our standard.",
+  body:
+    "A multi-disciplinary real estate investment and development firm dedicated to creating value, fostering growth, and positively impacting the communities we serve through our investments.",
 };
 
 export const companyNumbers: CompanyNumbersContent = {
@@ -244,12 +246,12 @@ export const companyTeam: CompanyTeamContent = {
       isPlaceholder: true,
     },
     {
-      id: "placeholder-2",
-      name: "Additional Team Member",
-      role: "Leadership Role",
-      imageAlt: "Placeholder portrait for future team member",
+      id: "kyle-trebing",
+      name: "Kyle Trebing",
+      role: "Project Manager",
+      image: teamPhotoKyle,
+      imageAlt: "Portrait of Kyle Trebing",
       bio: companyTeamBio,
-      isPlaceholder: true,
     },
   ],
 };
