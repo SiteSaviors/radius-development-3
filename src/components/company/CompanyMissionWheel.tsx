@@ -54,6 +54,7 @@ const CompanyMissionWheel = ({
   ariaLabel = "Interactive values wheel",
 }: CompanyMissionWheelProps) => {
   const [activeIndex, setActiveIndex] = useState(-1);
+  const [hoveredIndex, setHoveredIndex] = useState(-1);
 
   const segmentCount = values.length;
   const segmentAngle = (Math.PI * 2) / segmentCount;
@@ -81,8 +82,14 @@ const CompanyMissionWheel = ({
       <g>
         {values.map((value, index) => {
           const isActive = index === activeIndex;
+          const isHovered = index === hoveredIndex;
           const midAngle = startAngle + (index + 0.5) * segmentAngle;
           const [groupX, groupY] = polar(RMID, midAngle);
+          const motionDistance = isActive ? 8 : isHovered ? 4 : 0;
+          const translateX = Math.cos(midAngle) * motionDistance;
+          const translateY = Math.sin(midAngle) * motionDistance;
+          const segmentScale = isActive ? 1.02 : isHovered ? 1.01 : 1;
+          const segmentTransform = `translate(${formatCoord(translateX)}px, ${formatCoord(translateY)}px) scale(${segmentScale})`;
           // Total group height: icon diameter + gap + label block
           const labelBlockHeight = value.labelLines.length * LABEL_LINE_HEIGHT;
           const groupHeight = RICR * 2 + ICON_GAP + labelBlockHeight;
@@ -95,19 +102,28 @@ const CompanyMissionWheel = ({
           return (
             <g
               key={value.id}
-              className={`company-mission-segment${isActive ? " is-active" : ""}`}
+              className={`company-mission-segment${isActive ? " is-active" : ""}${isHovered ? " is-hovered" : ""}`}
               role="button"
               tabIndex={0}
               aria-label={value.labelLines.join(" ")}
               aria-pressed={isActive}
               onClick={() => toggleValue(index)}
               onKeyDown={(event) => handleKeyDown(event, index)}
+              onMouseEnter={() => setHoveredIndex(index)}
+              onMouseLeave={() => setHoveredIndex((currentIndex) => (currentIndex === index ? -1 : currentIndex))}
+              onFocus={() => setHoveredIndex(index)}
+              onBlur={() => setHoveredIndex((currentIndex) => (currentIndex === index ? -1 : currentIndex))}
+              style={{
+                transformBox: "view-box",
+                transformOrigin: `${CX}px ${CY}px`,
+                transform: segmentTransform,
+              }}
             >
               <path
                 d={buildPath(index, segmentAngle, startAngle)}
                 fill={isActive ? value.activeColor : value.inactiveColor}
-                stroke="#ffffff"
-                strokeWidth="4"
+                stroke={isActive || isHovered ? "rgba(255,255,255,.98)" : "rgba(255,255,255,.9)"}
+                strokeWidth={isActive ? 4.4 : isHovered ? 4.15 : 3.9}
                 strokeLinejoin="round"
               />
 
@@ -119,7 +135,7 @@ const CompanyMissionWheel = ({
                     x={formatCoord(groupX)}
                     y={formatCoord(labelBaseY + lineIndex * LABEL_LINE_HEIGHT)}
                     textAnchor="middle"
-                    fill="#ffffff"
+                    fill={isActive || isHovered ? "#ffffff" : "rgba(255,255,255,.94)"}
                   >
                     {line}
                   </text>
@@ -128,11 +144,12 @@ const CompanyMissionWheel = ({
 
               <g aria-hidden="true">
                 <circle
+                  className="company-mission-wheel-icon-ring"
                   cx={formatCoord(groupX)}
                   cy={formatCoord(iconCY)}
                   r={RICR}
-                  fill={isActive ? "#ffffff" : "rgba(255,255,255,.18)"}
-                  stroke={isActive ? value.activeColor : "rgba(255,255,255,.4)"}
+                  fill={isActive ? "#ffffff" : isHovered ? "rgba(255,255,255,.24)" : "rgba(255,255,255,.18)"}
+                  stroke={isActive ? value.activeColor : isHovered ? "rgba(255,255,255,.72)" : "rgba(255,255,255,.4)"}
                   strokeWidth="1.5"
                 />
                 <text
@@ -155,7 +172,7 @@ const CompanyMissionWheel = ({
         cx={CX}
         cy={CY}
         r={RI}
-        className="company-mission-center-ring"
+        className={`company-mission-center-ring${activeIndex !== -1 ? " is-active" : ""}${hoveredIndex !== -1 ? " is-hovered" : ""}`}
         fill="#1a3320"
         stroke="#ffffff"
         strokeWidth="4"

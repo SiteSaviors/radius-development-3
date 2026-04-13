@@ -209,11 +209,17 @@ const Company = () => {
             </div>
 
             <div className="company-mission-wheel-wrap">
-              <CompanyMissionWheel
-                values={companyMission.values}
-                centerLabel={companyMission.centerLabel}
-                ariaLabel="Interactive mission values wheel"
-              />
+              <div className="company-mission-wheel-stage">
+                <div className="company-mission-wheel-glow" aria-hidden="true" />
+                <div className="company-mission-wheel-panel" aria-hidden="true" />
+                <div className="company-mission-wheel-orbit" aria-hidden="true" />
+                <div className="company-mission-wheel-pedestal" aria-hidden="true" />
+                <CompanyMissionWheel
+                  values={companyMission.values}
+                  centerLabel={companyMission.centerLabel}
+                  ariaLabel="Interactive mission values wheel"
+                />
+              </div>
             </div>
           </div>
         </section>
