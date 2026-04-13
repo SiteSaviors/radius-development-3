@@ -2032,7 +2032,7 @@ h1 em{font-style:italic;color:rgba(255,255,255,.6)}
   z-index:3;
 }
 .wwd-bridge-media-wrap--mirrored{
-  top:-148px;
+  top:-220px;
   left:clamp(-144px,-8vw,-72px);
   right:auto;
 }
@@ -2047,6 +2047,10 @@ h1 em{font-style:italic;color:rgba(255,255,255,.6)}
   box-shadow:0 40px 110px rgba(0,0,0,.4);
 }
 .wwd-bridge-media-card--franklin{
+  aspect-ratio:10 / 7.5;
+  border-radius:28px 28px 28px 28px;
+}
+.wwd-bridge-media-card--mirrored-feature{
   aspect-ratio:10 / 7.5;
   border-radius:28px 28px 28px 28px;
 }
@@ -3407,6 +3411,10 @@ footer{padding:72px 48px 42px;border-top:1px solid var(--hl);background:#000;dis
     box-shadow:0 28px 72px rgba(0,0,0,.4);
   }
   .wwd-bridge-media-card--franklin{
+    aspect-ratio:10 / 7;
+    border-radius:18px;
+  }
+  .wwd-bridge-media-card--mirrored-feature{
     aspect-ratio:10 / 7;
     border-radius:18px;
   }

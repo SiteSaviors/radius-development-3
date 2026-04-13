@@ -181,7 +181,9 @@ const WhatWeDo = () => {
           </div>
           <div className="wwd-bridge-inner">
             <div className="wwd-bridge-copy-shell wwd-bridge-copy-shell--mirrored">
-              <div className="wwd-bridge-copy">
+              <div className="wwd-bridge-copy wwd-bridge-copy--approach">
+                <div className="wwd-bridge-rule" aria-hidden="true" />
+                <div className="wwd-bridge-eyebrow">Our Approach</div>
                 <h2 id="wwd-bridge-mirror-title" className="wwd-bridge-title">
                   {whatWeDoMirrorIntro.title}
                 </h2>
@@ -194,9 +196,9 @@ const WhatWeDo = () => {
             </div>
 
             <div className="wwd-bridge-media-wrap wwd-bridge-media-wrap--mirrored">
-              <figure className="wwd-bridge-media-card">
+              <figure className="wwd-bridge-media-card wwd-bridge-media-card--mirrored-feature">
                 <img
-                  className="wwd-bridge-media"
+                  className="wwd-bridge-media wwd-bridge-media--top"
                   src={whatWeDoMirrorBridge.image}
                   alt={whatWeDoMirrorBridge.alt}
                 />
