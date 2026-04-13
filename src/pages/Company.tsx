@@ -213,6 +213,7 @@ const Company = () => {
                 <div className="company-mission-wheel-glow" aria-hidden="true" />
                 <div className="company-mission-wheel-panel" aria-hidden="true" />
                 <div className="company-mission-wheel-orbit" aria-hidden="true" />
+                <div className="company-mission-wheel-backing" aria-hidden="true" />
                 <div className="company-mission-wheel-pedestal" aria-hidden="true" />
                 <CompanyMissionWheel
                   values={companyMission.values}
