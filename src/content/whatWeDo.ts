@@ -51,7 +51,7 @@ export type WhatWeDoBridgeContent = {
 
 export const whatWeDoHero: WhatWeDoHeroContent = {
   eyebrow: "WHAT WE DO",
-  title: "Future Focused Real Estate",
+  title: "Future-Focused Development",
   body:
     "Whether we’re creating new retail, office, multifamily, or mixed-use projects or revitalizing existing properties, we’re driven by the opportunity to bring great places to life.",
 };
@@ -107,10 +107,10 @@ export const whatWeDoBridge: WhatWeDoBridgeContent = {
 };
 
 export const whatWeDoMirrorIntro: WhatWeDoIntroContent = {
-  title: "Strategy. Entitlements. Delivery.",
+  title: "We position every opportunity around real market demand.",
   paragraphs: [
-    "Radius advances opportunities from first-look diligence through entitlement and execution with a disciplined, principal-led development process.",
-    "We align land strategy, approvals, and planning early so projects move forward with clearer timelines, stronger economics, and fewer surprises.",
+    "Radius studies growth patterns, supply pipelines, and demand signals early so each opportunity is positioned against the realities of its market, not assumptions.",
+    "We use market strategy to inform product mix, phasing, and timing, helping projects move forward with clearer conviction, stronger economics, and a cleaner path to execution.",
   ],
 };
 

@@ -1162,6 +1162,9 @@ h1 em{font-style:italic;color:rgba(255,255,255,.6)}
   border-top:1px solid rgba(255,255,255,.05);
   border-right:1px solid rgba(255,255,255,.05);
 }
+.wwd-hero--what-we-do .wwd-hero-copy{
+  margin-right:72px;
+}
 .wwd-hero-eyebrow{
   display:flex;
   align-items:center;
@@ -1190,6 +1193,9 @@ h1 em{font-style:italic;color:rgba(255,255,255,.6)}
   max-width:11ch;
 }
 .wwd-hero--projects .wwd-hero-title{
+  max-width:13ch;
+}
+.wwd-hero--what-we-do .wwd-hero-title{
   max-width:13ch;
 }
 .wwd-hero-body{
@@ -1936,6 +1942,9 @@ h1 em{font-style:italic;color:rgba(255,255,255,.6)}
   z-index:1;
   pointer-events:none;
 }
+.wwd-bridge--mirrored .wwd-bridge-strip{
+  top:240px;
+}
 .wwd-bridge-strip--mirrored .wwd-intro-brand-stack{
   left:auto;
   right:-2%;
@@ -1969,7 +1978,7 @@ h1 em{font-style:italic;color:rgba(255,255,255,.6)}
 }
 .wwd-bridge-copy-shell--mirrored{
   margin-left:auto;
-  transform:translateY(-300px);
+  transform:translateY(-385px);
 }
 .wwd-bridge-copy{
   width:min(100%,680px);
@@ -1984,6 +1993,9 @@ h1 em{font-style:italic;color:rgba(255,255,255,.6)}
   margin-bottom:28px;
   background:rgba(143,203,123,.72);
 }
+.wwd-bridge-rule--gold{
+  background:#cfaa46;
+}
 .wwd-bridge-eyebrow{
   font-family:'Syne',sans-serif;
   font-size:10px;
@@ -1992,6 +2004,9 @@ h1 em{font-style:italic;color:rgba(255,255,255,.6)}
   text-transform:uppercase;
   color:rgba(255,255,255,.62);
   margin-bottom:18px;
+}
+.wwd-bridge-eyebrow--market-strategy{
+  text-align:left;
 }
 .wwd-bridge-title{
   font-family:'Poppins',sans-serif;
@@ -2007,6 +2022,12 @@ h1 em{font-style:italic;color:rgba(255,255,255,.6)}
   line-height:.98;
   max-width:10ch;
   margin-bottom:22px;
+}
+.wwd-bridge-copy--market-strategy .wwd-bridge-title{
+  max-width:24ch;
+}
+.wwd-bridge-copy--market-strategy .wwd-bridge-body{
+  max-width:640px;
 }
 .wwd-bridge-title-line{
   display:block;
@@ -3120,8 +3141,12 @@ footer{padding:72px 48px 42px;border-top:1px solid var(--hl);background:#000;dis
     padding:24px 22px 24px 24px;
     border-top-right-radius:40px;
   }
+  .wwd-hero--what-we-do .wwd-hero-copy{
+    margin-right:20px;
+  }
   .wwd-hero-title{font-size:clamp(34px,10vw,48px);line-height:.94;max-width:10ch}
   .wwd-hero--projects .wwd-hero-title{max-width:12ch}
+  .wwd-hero--what-we-do .wwd-hero-title{max-width:12ch}
   .wwd-hero-body{max-width:100%;font-size:13px;line-height:1.78}
   .company-numbers{
     padding:18px 24px 22px;
@@ -3341,6 +3366,9 @@ footer{padding:72px 48px 42px;border-top:1px solid var(--hl);background:#000;dis
     top:184px;
     height:200px;
   }
+  .wwd-bridge--mirrored .wwd-bridge-strip{
+    top:168px;
+  }
   .wwd-bridge-strip--mirrored .wwd-intro-brand-stack{
     right:-10%;
     top:-2%;
@@ -3360,7 +3388,7 @@ footer{padding:72px 48px 42px;border-top:1px solid var(--hl);background:#000;dis
     transform:translateY(-44px);
   }
   .wwd-bridge-copy-shell--mirrored{margin-left:auto}
-  .wwd-bridge-copy-shell--mirrored{transform:translateY(-164px)}
+  .wwd-bridge-copy-shell--mirrored{transform:translateY(-188px)}
   .wwd-bridge-copy{
     width:min(100%,300px);
     margin-top:84px;
@@ -3384,6 +3412,9 @@ footer{padding:72px 48px 42px;border-top:1px solid var(--hl);background:#000;dis
     font-size:clamp(30px,8.8vw,42px);
     max-width:10ch;
     margin-bottom:16px;
+  }
+  .wwd-bridge-copy--market-strategy .wwd-bridge-title{
+    max-width:17ch;
   }
   .wwd-bridge-title-line{
     white-space:normal;

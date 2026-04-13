@@ -115,7 +115,7 @@ const WhatWeDo = () => {
       <SiteHeader currentPath="/what-we-do" />
 
       <main className="wwd-page">
-        <section className="wwd-hero">
+        <section className="wwd-hero wwd-hero--what-we-do">
           <LazyBackground className="wwd-hero-media" image={whatWeDoHeroBg} eager ariaHidden />
           <div className="wwd-hero-shell">
             <div className="wwd-hero-copy">
@@ -181,11 +181,16 @@ const WhatWeDo = () => {
           </div>
           <div className="wwd-bridge-inner">
             <div className="wwd-bridge-copy-shell wwd-bridge-copy-shell--mirrored">
-              <div className="wwd-bridge-copy wwd-bridge-copy--approach">
-                <div className="wwd-bridge-rule" aria-hidden="true" />
-                <div className="wwd-bridge-eyebrow">Our Approach</div>
-                <h2 id="wwd-bridge-mirror-title" className="wwd-bridge-title">
-                  {whatWeDoMirrorIntro.title}
+              <div className="wwd-bridge-copy wwd-bridge-copy--approach wwd-bridge-copy--market-strategy">
+                <div className="wwd-bridge-rule wwd-bridge-rule--gold" aria-hidden="true" />
+                <div className="wwd-bridge-eyebrow wwd-bridge-eyebrow--market-strategy">Market Stategy</div>
+                <h2
+                  id="wwd-bridge-mirror-title"
+                  className="wwd-bridge-title"
+                  aria-label={whatWeDoMirrorIntro.title}
+                >
+                  <span className="wwd-bridge-title-line">We position every opportunity</span>
+                  <span className="wwd-bridge-title-line">around real market demand.</span>
                 </h2>
                 <div className="wwd-bridge-body">
                   {whatWeDoMirrorIntro.paragraphs.map((paragraph) => (

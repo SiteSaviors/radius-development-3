@@ -1,6 +1,7 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
 import { describe, expect, it, vi } from "vitest";
+import { whatWeDoHero, whatWeDoMirrorIntro } from "@/content/whatWeDo";
 import Index from "@/pages/Index";
 import WhatWeDo from "@/pages/WhatWeDo";
 
@@ -29,7 +30,7 @@ describe("what we do page", () => {
   it("renders the standalone route with the bridge section, process list, and closing CTA", () => {
     renderWhatWeDoPage();
 
-    expect(screen.getByRole("heading", { name: "Future Focused Real Estate" })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: whatWeDoHero.title })).toBeInTheDocument();
     expect(screen.getByRole("region", { name: "We don't merely acquire value. We create it." })).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "We don't merely acquire value. We create it." })).toBeInTheDocument();
     expect(
@@ -38,8 +39,8 @@ describe("what we do page", () => {
     expect(
       screen.getByRole("img", { name: "The Franklin mixed-use development exterior at sunset" })
     ).toBeInTheDocument();
-    expect(screen.getByRole("region", { name: "Strategy. Entitlements. Delivery." })).toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: "Strategy. Entitlements. Delivery." })).toBeInTheDocument();
+    expect(screen.getByRole("region", { name: whatWeDoMirrorIntro.title })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: whatWeDoMirrorIntro.title })).toBeInTheDocument();
     expect(
       screen.getByRole("img", { name: "Pittard residential land plan showing lot layout and circulation" })
     ).toBeInTheDocument();
@@ -54,7 +55,7 @@ describe("what we do page", () => {
     renderWhatWeDoPage();
 
     const bridgeSection = screen.getByRole("region", { name: "We don't merely acquire value. We create it." });
-    const mirroredBridgeSection = screen.getByRole("region", { name: "Strategy. Entitlements. Delivery." });
+    const mirroredBridgeSection = screen.getByRole("region", { name: whatWeDoMirrorIntro.title });
     const universeSection = screen.getByRole("region", { name: "Radius Development Universe" });
     const residentialButton = screen.getByRole("button", { name: "Residential" });
     const residentialContent = document.getElementById("wwd-uc-content-residential");
