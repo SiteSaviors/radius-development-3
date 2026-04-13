@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import companyHeroBg from "@/assets/wwd-hero.jpg";
 import CompanyMissionWheel from "@/components/company/CompanyMissionWheel";
+import CompanyTeamGrid from "@/components/company/CompanyTeamGrid";
 import LazyBackground from "@/components/media/LazyBackground";
 import SiteFooter from "@/components/site/SiteFooter";
 import SiteHeader from "@/components/site/SiteHeader";
-import { companyAbout, companyHero, companyMission, companyNumbers } from "@/content/company";
+import { companyAbout, companyHero, companyMission, companyNumbers, companyTeam } from "@/content/company";
 import useRadiusCursor from "@/hooks/useRadiusCursor";
 
 const formatCompanyStatValue = (value: number, decimals: number) =>
@@ -192,11 +193,13 @@ const Company = () => {
           </div>
         </section>
 
-        <section className="company-mission" aria-labelledby="company-mission-title">
+        <section className="company-mission" aria-label="Our Mission">
           <div className="company-mission-inner">
             <div className="company-mission-copy">
+              <div className="company-mission-rule" aria-hidden="true" />
+              <div className="company-mission-eyebrow">{companyMission.eyebrow}</div>
               <h2 id="company-mission-title" className="company-mission-title">
-                {companyMission.title}
+                {companyMission.headline}
               </h2>
               <div className="company-mission-body">
                 {companyMission.paragraphs.map((paragraph) => (
@@ -212,6 +215,15 @@ const Company = () => {
                 ariaLabel="Interactive mission values wheel"
               />
             </div>
+          </div>
+        </section>
+
+        <section className="company-team" aria-labelledby="company-team-title">
+          <div className="company-team-inner">
+            <h2 id="company-team-title" className="company-team-title">
+              {companyTeam.title}
+            </h2>
+            <CompanyTeamGrid title={companyTeam.title} members={companyTeam.members} />
           </div>
         </section>
       </main>

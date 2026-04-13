@@ -1,5 +1,9 @@
 import companyAboutImage from "@/assets/START (1).jpg";
 import companyAboutInsetImage from "@/assets/3.jpg";
+import teamPhoto139 from "@/assets/139.jpg";
+import teamPhoto140 from "@/assets/140.jpg";
+import teamPhoto141 from "@/assets/141.jpg";
+import teamPhoto142 from "@/assets/142.jpg";
 
 export type CompanyHeroContent = {
   eyebrow: string;
@@ -17,7 +21,8 @@ export type CompanyMissionValue = {
 };
 
 export type CompanyMissionContent = {
-  title: string;
+  eyebrow: string;
+  headline: string;
   paragraphs: string[];
   centerLabel: string;
   values: CompanyMissionValue[];
@@ -45,6 +50,21 @@ export type CompanyAboutContent = {
   imageAlt: string;
   insetImage: string;
   insetImageAlt: string;
+};
+
+export type CompanyTeamMember = {
+  id: string;
+  name: string;
+  role: string;
+  image?: string;
+  imageAlt: string;
+  bio: string;
+  isPlaceholder?: boolean;
+};
+
+export type CompanyTeamContent = {
+  title: string;
+  members: CompanyTeamMember[];
 };
 
 export const companyHero: CompanyHeroContent = {
@@ -105,7 +125,8 @@ export const companyAbout: CompanyAboutContent = {
 };
 
 export const companyMission: CompanyMissionContent = {
-  title: "Our Mission",
+  eyebrow: "Our Mission",
+  headline: "A trusted, innovative partner focused on lasting value.",
   paragraphs: [
     "Our mission is to be a trusted, innovative partner striving to create lasting value for those we serve over the long term.",
     "In pursuit of our mission, we embrace five core values that guide everything we do: integrity, innovative thinking, community impact, collaboration, and relationships.",
@@ -172,6 +193,63 @@ export const companyMission: CompanyMissionContent = {
       activeColor: "#6BA06B",
       inactiveColor: "#426542",
       iconColor: "#6BA06B",
+    },
+  ],
+};
+
+const companyTeamBio =
+  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere, sapien non cursus facilisis, erat libero ultrices velit, vitae tincidunt risus erat id lorem. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.";
+
+export const companyTeam: CompanyTeamContent = {
+  title: "Meet The Team",
+  members: [
+    {
+      id: "ricky-joshi",
+      name: "Ricky Joshi",
+      role: "General Partner",
+      image: teamPhoto139,
+      imageAlt: "Portrait of Ricky Joshi",
+      bio: companyTeamBio,
+    },
+    {
+      id: "gaurang-gala",
+      name: "Gaurang Gala",
+      role: "General Partner",
+      image: teamPhoto140,
+      imageAlt: "Portrait of Gaurang Gala",
+      bio: companyTeamBio,
+    },
+    {
+      id: "tarek-morshed",
+      name: "Tarek Morshed",
+      role: "General Partner",
+      image: teamPhoto141,
+      imageAlt: "Portrait of Tarek Morshed",
+      bio: companyTeamBio,
+    },
+    {
+      id: "elizabeth-eichen",
+      name: "Elizabeth Eichen",
+      role: "Head of Investor Relations",
+      image: teamPhoto142,
+      imageAlt: "Portrait of Elizabeth Eichen",
+      bio: companyTeamBio,
+    },
+    {
+      id: "placeholder-1",
+      name: "Additional Team Member",
+      role: "Leadership Role",
+      imageAlt: "Placeholder portrait for future team member",
+      bio: companyTeamBio,
+      isPlaceholder: true,
+    },
+    {
+      id: "placeholder-2",
+      name: "Additional Team Member",
+      role: "Leadership Role",
+      imageAlt: "Placeholder portrait for future team member",
+      bio: companyTeamBio,
+      isPlaceholder: true,
     },
   ],
 };
