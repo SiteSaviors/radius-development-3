@@ -1965,7 +1965,7 @@ h1 em{font-style:italic;color:rgba(255,255,255,.6)}
   width:min(100%,640px);
   min-height:100%;
   padding:36px 0 72px;
-  transform:translateY(-96px);
+  transform:translateY(-150px);
 }
 .wwd-bridge-copy-shell--mirrored{
   margin-left:auto;
@@ -1975,6 +1975,24 @@ h1 em{font-style:italic;color:rgba(255,255,255,.6)}
   width:min(100%,680px);
   margin-top:136px;
 }
+.wwd-bridge-copy--approach{
+  width:min(100%,620px);
+}
+.wwd-bridge-rule{
+  width:min(100%,220px);
+  height:2px;
+  margin-bottom:28px;
+  background:rgba(143,203,123,.72);
+}
+.wwd-bridge-eyebrow{
+  font-family:'Syne',sans-serif;
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:.26em;
+  text-transform:uppercase;
+  color:rgba(255,255,255,.62);
+  margin-bottom:18px;
+}
 .wwd-bridge-title{
   font-family:'Poppins',sans-serif;
   font-size:clamp(58px,5vw,84px);
@@ -1983,6 +2001,16 @@ h1 em{font-style:italic;color:rgba(255,255,255,.6)}
   letter-spacing:-.055em;
   color:#f7f6f1;
   margin:0 0 26px;
+}
+.wwd-bridge-copy--approach .wwd-bridge-title{
+  font-size:clamp(30px,3.2vw,50px);
+  line-height:.98;
+  max-width:10ch;
+  margin-bottom:22px;
+}
+.wwd-bridge-title-line{
+  display:block;
+  white-space:nowrap;
 }
 .wwd-bridge-body{
   display:grid;
@@ -2019,7 +2047,7 @@ h1 em{font-style:italic;color:rgba(255,255,255,.6)}
   box-shadow:0 40px 110px rgba(0,0,0,.4);
 }
 .wwd-bridge-media-card--franklin{
-  aspect-ratio:10 / 7;
+  aspect-ratio:10 / 7.5;
   border-radius:28px 28px 28px 28px;
 }
 .wwd-bridge-media-card::after{
@@ -3333,9 +3361,28 @@ footer{padding:72px 48px 42px;border-top:1px solid var(--hl);background:#000;dis
     width:min(100%,300px);
     margin-top:84px;
   }
+  .wwd-bridge-copy--approach{
+    width:min(100%,300px);
+  }
+  .wwd-bridge-rule{
+    width:140px;
+    margin-bottom:20px;
+  }
+  .wwd-bridge-eyebrow{
+    font-size:9px;
+    margin-bottom:12px;
+  }
   .wwd-bridge-title{
     font-size:clamp(34px,10vw,52px);
     margin-bottom:16px;
+  }
+  .wwd-bridge-copy--approach .wwd-bridge-title{
+    font-size:clamp(30px,8.8vw,42px);
+    max-width:10ch;
+    margin-bottom:16px;
+  }
+  .wwd-bridge-title-line{
+    white-space:normal;
   }
   .wwd-bridge-body{
     gap:12px;

@@ -139,9 +139,12 @@ const WhatWeDo = () => {
         <section className="wwd-bridge" aria-labelledby="wwd-bridge-title">
           <div className="wwd-bridge-inner">
             <div className="wwd-bridge-copy-shell">
-              <div className="wwd-bridge-copy">
-                <h2 id="wwd-bridge-title" className="wwd-bridge-title">
-                  {whatWeDoIntro.title}
+              <div className="wwd-bridge-copy wwd-bridge-copy--approach">
+                <div className="wwd-bridge-rule" aria-hidden="true" />
+                <div className="wwd-bridge-eyebrow">Our Approach</div>
+                <h2 id="wwd-bridge-title" className="wwd-bridge-title" aria-label={whatWeDoIntro.title}>
+                  <span className="wwd-bridge-title-line">We don&apos;t merely acquire value.</span>
+                  <span className="wwd-bridge-title-line">We create it.</span>
                 </h2>
                 <div className="wwd-bridge-body">
                   {whatWeDoIntro.paragraphs.map((paragraph) => (
