@@ -1,13 +1,26 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import companyHeroBg from "@/assets/wwd-hero.jpg";
 import CompanyMissionWheel from "@/components/company/CompanyMissionWheel";
 import LazyBackground from "@/components/media/LazyBackground";
 import SiteFooter from "@/components/site/SiteFooter";
 import SiteHeader from "@/components/site/SiteHeader";
-import { companyHero, companyMission } from "@/content/company";
+import { companyAbout, companyHero, companyMission, companyNumbers } from "@/content/company";
 import useRadiusCursor from "@/hooks/useRadiusCursor";
 
+const formatCompanyStatValue = (value: number, decimals: number) =>
+  value.toLocaleString("en-US", {
+    minimumFractionDigits: decimals,
+    maximumFractionDigits: decimals,
+  });
+
+const formatCompanyStat = (value: number, prefix: string, suffix: string, decimals: number) =>
+  `${prefix}${formatCompanyStatValue(value, decimals)}${suffix}`;
+
 const Company = () => {
+  const [numberValues, setNumberValues] = useState(() =>
+    companyNumbers.stats.map((stat) => formatCompanyStat(0, stat.prefix, stat.suffix, stat.decimals))
+  );
+
   useRadiusCursor();
 
   useEffect(() => {
@@ -45,6 +58,71 @@ const Company = () => {
     };
   }, []);
 
+  useEffect(() => {
+    const numbersSection = document.getElementById("company-numbers-grid");
+    if (!numbersSection) return;
+
+    const setFinal = () =>
+      setNumberValues(
+        companyNumbers.stats.map((stat) =>
+          formatCompanyStat(stat.end, stat.prefix, stat.suffix, stat.decimals)
+        )
+      );
+
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reducedMotion) {
+      setFinal();
+      return;
+    }
+
+    let frame = 0;
+    let hasAnimated = false;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (!entries[0]?.isIntersecting || hasAnimated) return;
+
+        hasAnimated = true;
+        observer.disconnect();
+
+        const duration = 1400;
+        const startTime = performance.now();
+
+        const tick = (now: number) => {
+          const progress = Math.min((now - startTime) / duration, 1);
+          const eased = 1 - Math.pow(1 - progress, 3);
+
+          setNumberValues(
+            companyNumbers.stats.map((stat) => {
+              const animatedValue = stat.end * eased;
+              const displayValue =
+                stat.decimals > 0
+                  ? Number(animatedValue.toFixed(stat.decimals))
+                  : Math.floor(animatedValue);
+
+              return formatCompanyStat(displayValue, stat.prefix, stat.suffix, stat.decimals);
+            })
+          );
+
+          if (progress < 1) {
+            frame = requestAnimationFrame(tick);
+          } else {
+            setFinal();
+          }
+        };
+
+        frame = requestAnimationFrame(tick);
+      },
+      { threshold: 0.35 }
+    );
+
+    observer.observe(numbersSection);
+
+    return () => {
+      observer.disconnect();
+      cancelAnimationFrame(frame);
+    };
+  }, []);
+
   return (
     <>
       <div id="cur"></div>
@@ -58,6 +136,59 @@ const Company = () => {
             <div className="wwd-hero-eyebrow">{companyHero.eyebrow}</div>
             <h1 className="wwd-hero-title">{companyHero.title}</h1>
             {companyHero.body ? <p className="wwd-hero-body">{companyHero.body}</p> : null}
+          </div>
+        </section>
+
+        <section className="company-numbers" aria-labelledby="company-numbers-title">
+          <div className="company-numbers-inner">
+            <h2 id="company-numbers-title" className="company-numbers-title">
+              {companyNumbers.title}
+            </h2>
+
+            <div className="company-numbers-grid" id="company-numbers-grid">
+              {companyNumbers.stats.map((stat, index) => (
+                <div key={stat.id} className="company-numbers-item">
+                  <div className="company-numbers-value" id={stat.id}>
+                    {numberValues[index]}
+                  </div>
+                  <div className="company-numbers-label">{stat.label}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="company-about" aria-labelledby="company-about-title">
+          <div className="company-about-inner">
+            <div className="company-about-media">
+              <figure className="company-about-media-card">
+                <img
+                  className="company-about-image"
+                  src={companyAbout.image}
+                  alt={companyAbout.imageAlt}
+                />
+              </figure>
+              <figure className="company-about-inset-card">
+                <img
+                  className="company-about-inset-image"
+                  src={companyAbout.insetImage}
+                  alt={companyAbout.insetImageAlt}
+                />
+              </figure>
+            </div>
+
+            <div className="company-about-copy">
+              <div className="company-about-rule" aria-hidden="true" />
+              <div className="company-about-eyebrow">{companyAbout.eyebrow}</div>
+              <h2 id="company-about-title" className="company-about-title">
+                {companyAbout.title}
+              </h2>
+              <div className="company-about-body">
+                {companyAbout.paragraphs.map((paragraph) => (
+                  <p key={paragraph}>{paragraph}</p>
+                ))}
+              </div>
+            </div>
           </div>
         </section>
 

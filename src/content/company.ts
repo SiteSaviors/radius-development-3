@@ -1,3 +1,6 @@
+import companyAboutImage from "@/assets/START (1).jpg";
+import companyAboutInsetImage from "@/assets/3.jpg";
+
 export type CompanyHeroContent = {
   eyebrow: string;
   title: string;
@@ -20,10 +23,85 @@ export type CompanyMissionContent = {
   values: CompanyMissionValue[];
 };
 
+export type CompanyNumberStat = {
+  id: string;
+  label: string;
+  end: number;
+  decimals: number;
+  prefix: string;
+  suffix: string;
+};
+
+export type CompanyNumbersContent = {
+  title: string;
+  stats: CompanyNumberStat[];
+};
+
+export type CompanyAboutContent = {
+  eyebrow: string;
+  title: string;
+  paragraphs: string[];
+  image: string;
+  imageAlt: string;
+  insetImage: string;
+  insetImageAlt: string;
+};
+
 export const companyHero: CompanyHeroContent = {
   eyebrow: "COMPANY",
   title: "Future Focused Real Estate",
   body: "",
+};
+
+export const companyNumbers: CompanyNumbersContent = {
+  title: "Radius By The Numbers",
+  stats: [
+    {
+      id: "company-stat-0",
+      label: "ACTIVE PIPELINE",
+      end: 1.1,
+      decimals: 1,
+      prefix: "",
+      suffix: "B",
+    },
+    {
+      id: "company-stat-1",
+      label: "SQ FT DEVELOPED",
+      end: 300,
+      decimals: 0,
+      prefix: "",
+      suffix: "K",
+    },
+    {
+      id: "company-stat-2",
+      label: "RESIDENTIAL UNITS",
+      end: 2200,
+      decimals: 0,
+      prefix: "",
+      suffix: "",
+    },
+    {
+      id: "company-stat-3",
+      label: "LAND VALUE CREATION",
+      end: 2.2,
+      decimals: 1,
+      prefix: "",
+      suffix: "X",
+    },
+  ],
+};
+
+export const companyAbout: CompanyAboutContent = {
+  eyebrow: "About Radius",
+  title: "Principal-led land strategy built for long-term value.",
+  paragraphs: [
+    "Radius operates across the land cycle with a focus on acquisition, entitlement strategy, structured development, and execution. We look for opportunities where speed, clarity, and discipline create an edge before value is obvious to the broader market.",
+    "Our team combines institutional rigor with principal-led decisiveness, allowing us to move early, structure creatively, and advance complex opportunities with a cleaner path to execution. The result is a platform built to shape value from the ground up.",
+  ],
+  image: companyAboutImage,
+  imageAlt: "A wide city-view balcony overlooking an urban skyline at sunset",
+  insetImage: companyAboutInsetImage,
+  insetImageAlt: "A modern Radius residential interior with open living space",
 };
 
 export const companyMission: CompanyMissionContent = {
