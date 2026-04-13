@@ -7,7 +7,7 @@ type CompanyMissionWheelProps = {
   ariaLabel?: string;
 };
 
-const CX = 330;
+const CX = 300;
 const CY = 300;
 const RI = 82;
 const RD = 224;

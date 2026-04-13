@@ -1406,20 +1406,26 @@ h1 em{font-style:italic;color:rgba(255,255,255,.6)}
   flex:1;
   min-width:340px;
   position:relative;
+  display:flex;
+  justify-content:center;
+  align-items:center;
 }
 .company-mission-wheel-stage{
-  --mission-wheel-shift-x:18px;
-  --mission-wheel-shift-y:34px;
+  --mission-wheel-shift-x:0px;
+  --mission-wheel-shift-y:0px;
   position:relative;
   display:grid;
   place-items:center;
-  min-height:728px;
-  padding:34px 26px 82px;
+  width:min(100%,760px);
+  aspect-ratio:1 / 1;
+  min-height:0;
+  margin:0 auto;
+  padding:28px;
   isolation:isolate;
 }
 .company-mission-wheel-glow{
   position:absolute;
-  inset:10% 9% 11%;
+  inset:11% 10% 12%;
   z-index:0;
   border-radius:50%;
   background:
@@ -1431,9 +1437,9 @@ h1 em{font-style:italic;color:rgba(255,255,255,.6)}
 }
 .company-mission-wheel-panel{
   position:absolute;
-  inset:9% 3% 7%;
+  inset:8% 5% 8%;
   z-index:1;
-  border-radius:42px;
+  border-radius:36px;
   border:1px solid rgba(255,255,255,.08);
   background:
     radial-gradient(circle at 50% 42%,rgba(255,255,255,.032) 0%,rgba(255,255,255,0) 48%),
@@ -1449,7 +1455,7 @@ h1 em{font-style:italic;color:rgba(255,255,255,.6)}
 }
 .company-mission-wheel-orbit{
   position:absolute;
-  inset:11% 12% 12%;
+  inset:13% 14% 14%;
   z-index:1;
   border-radius:50%;
   border:1px solid rgba(255,255,255,.08);
@@ -1472,10 +1478,10 @@ h1 em{font-style:italic;color:rgba(255,255,255,.6)}
 }
 .company-mission-wheel-pedestal{
   position:absolute;
-  left:20%;
-  right:16%;
-  bottom:10%;
-  height:112px;
+  left:18%;
+  right:18%;
+  bottom:11%;
+  height:84px;
   z-index:1;
   border-radius:50%;
   background:radial-gradient(circle at 50% 50%,rgba(143,203,123,.16) 0%,rgba(17,25,38,.24) 32%,rgba(2,2,2,0) 72%);
@@ -1486,7 +1492,7 @@ h1 em{font-style:italic;color:rgba(255,255,255,.6)}
 .company-mission-wheel{
   display:block;
   width:100%;
-  max-width:720px;
+  max-width:620px;
   position:relative;
   z-index:2;
   transform:translate(var(--mission-wheel-shift-x),var(--mission-wheel-shift-y));
@@ -3218,32 +3224,33 @@ footer{padding:72px 48px 42px;border-top:1px solid var(--hl);background:#000;dis
   }
   .company-mission-wheel-stage{
     --mission-wheel-shift-x:0px;
-    --mission-wheel-shift-y:14px;
+    --mission-wheel-shift-y:0px;
+    width:min(100%,640px);
     min-height:0;
-    padding:26px 10px 40px;
+    padding:18px 8px 24px;
   }
   .company-mission-wheel-glow{
-    inset:8% 4% 11%;
+    inset:10% 6% 12%;
     filter:blur(22px);
   }
   .company-mission-wheel-panel{
-    inset:6% 0 8%;
-    border-radius:30px;
+    inset:8% 4% 9%;
+    border-radius:24px;
     backdrop-filter:blur(10px);
     -webkit-backdrop-filter:blur(10px);
   }
   .company-mission-wheel-orbit{
-    inset:10% 7% 12%;
+    inset:12% 12% 13%;
   }
   .company-mission-wheel-pedestal{
-    left:12%;
-    right:10%;
-    bottom:10%;
-    height:62px;
+    left:18%;
+    right:18%;
+    bottom:11%;
+    height:50px;
     filter:blur(16px);
   }
   .company-mission-wheel{
-    max-width:640px;
+    max-width:520px;
   }
   .company-team{
     padding:56px 24px 64px;
