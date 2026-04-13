@@ -2234,6 +2234,25 @@ h1 em{font-style:italic;color:rgba(255,255,255,.6)}
   margin:0 0 18px;
   text-align:left;
 }
+.wwd-universe-eyebrow{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  gap:18px;
+  margin:0 0 18px;
+  font-family:'Syne',sans-serif;
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:.26em;
+  text-transform:uppercase;
+  color:rgba(255,255,255,.62);
+}
+.wwd-universe-eyebrow::before{
+  content:'';
+  width:min(100%,220px);
+  height:2px;
+  background:var(--ac);
+}
 .wwd-universe-title{
   font-family:'Poppins',sans-serif;
   font-size:clamp(34px,4.4vw,58px);
@@ -3484,6 +3503,7 @@ footer{padding:72px 48px 42px;border-top:1px solid var(--hl);background:#000;dis
   .wwd-step-body{max-width:none;margin:0;text-align:left}
   .wwd-universe{padding:12px 20px 72px}
   .wwd-universe-head{margin-bottom:26px}
+  .wwd-universe-eyebrow{gap:14px;margin-bottom:14px;font-size:9px}
   .wwd-universe-title{font-size:clamp(30px,8vw,40px)}
   .wwd-universe-body{margin-top:14px;font-size:13px;line-height:1.78}
   .wwd-universe-stage{width:100%}

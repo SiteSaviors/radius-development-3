@@ -253,6 +253,7 @@ const WhatWeDo = () => {
         <section className="wwd-universe" aria-labelledby="wwd-universe-title">
           <div className="wwd-universe-inner">
             <div className="wwd-universe-head">
+              <div className="wwd-universe-eyebrow">Market Segments</div>
               <h2 id="wwd-universe-title" className="wwd-universe-title">
                 {whatWeDoUniverse.title}
               </h2>
