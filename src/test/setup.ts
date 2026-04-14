@@ -25,7 +25,18 @@ class MockIntersectionObserver {
   unobserve() {}
 }
 
+class MockResizeObserver {
+  observe() {}
+  disconnect() {}
+  unobserve() {}
+}
+
 Object.defineProperty(window, "IntersectionObserver", {
   writable: true,
   value: MockIntersectionObserver,
+});
+
+Object.defineProperty(window, "ResizeObserver", {
+  writable: true,
+  value: MockResizeObserver,
 });

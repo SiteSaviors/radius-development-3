@@ -14,6 +14,7 @@ import teamPhoto141 from "@/assets/141.jpg";
 import teamPhoto142 from "@/assets/142.jpg";
 import investorCtaBg from "@/assets/investor.jpg";
 import HomepageAdvantageSection from "@/components/home/HomepageAdvantageSection";
+import HomepagePropertiesSlideshow from "@/components/home/HomepagePropertiesSlideshow";
 import PlatformCapabilityCard from "@/components/home/PlatformCapabilityCard";
 import LazyBackground from "@/components/media/LazyBackground";
 import SiteFooter from "@/components/site/SiteFooter";
@@ -96,22 +97,7 @@ const teamMembers = [
   },
 ] as const;
 
-const homepageProjectPresentation = {
-  "the-shiloh": { theme: "fp-01" },
-  "the-franklin": { theme: "fp-02", layout: "fp-left-middle" },
-  "terraces-at-west-cary": { theme: "fp-04", layout: "fp-right-middle" },
-  "pittard-sears": { theme: "fp-05", layout: "fp-square-a" },
-  "cary-estates": { theme: "fp-06", layout: "fp-square-b" },
-  "rdu-town-center": { theme: "fp-08", layout: "fp-wide-bottom" },
-} as const;
-
 const Index = () => {
-  const homepageProjects = projects.map((project) => ({
-    ...project,
-    ...homepageProjectPresentation[project.slug as keyof typeof homepageProjectPresentation],
-  }));
-  const [primaryProject, ...secondaryProjects] = homepageProjects;
-
   useRadiusCursor();
 
   useEffect(() => {
@@ -261,87 +247,14 @@ const Index = () => {
 
       {/* FEATURED PROJECTS */}
       <section className="fps" id="featured-projects">
-        <div className="fph">
-          <div>
+        <div className="fps__header">
+          <div className="fps__header-copy">
             <div className="ey rv">Active Pipeline</div>
             <div className="st rv d1">Landmark Projects</div>
           </div>
           <p className="sd rv d2">Current projects moving through entitlement, strategic development structuring, and retail execution across high-growth markets.</p>
         </div>
-        <div className="fplayout">
-          <Link
-            to={`/projects/${primaryProject.slug}`}
-            className={`fpcard fphero rv ${primaryProject.theme}${primaryProject.image ? " fp-has-image" : ""}`}
-          >
-              <div className="fpmedia" aria-hidden="true">
-                {primaryProject.image ? (
-                  <LazyBackground
-                    className="fpimage"
-                    image={primaryProject.image}
-                    style={{ backgroundPosition: primaryProject.imagePosition }}
-                    ariaHidden
-                  />
-                ) : null}
-                <div className="fpglow"></div>
-                <div className="fpgridline"></div>
-            </div>
-            <div className="fpcontent">
-              <div className={`fplabel${primaryProject.statusTone ? ` ${primaryProject.statusTone}` : ""}`}>{primaryProject.status}</div>
-              <div className="fpname">{primaryProject.name}</div>
-              {primaryProject.highlightTags ? (
-                <div className="fptags">
-                  {primaryProject.highlightTags.map((highlight) => (
-                    <div key={highlight.text} className={`fptag ${highlight.tone}`}>
-                      {highlight.text}
-                    </div>
-                  ))}
-                </div>
-              ) : (
-                <p className="fpdesc">{primaryProject.shortDescription}</p>
-              )}
-            </div>
-          </Link>
-          <div className="fpstack">
-            {secondaryProjects.map((project, index) => (
-              <Link
-                key={project.name}
-                to={`/projects/${project.slug}`}
-                className={`fpcard fpside rv d${Math.min(index + 1, 5)} ${project.theme} ${project.layout}${project.image ? " fp-has-image" : ""}`}
-              >
-                <div className="fpmedia" aria-hidden="true">
-                  {project.image ? (
-                    <LazyBackground
-                      className="fpimage"
-                      image={project.image}
-                      style={{ backgroundPosition: project.imagePosition }}
-                      ariaHidden
-                    />
-                  ) : null}
-                  <div className="fpglow"></div>
-                  <div className="fpgridline"></div>
-                </div>
-                <div className="fpcontent">
-                  <div className={`fplabel${project.statusTone ? ` ${project.statusTone}` : ""}`}>{project.status}</div>
-                  <div className="fpname">{project.name}</div>
-                  {project.highlightTags ? (
-                    <div className="fptags">
-                      {project.highlightTags.map((highlight) => (
-                        <div key={highlight.text} className={`fptag ${highlight.tone}`}>
-                          {highlight.text}
-                        </div>
-                      ))}
-                    </div>
-                  ) : (
-                    <p className="fpdesc">{project.shortDescription}</p>
-                  )}
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-        <div className="fpcta rv d3">
-          <Link to="/projects" className="bp">View All Projects</Link>
-        </div>
+        <HomepagePropertiesSlideshow projects={projects} />
       </section>
 
       {/* RECENTLY CLOSED */}
