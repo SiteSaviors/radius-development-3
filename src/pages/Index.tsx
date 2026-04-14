@@ -261,11 +261,11 @@ const Index = () => {
       {/* RECENTLY CLOSED */}
       <section className="closed" id="recently-closed">
         <div className="clh">
-          <div>
-            <div className="ey rv"> Recently Closed</div>
+          <div className="clh-copy">
+            <div className="cl-ey rv">Recently Closed</div>
             <div className="st rv d1">Our Track Record</div>
           </div>
-          <p className="sd rv d2">A representative outcome illustrating Radius&apos;s land strategy, entitlement execution, and realized value creation.</p>
+          <p className="cl-sd rv d2">A representative outcome illustrating Radius&apos;s land strategy, entitlement execution, and realized value creation.</p>
         </div>
         <HomepageRecentlyClosedSpotlight content={recentlyClosedContent} />
       </section>

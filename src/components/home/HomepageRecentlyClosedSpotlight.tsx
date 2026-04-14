@@ -14,67 +14,58 @@ const HomepageRecentlyClosedSpotlight = ({
       content.mobileImagePosition ?? content.imagePosition ?? "center center",
   } as CSSProperties;
 
-  const facts = [
-    { label: "Project Scope", value: content.scope },
-    { label: "Our Role", value: content.role },
-  ];
-
   return (
-    <div className="closed-spotlight">
-      <div className="closed-spotlight__media rv d1" style={mediaStyle}>
+    <article className="closed-trophy rv" tabIndex={0}>
+      <div className="closed-trophy__media" style={mediaStyle}>
         <picture>
           {content.mobileImage ? (
             <source media="(max-width: 768px)" srcSet={content.mobileImage} />
           ) : null}
           <img
-            className="closed-spotlight__media-image"
+            className="closed-trophy__image"
             src={content.image}
             alt={`${content.title}, ${content.location}`}
           />
         </picture>
-        <div className="closed-spotlight__scrim" aria-hidden="true"></div>
-        <div className="closed-spotlight__overlay">
-          <div className="closed-spotlight__label">Closed</div>
-          <div className="closed-spotlight__title">{content.title}</div>
-          <div className="closed-spotlight__location">{content.location}</div>
+        <div className="closed-trophy__scrim" aria-hidden="true"></div>
+        <div className="closed-trophy__copy">
+          <div className="closed-trophy__label">Closed</div>
+          <h3 className="closed-trophy__title">{content.title}</h3>
+          <div className="closed-trophy__location">{content.location}</div>
         </div>
       </div>
 
-      <div className="closed-spotlight__proof rv d2">
-        <div className="closed-spotlight__proof-eyebrow">{content.eyebrow}</div>
-        <h3 className="closed-spotlight__headline">{content.headline}</h3>
+      <div className="closed-trophy__panel rv d2">
+        <div className="closed-trophy__eyebrow">{content.eyebrow}</div>
 
-        <div className="closed-spotlight__outcome rv d3">
+        <div className="closed-trophy__metric-block">
           <div>
-            <div className="closed-spotlight__outcome-label">{content.outcomeLabel}</div>
-            <div className="closed-spotlight__outcome-meta">{content.outcomeMeta}</div>
+            <div className="closed-trophy__metric-label">{content.outcomeLabel}</div>
+            <div className="closed-trophy__metric-meta">{content.outcomeMeta}</div>
           </div>
-          <div className="closed-spotlight__outcome-value">{content.outcomeValue}</div>
+          <div className="closed-trophy__metric-value">{content.outcomeValue}</div>
         </div>
 
-        <p className="closed-spotlight__summary">{content.summary}</p>
+        <div className="closed-trophy__buyer">
+          <span>{content.buyerName}</span>
+          <img src={content.buyerLogo} alt={content.buyerName} />
+        </div>
 
-        <div className="closed-spotlight__facts" role="list" aria-label="Transaction facts">
-          {facts.map((fact, index) => (
-            <div
-              key={fact.label}
-              className={`closed-spotlight__fact rv d${Math.min(index + 3, 4)}`}
-              role="listitem"
-            >
-              <div className="closed-spotlight__fact-label">{fact.label}</div>
-              <div className="closed-spotlight__fact-value">{fact.value}</div>
+        <div className="closed-trophy__detail">
+          <p className="closed-trophy__thesis">{content.thesis}</p>
+          <div className="closed-trophy__facts" role="list" aria-label="Transaction facts">
+            <div className="closed-trophy__fact" role="listitem">
+              <div className="closed-trophy__fact-label">Project Scope</div>
+              <div className="closed-trophy__fact-value">{content.scope}</div>
             </div>
-          ))}
-          <div className="closed-spotlight__fact closed-spotlight__fact--buyer rv d4" role="listitem">
-            <div className="closed-spotlight__fact-label">Buyer</div>
-            <div className="closed-spotlight__buyer">
-              <span>{content.buyerName}</span>
-              <img src={content.buyerLogo} alt={content.buyerName} />
+            <div className="closed-trophy__fact" role="listitem">
+              <div className="closed-trophy__fact-label">Our Role</div>
+              <div className="closed-trophy__fact-value">{content.role}</div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </article>
   );
 };
 

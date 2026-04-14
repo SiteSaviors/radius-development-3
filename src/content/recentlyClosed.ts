@@ -5,8 +5,7 @@ export type RecentlyClosedSpotlightContent = {
   eyebrow: string;
   title: string;
   location: string;
-  headline: string;
-  summary: string;
+  thesis: string;
   scope: string;
   role: string;
   buyerName: string;
@@ -24,9 +23,7 @@ export const recentlyClosedContent: RecentlyClosedSpotlightContent = {
   eyebrow: "Transaction Spotlight",
   title: "TOD - Phase One",
   location: "Research Triangle Park, NC",
-  headline: "Fully-Entitled TOD land project delivered to a national multifamily developer.",
-  summary:
-    "Radius executed the land assembly, acquisition, and rezoning strategy for TOD Phase 1, converting the site into a market-ready opportunity for institutional-scale residential delivery.",
+  thesis: "Fully entitled TOD land project delivered to a national multifamily developer.",
   scope: "350 Class-A Multifamily Units",
   role: "Land Assembly, Acquisition, Rezoning",
   buyerName: "Wood Partners",
