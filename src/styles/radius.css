@@ -148,8 +148,8 @@ h1 em{font-style:italic;color:rgba(255,255,255,.6)}
 }
 .homepage-advantage__inner{
   display:grid;
-  grid-template-columns:minmax(0,.78fr) minmax(0,1.22fr);
-  gap:84px;
+  grid-template-columns:minmax(0,.84fr) minmax(0,1.08fr);
+  gap:72px;
   align-items:center;
 }
 .homepage-advantage__copy{
@@ -261,12 +261,14 @@ h1 em{font-style:italic;color:rgba(255,255,255,.6)}
 }
 .homepage-advantage__visual{
   position:relative;
-  min-height:600px;
+  min-height:540px;
 }
 .homepage-advantage__image-shell{
   position:relative;
-  min-height:600px;
-  margin-left:10px;
+  min-height:540px;
+  width:min(100%,820px);
+  margin-left:0;
+  justify-self:end;
   border-radius:54px 18px 18px 54px;
   overflow:hidden;
   border:1px solid rgba(21,30,51,.14);
@@ -323,7 +325,7 @@ h1 em{font-style:italic;color:rgba(255,255,255,.6)}
   position:absolute;
   left:34px;
   bottom:24px;
-  width:min(62%,540px);
+  width:min(58%,460px);
   z-index:3;
   padding:24px 24px 22px;
   border-radius:24px;
