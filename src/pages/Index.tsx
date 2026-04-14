@@ -2,9 +2,6 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import heroBg from "@/assets/RADIUS-VIDEO-poster.jpg";
 import heroVideo from "@/assets/RADIUS-VIDEO.mp4";
-import jointVenturesBg from "@/assets/joint-ventures.jpg";
-import landEntitlementBg from "@/assets/land-entitlement.jpg";
-import luxRetailBg from "@/assets/lux-retail.jpg";
 import trammelCrowLogo from "@/assets/Trammel-Crow.webp";
 import tollBrothersLogo from "@/assets/Toll-Brothers.webp";
 import triPointeLogo from "@/assets/Tri-Pointe.webp";
@@ -17,9 +14,11 @@ import teamPhoto140 from "@/assets/140.jpg";
 import teamPhoto141 from "@/assets/141.jpg";
 import teamPhoto142 from "@/assets/142.jpg";
 import investorCtaBg from "@/assets/investor.jpg";
+import PlatformCapabilityCard from "@/components/home/PlatformCapabilityCard";
 import LazyBackground from "@/components/media/LazyBackground";
 import SiteFooter from "@/components/site/SiteFooter";
 import SiteHeader from "@/components/site/SiteHeader";
+import { homepageCapabilities } from "@/content/homepageCapabilities";
 import { projects } from "@/content/projects";
 import useRadiusCursor from "@/hooks/useRadiusCursor";
 
@@ -342,48 +341,13 @@ const Index = () => {
           <p className="plat-sd rv d2">At Radius, we operate across the full lifecycle of real estate value creation—from identifying land opportunity, to partnering on institutional-scale development, to building iconic retail destinations.</p>
         </div>
         <div className="bento">
-          <div className="bc rv">
-            <div className="bcmedia">
-              <LazyBackground className="bcbg land-photo" image={landEntitlementBg} ariaHidden />
-              <div className="bctop">
-                <svg width="26" height="26" viewBox="0 0 26 26" fill="none"><rect x=".5" y=".5" width="25" height="25" stroke="rgba(255,255,255,.22)" strokeWidth=".75"/><path d="M4 19L13 7L22 19" stroke="rgba(255,255,255,.5)" strokeWidth=".75" fill="none"/><line x1="4" y1="19" x2="22" y2="19" stroke="rgba(255,255,255,.5)" strokeWidth=".75"/></svg>
-              </div>
-            </div>
-            <div className="bcc">
-              <div className="bcn">01 / Land</div>
-              <div className="bct">Land Entitlement</div>
-              <div className="bcd">We identify off-market opportunities across high growth corridors while leveraging deep local relationships and proprietary data to secure sites before they reach the broader market.</div>
-              <Link to="/what-we-do" className="bcta">Let&apos;s Talk Land</Link>
-            </div>
-          </div>
-          <div className="bc rv d1">
-            <div className="bcmedia">
-              <LazyBackground className="bcbg development-photo" image={jointVenturesBg} ariaHidden />
-              <div className="bctop">
-                <svg width="26" height="26" viewBox="0 0 26 26" fill="none"><rect x=".5" y=".5" width="25" height="25" stroke="rgba(255,255,255,.22)" strokeWidth=".75"/><rect x="3" y="10" width="7" height="13" stroke="rgba(255,255,255,.5)" strokeWidth=".75" fill="none"/><rect x="14" y="6" width="9" height="17" stroke="rgba(255,255,255,.5)" strokeWidth=".75" fill="none"/><line x1="10" y1="23" x2="14" y2="23" stroke="rgba(255,255,255,.5)" strokeWidth=".75"/></svg>
-              </div>
-            </div>
-            <div className="bcc">
-              <div className="bcn">02 / Development</div>
-              <div className="bct">Development Partnerships</div>
-              <div className="bcd">From residential communities to mixed-use retail developments, we partner with best-in-class institutional developers with a focus on maximizing returns while building lasting community value.</div>
-              <Link to="/what-we-do" className="bcta">Let&apos;s Talk Development</Link>
-            </div>
-          </div>
-          <div className="bc rv d2">
-            <div className="bcmedia">
-              <LazyBackground className="bcbg retail-photo" image={luxRetailBg} ariaHidden />
-              <div className="bctop">
-                <svg width="26" height="26" viewBox="0 0 26 26" fill="none"><rect x=".5" y=".5" width="25" height="25" stroke="rgba(255,255,255,.22)" strokeWidth=".75"/><rect x="2" y="13" width="22" height="10" stroke="rgba(255,255,255,.5)" strokeWidth=".75" fill="none"/><line x1="2" y1="13" x2="2" y2="9" stroke="rgba(255,255,255,.5)" strokeWidth=".75"/><line x1="24" y1="13" x2="24" y2="9" stroke="rgba(255,255,255,.5)" strokeWidth=".75"/><path d="M2 9Q13 3 24 9" stroke="rgba(255,255,255,.5)" strokeWidth=".75" fill="none"/><line x1="10" y1="13" x2="10" y2="23" stroke="rgba(255,255,255,.3)" strokeWidth=".5"/><line x1="16" y1="13" x2="16" y2="23" stroke="rgba(255,255,255,.3)" strokeWidth=".5"/></svg>
-              </div>
-            </div>
-            <div className="bcc">
-              <div className="bcn">03 / Retail</div>
-              <div className="bct">Retail Development</div>
-              <div className="bcd">We develop high-end, experience-driven retail centers where demand is underserved. Rather than building commodity retail, we develop environments that blend retail, dining, and community into a cohesive destination.</div>
-              <Link to="/what-we-do" className="bcta">Let&apos;s Talk Retail</Link>
-            </div>
-          </div>
+          {homepageCapabilities.map((capability, index) => (
+            <PlatformCapabilityCard
+              key={capability.id}
+              capability={capability}
+              revealDelayClass={index === 0 ? undefined : `d${Math.min(index, 2)}`}
+            />
+          ))}
         </div>
       </section>
 

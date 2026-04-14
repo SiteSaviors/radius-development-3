@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-const DEFAULT_HOVER_SELECTOR = ".bp,.bg,.bc,.fpcard,.teamcard,.li,.nbtn,.flinks a,.nlinks a,.rts,.project-archive-card,.project-related-card,.filterpill,.archive-reset";
+const DEFAULT_HOVER_SELECTOR = ".bp,.bg,.platform-card,.platform-card__cta,.fpcard,.teamcard,.li,.nbtn,.flinks a,.nlinks a,.rts,.project-archive-card,.project-related-card,.filterpill,.archive-reset";
 
 const useRadiusCursor = (hoverSelector: string = DEFAULT_HOVER_SELECTOR) => {
   useEffect(() => {

@@ -1,6 +1,7 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
 import { describe, expect, it, vi } from "vitest";
+import { homepageCapabilities } from "@/content/homepageCapabilities";
 import { whatWeDoHero, whatWeDoMirrorIntro } from "@/content/whatWeDo";
 import Index from "@/pages/Index";
 import WhatWeDo from "@/pages/WhatWeDo";
@@ -93,8 +94,10 @@ describe("what we do page", () => {
   it("routes homepage capability ctas to the standalone page", () => {
     renderHomePage();
 
-    expect(screen.getByRole("link", { name: "Let's Talk Land" })).toHaveAttribute("href", "/what-we-do");
-    expect(screen.getByRole("link", { name: "Let's Talk Development" })).toHaveAttribute("href", "/what-we-do");
-    expect(screen.getByRole("link", { name: "Let's Talk Retail" })).toHaveAttribute("href", "/what-we-do");
+    homepageCapabilities.forEach((capability) => {
+      expect(screen.getByRole("heading", { name: capability.title })).toBeInTheDocument();
+      expect(screen.getByText(capability.summary)).toBeInTheDocument();
+      expect(screen.getByRole("link", { name: capability.ctaLabel })).toHaveAttribute("href", "/what-we-do");
+    });
   });
 });
