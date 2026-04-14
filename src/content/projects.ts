@@ -3,6 +3,7 @@ import franklinBg from "@/assets/Franklin.jpg";
 import pittardBg from "@/assets/Pittard.jpg";
 import rduTownBg from "@/assets/RDU-Town.jpg";
 import shilohBg from "@/assets/Shiloh.jpg";
+import shilohMobileBg from "@/assets/SHILOH-MOBILE.jpg";
 import terracesBg from "@/assets/TERRACES.jpg";
 
 export type ProjectStatus = "Under Development" | "Open Project";
@@ -24,7 +25,10 @@ export type Project = {
   statusTone?: "open-project";
   image: string;
   imagePosition?: string;
+  mobileImage?: string;
+  mobileImagePosition?: string;
   shortDescription: string;
+  mobileShortDescription?: string;
   archiveDescription: string;
   location: string;
   market: string;
@@ -55,6 +59,8 @@ export const projects: Project[] = [
     status: "Under Development",
     image: shilohBg,
     imagePosition: "center 42%",
+    mobileImage: shilohMobileBg,
+    mobileImagePosition: "center center",
     shortDescription: "Mixed-use land position advancing through entitlement and early planning.",
     archiveDescription: "A major mixed-use land position being shaped into a phased district with residential, retail, and long-horizon placemaking potential.",
     location: "Central Texas",

@@ -7,6 +7,7 @@ import type { Project } from "@/content/projects";
 
 const AUTOPLAY_INTERVAL_MS = 7000;
 const AUTOPLAY_RESUME_DELAY_MS = 10000;
+const MOBILE_BREAKPOINT_QUERY = "(max-width: 768px)";
 
 const slideToneBySlug = {
   "the-shiloh": "fps-slide--moss",
@@ -28,10 +29,14 @@ type HomepagePropertySlide = {
   statusLabel: string;
   statusTone?: Project["statusTone"];
   bodyCopy: string;
+  mobileBodyCopy: string;
   metaLine: string;
   tags: Project["highlightTags"];
+  mobileTags: Project["highlightTags"];
   image: string;
   imagePosition?: string;
+  mobileImage: string;
+  mobileImagePosition?: string;
   ctaHref: string;
   toneClassName: string;
 };
@@ -48,10 +53,14 @@ const HomepagePropertiesSlideshow = ({ projects }: HomepagePropertiesSlideshowPr
         statusLabel: project.status,
         statusTone: project.statusTone,
         bodyCopy: project.archiveDescription,
+        mobileBodyCopy: project.mobileShortDescription ?? project.shortDescription,
         metaLine: `${project.location} · ${project.market}`,
         tags: project.highlightTags.slice(0, 3),
+        mobileTags: project.highlightTags.slice(0, 2),
         image: project.image,
         imagePosition: project.imagePosition,
+        mobileImage: project.mobileImage ?? project.image,
+        mobileImagePosition: project.mobileImagePosition ?? project.imagePosition,
         ctaHref: `/projects/${project.slug}`,
         toneClassName:
           slideToneBySlug[project.slug as keyof typeof slideToneBySlug] ?? "fps-slide--steel",
@@ -81,6 +90,9 @@ const HomepagePropertiesSlideshow = ({ projects }: HomepagePropertiesSlideshowPr
     typeof window !== "undefined"
       ? window.matchMedia("(prefers-reduced-motion: reduce)").matches
       : false
+  );
+  const [isMobileViewport, setIsMobileViewport] = useState(
+    typeof window !== "undefined" ? window.matchMedia(MOBILE_BREAKPOINT_QUERY).matches : false
   );
 
   const autoplayTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -135,6 +147,23 @@ const HomepagePropertiesSlideshow = ({ projects }: HomepagePropertiesSlideshowPr
 
     document.addEventListener("visibilitychange", handleVisibilityChange);
     return () => document.removeEventListener("visibilitychange", handleVisibilityChange);
+  }, []);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const mediaQuery = window.matchMedia(MOBILE_BREAKPOINT_QUERY);
+    const handleChange = () => setIsMobileViewport(mediaQuery.matches);
+
+    handleChange();
+
+    if (typeof mediaQuery.addEventListener === "function") {
+      mediaQuery.addEventListener("change", handleChange);
+      return () => mediaQuery.removeEventListener("change", handleChange);
+    }
+
+    mediaQuery.addListener(handleChange);
+    return () => mediaQuery.removeListener(handleChange);
   }, []);
 
   useEffect(() => {
@@ -287,9 +316,15 @@ const HomepagePropertiesSlideshow = ({ projects }: HomepagePropertiesSlideshowPr
                 <div className="fps-slide__frame">
                   <div className="fps-slide__media-wrap">
                     <LazyBackground
+                      key={`${slide.slug}-${isMobileViewport ? "mobile" : "desktop"}`}
                       className="fps-slide__media"
-                      image={slide.image}
-                      style={{ backgroundPosition: slide.imagePosition }}
+                      image={isMobileViewport ? slide.mobileImage : slide.image}
+                      style={{
+                        backgroundPosition: isMobileViewport
+                          ? slide.mobileImagePosition
+                          : slide.imagePosition,
+                      }}
+                      eager
                       ariaHidden
                     />
                     <div className="fps-slide__scrim" />
@@ -315,14 +350,26 @@ const HomepagePropertiesSlideshow = ({ projects }: HomepagePropertiesSlideshowPr
                     </div>
 
                     <div className="fps-slide__detail">
-                      <div className="fps-slide__tags">
+                      <div className="fps-slide__tags fps-slide__tags--desktop">
                         {slide.tags.map((tag) => (
                           <span key={tag.text} className={`fps-slide__tag ${tag.tone}`}>
                             {tag.text}
                           </span>
                         ))}
                       </div>
-                      <p className="fps-slide__supporting">{slide.bodyCopy}</p>
+                      <div className="fps-slide__tags fps-slide__tags--mobile">
+                        {slide.mobileTags.map((tag) => (
+                          <span key={`${tag.text}-mobile`} className={`fps-slide__tag ${tag.tone}`}>
+                            {tag.text}
+                          </span>
+                        ))}
+                      </div>
+                      <p className="fps-slide__supporting fps-slide__supporting--desktop">
+                        {slide.bodyCopy}
+                      </p>
+                      <p className="fps-slide__supporting fps-slide__supporting--mobile">
+                        {slide.mobileBodyCopy}
+                      </p>
                     </div>
 
                     <div className="fps-slide__actions">

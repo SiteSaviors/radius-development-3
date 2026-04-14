@@ -73,18 +73,29 @@ vi.mock("embla-carousel-react", () => ({
   default: emblaMock.useEmblaCarouselMock,
 }));
 
-const renderSlideshow = () =>
+const renderSlideshow = (projectSet = projects) =>
   render(
     <MemoryRouter>
-      <HomepagePropertiesSlideshow projects={projects} />
+      <HomepagePropertiesSlideshow projects={projectSet} />
     </MemoryRouter>
   );
 
-const setReducedMotion = (matches: boolean) => {
+const setMatchMedia = ({
+  reducedMotion = false,
+  mobileViewport = false,
+}: {
+  reducedMotion?: boolean;
+  mobileViewport?: boolean;
+}) => {
   Object.defineProperty(window, "matchMedia", {
     writable: true,
     value: (query: string) => ({
-      matches: query === "(prefers-reduced-motion: reduce)" ? matches : false,
+      matches:
+        query === "(prefers-reduced-motion: reduce)"
+          ? reducedMotion
+          : query === "(max-width: 768px)"
+            ? mobileViewport
+            : false,
       media: query,
       onchange: null,
       addListener: () => {},
@@ -99,7 +110,7 @@ const setReducedMotion = (matches: boolean) => {
 describe("homepage properties slideshow", () => {
   beforeEach(() => {
     emblaMock.reset(projects.length);
-    setReducedMotion(false);
+    setMatchMedia({});
     vi.useRealTimers();
   });
 
@@ -115,6 +126,52 @@ describe("homepage properties slideshow", () => {
     expect(screen.getByRole("link", { name: "View All Projects" })).toHaveAttribute(
       "href",
       "/projects"
+    );
+  });
+
+  it("derives mobile fallback content for the active slide", () => {
+    setMatchMedia({ mobileViewport: true });
+    const { container } = renderSlideshow();
+    const activeSlide = container.querySelector('.fps-slide[aria-hidden="false"]');
+
+    expect(activeSlide).not.toBeNull();
+    expect(
+      activeSlide?.querySelector(".fps-slide__supporting--mobile")?.textContent
+    ).toContain(projects[0].shortDescription);
+    expect(activeSlide?.querySelector(".fps-slide__media")).toHaveStyle({
+      backgroundPosition: projects[0].imagePosition,
+    });
+    expect(
+      activeSlide?.querySelectorAll(".fps-slide__tags--mobile .fps-slide__tag")
+    ).toHaveLength(Math.min(2, projects[0].highlightTags.length));
+  });
+
+  it("uses mobile-specific art direction when provided", () => {
+    setMatchMedia({ mobileViewport: true });
+    const mobileProjects = projects.map((project, index) =>
+      index === 0
+        ? {
+            ...project,
+            mobileImage: "/mobile-shiloh.jpg",
+            mobileImagePosition: "center 20%",
+            mobileShortDescription: "A tighter mobile-only editorial summary.",
+          }
+        : project
+    );
+
+    const { container } = renderSlideshow(mobileProjects);
+    const activeSlide = container.querySelector('.fps-slide[aria-hidden="false"]');
+
+    expect(activeSlide).not.toBeNull();
+    expect(
+      activeSlide?.querySelector(".fps-slide__supporting--mobile")?.textContent
+    ).toContain("A tighter mobile-only editorial summary.");
+    expect(activeSlide?.querySelector(".fps-slide__media")).toHaveStyle({
+      backgroundPosition: "center 20%",
+    });
+    expect(screen.getByRole("link", { name: "View Project" })).toHaveAttribute(
+      "href",
+      `/projects/${projects[0].slug}`
     );
   });
 
@@ -166,7 +223,7 @@ describe("homepage properties slideshow", () => {
 
   it("disables autoplay when reduced motion is preferred", () => {
     vi.useFakeTimers();
-    setReducedMotion(true);
+    setMatchMedia({ reducedMotion: true });
     renderSlideshow();
 
     act(() => {
