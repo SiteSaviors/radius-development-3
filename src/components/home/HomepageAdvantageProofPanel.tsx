@@ -89,7 +89,7 @@ const HomepageAdvantageProofPanel = ({ content }: HomepageAdvantageProofPanelPro
   if (!heroMetric) return null;
 
   return (
-    <div className={`homepage-advantage__visual rv d2${isActive ? " is-active" : ""}`}>
+    <div className={`homepage-advantage__visual rv d2${isActive ? " is-active on" : ""}`}>
       <div ref={shellRef} className="homepage-advantage__image-shell">
         <LazyBackground className="homepage-advantage__image" image={content.image} ariaHidden />
         <div className="homepage-advantage__image-overlay" />
