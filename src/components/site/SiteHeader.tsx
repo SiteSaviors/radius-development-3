@@ -15,8 +15,6 @@ const SiteHeader = ({ currentPath }: SiteHeaderProps) => {
   const [scrolled, setScrolled] = useState(!startsTransparent);
   const isHome = currentPath === "/";
 
-  const segmentsHref = isHome ? "#retail" : "/#retail";
-  const aboutHref = isHome ? "#about" : "/#about";
   const contactHref = isHome ? "#contact" : "/#contact";
 
   useEffect(() => {
@@ -40,7 +38,6 @@ const SiteHeader = ({ currentPath }: SiteHeaderProps) => {
         <li><Link to="/what-we-do">What We Do</Link></li>
         <li><Link to="/projects">Current Projects</Link></li>
         <li><Link to="/company">Company</Link></li>
-        <li><a href={aboutHref}>News</a></li>
         <li><a href={contactHref}>Contact</a></li>
       </ul>
       <a href="#" className="nbtn">Investor Portal</a>
@@ -59,7 +56,6 @@ const SiteHeader = ({ currentPath }: SiteHeaderProps) => {
         <Link to="/what-we-do" onClick={() => setMobileNavOpen(false)}>What We Do</Link>
         <Link to="/projects" onClick={() => setMobileNavOpen(false)}>Current Projects</Link>
         <Link to="/company" onClick={() => setMobileNavOpen(false)}>company</Link>
-        <a href={aboutHref} onClick={() => setMobileNavOpen(false)}>News</a>
         <a href={contactHref} onClick={() => setMobileNavOpen(false)}>Contact</a>
       </div>
     </nav>
