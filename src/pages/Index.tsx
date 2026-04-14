@@ -6,7 +6,6 @@ import trammelCrowLogo from "@/assets/Trammel-Crow.webp";
 import tollBrothersLogo from "@/assets/Toll-Brothers.webp";
 import triPointeLogo from "@/assets/Tri-Pointe.webp";
 import mcAdamsLogo from "@/assets/McAdams.webp";
-import todBg from "@/assets/TOD.jpg";
 import woodPartnersLogo from "@/assets/Wood-Partners.webp";
 import teamPhoto139 from "@/assets/139.jpg";
 import teamPhoto140 from "@/assets/140.jpg";
@@ -15,6 +14,7 @@ import teamPhoto142 from "@/assets/142.jpg";
 import investorCtaBg from "@/assets/investor.jpg";
 import HomepageAdvantageSection from "@/components/home/HomepageAdvantageSection";
 import HomepagePropertiesSlideshow from "@/components/home/HomepagePropertiesSlideshow";
+import HomepageRecentlyClosedSpotlight from "@/components/home/HomepageRecentlyClosedSpotlight";
 import PlatformCapabilityCard from "@/components/home/PlatformCapabilityCard";
 import LazyBackground from "@/components/media/LazyBackground";
 import SiteFooter from "@/components/site/SiteFooter";
@@ -22,6 +22,7 @@ import SiteHeader from "@/components/site/SiteHeader";
 import { homepageAdvantageContent } from "@/content/homepageAdvantage";
 import { homepageCapabilities } from "@/content/homepageCapabilities";
 import { projects } from "@/content/projects";
+import { recentlyClosedContent } from "@/content/recentlyClosed";
 import useRadiusCursor from "@/hooks/useRadiusCursor";
 
 const partnerLogoSlots = [
@@ -249,7 +250,7 @@ const Index = () => {
       <section className="fps" id="featured-projects">
         <div className="fps__header">
           <div className="fps__header-copy">
-            <div className="ey rv">Active Pipeline</div>
+            <div className="fps-ey rv">Active Pipeline</div>
             <div className="st rv d1">Landmark Projects</div>
           </div>
           <p className="sd rv d2">Current projects moving through entitlement, strategic development structuring, and retail execution across high-growth markets.</p>
@@ -266,52 +267,7 @@ const Index = () => {
           </div>
           <p className="sd rv d2">A representative outcome illustrating Radius&apos;s land strategy, entitlement execution, and realized value creation.</p>
         </div>
-        <div className="clpanel rv">
-          <div className="clmedia rv d1">
-            <LazyBackground className="clvisual" image={todBg} ariaHidden>
-              <div className="clvoverlay">
-                <div className="clvlabel closed">Closed</div>
-                <div className="clvtitle">TOD - Phase One</div>
-                <div className="clvloc">Research Triangle Park, NC</div>
-              </div>
-            </LazyBackground>
-          </div>
-          <div className="clcontent">
-            <div className="clstatus">Transaction Spotlight</div>
-            <h3 className="cltitle">Fully-Entitled TOD land project delivered to a national multifamily developer.</h3>
-            <p className="clsummary">Radius executed the land assembly, acquisition, and rezoning strategy for TOD Phase 1, converting the site into a market-ready opportunity for institutional-scale residential delivery.</p>
-
-            <div className="clrows">
-              <div className="clrow">
-                <div className="clrowlabel">Project Scope</div>
-                <div className="clrowvalue">350 Class-A Multifamily Units</div>
-              </div>
-              <div className="clrow">
-                <div className="clrowlabel">Our Role</div>
-                <div className="clrowvalue">Land Assembly, Acquisition, Rezoning</div>
-              </div>
-              <div className="clrow">
-                <div className="clrowlabel">Strategy</div>
-                <div className="clrowvalue">First phase in massive TOD (Transit Oriented Development) expansion</div>
-              </div>
-              <div className="clrow">
-                <div className="clrowlabel">Buyer</div>
-                <div className="clbuyer">
-                  <span>Wood Partners</span>
-                  <img src={woodPartnersLogo} alt="Wood Partners" />
-                </div>
-              </div>
-            </div>
-
-            <div className="cloutcome">
-              <div>
-                <div className="cloutlabel">Outcome</div>
-                <div className="cloutmeta">Value Creation in 3 Years</div>
-              </div>
-              <div className="cloutvalue">2.1x Return</div>
-            </div>
-          </div>
-        </div>
+        <HomepageRecentlyClosedSpotlight content={recentlyClosedContent} />
       </section>
 
       {/* WHY RADIUS */}

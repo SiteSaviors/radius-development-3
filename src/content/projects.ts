@@ -1,10 +1,15 @@
 import caryEstatesBg from "@/assets/CARY-E.jpg";
+import caryEstatesMobileBg from "@/assets/CARY-E.jpg"; // TODO: replace with mobile crop
 import franklinBg from "@/assets/Franklin.jpg";
+import franklinMobileBg from "@/assets/Franklin-Mobile.jpg";
 import pittardBg from "@/assets/Pittard.jpg";
+import pittardMobileBg from "@/assets/Pittard.jpg"; // TODO: replace with mobile crop
 import rduTownBg from "@/assets/RDU-Town.jpg";
+import rduTownMobileBg from "@/assets/RDU-Town.jpg"; // TODO: replace with mobile crop
 import shilohBg from "@/assets/Shiloh.jpg";
 import shilohMobileBg from "@/assets/SHILOH-MOBILE.jpg";
 import terracesBg from "@/assets/TERRACES.jpg";
+import terracesMobileBg from "@/assets/TERRACES-MOBILE.jpg"; // TODO: replace with mobile crop
 
 export type ProjectStatus = "Under Development" | "Open Project";
 
@@ -88,15 +93,16 @@ export const projects: Project[] = [
     status: "Under Development",
     image: franklinBg,
     imagePosition: "center 40%",
+    mobileImage: franklinMobileBg,
     shortDescription: "Residential and retail pipeline asset in a high-growth Sun Belt corridor.",
     archiveDescription: "A residential-led project with integrated retail potential in a corridor where growth, visibility, and neighborhood demand align.",
-    location: "Central Texas",
-    market: "Austin MSA",
+    location: "Research Triangle",
+    market: "Cary, NC",
     categories: ["Residential", "Retail"],
     highlightTags: [
       { text: "Residential", tone: "blue" },
-      { text: "High-Growth Corridor", tone: "slate" },
-      { text: "Retail Integration", tone: "gold" },
+      { text: "36 Luxury Condos", tone: "moss" },
+      { text: "0.5 Acre High-End Design", tone: "gold" },
     ],
     detail: {
       intro: "The Franklin is a residential-focused development opportunity enhanced by strategic retail integration. The project is being positioned to meet corridor growth with a product mix grounded in real neighborhood demand.",
@@ -115,14 +121,16 @@ export const projects: Project[] = [
     status: "Under Development",
     image: terracesBg,
     imagePosition: "center 34%",
+    mobileImage: terracesMobileBg,
     shortDescription: "Strategic land assembly moving toward partner-ready delivery.",
-    archiveDescription: "A land assembly strategy focused on creating a coherent residential opportunity in an established growth market.",
+    archiveDescription: "Residential community positioned in one of the fastest-growing residential corridors 1-mile from Apple East HQ.",
     location: "West Cary, NC",
     market: "Research Triangle",
     categories: ["Residential", "Land Assembly"],
     highlightTags: [
       { text: "Residential", tone: "blue" },
-      { text: "Land Assembly", tone: "mint" },
+      { text: "55 Luxury Townhomes", tone: "mint" },
+      { text: "12 Acre Community", tone: "gold" },
     ],
     detail: {
       intro: "Terraces At West Cary is a strategic land assembly being shaped into a residential development opportunity with clear market fit and partner relevance.",
@@ -142,6 +150,7 @@ export const projects: Project[] = [
     statusTone: "open-project",
     image: pittardBg,
     imagePosition: "center center",
+    mobileImage: pittardMobileBg,
     shortDescription: "Town center land strategy progressing through phased entitlement and anchor planning.",
     archiveDescription: "A town center-oriented land strategy where entitlement and anchor planning are being used to create a stronger market-facing opportunity.",
     location: "Central Texas",
@@ -169,6 +178,7 @@ export const projects: Project[] = [
     statusTone: "open-project",
     image: caryEstatesBg,
     imagePosition: "center 42%",
+    mobileImage: caryEstatesMobileBg,
     shortDescription: "Retail-adjacent mixed-use site moving through partner structuring.",
     archiveDescription: "A residential land position with strong adjacency dynamics and a structure-oriented approach to future partner execution.",
     location: "Central Texas",
@@ -196,6 +206,7 @@ export const projects: Project[] = [
     statusTone: "open-project",
     image: rduTownBg,
     imagePosition: "center center",
+    mobileImage: rduTownMobileBg,
     shortDescription: "Institutional-quality development position advancing toward market-facing delivery.",
     archiveDescription: "An institutional-scale land strategy aimed at creating a highly legible development opportunity with broad downstream relevance.",
     location: "Research Triangle, NC",
