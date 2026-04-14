@@ -291,7 +291,20 @@ const Index = () => {
           <div className="wwacopy">
             <div className="ey rv">THE RADIUS ADVANTAGE</div>
             <div className="wwah rv d1">Building Beyond Expectations</div>
-            <p className="wwabody rv d2">Our creative approach to real estate, supported by our diverse team of best-in-class professionals with specialized expertise, has allowed us to successfully invest across several asset classes, including mixed-use, affordable housing, residential condos, commercial office space, and retail. We pride ourselves in working collaboratively across each of our business units in pursuit of our core pillars: adding value to our partners, perfecting our execution, and innovatively solving complex real estate challenges while positively impacting the communities we serve.</p>
+            <div className="wwabody rv d2">
+              <p>
+                Our creative approach to real estate, supported by our diverse team of best-in-class
+                professionals, has allowed us to successfully invest across several asset classes,
+                including mixed-use, affordable housing, residential condos, commercial office space,
+                and retail.
+              </p>
+              <p>
+                We pride ourselves in working collaboratively across each of our business units in
+                pursuit of our core pillars: adding value to our partners, perfecting our execution,
+                and innovatively solving complex real estate challenges while positively impacting the
+                communities we serve.
+              </p>
+            </div>
             <a href="#" className="bp rv d3">Learn More</a>
           </div>
           <div className="wwapanel rv d1">
@@ -323,10 +336,10 @@ const Index = () => {
       <section className="plat" id="platform">
         <div className="sh">
           <div>
-            <div className="ey rv">OUR CAPABILITIES</div>
-            <div className="st rv d1">A Smarter Path to<br/>Real Estate Value Creation</div>
+            <div className="plat-ey rv">OUR CAPABILITIES</div>
+            <div className="plat-st rv d1">A Smarter Path to<br/>Real Estate Value Creation</div>
           </div>
-          <p className="sd rv d2">At Radius, we operate across the full lifecycle of real estate value creation—from identifying land before the market sees it, to partnering on institutional-scale development, to building iconic retail destinations.</p>
+          <p className="plat-sd rv d2">At Radius, we operate across the full lifecycle of real estate value creation—from identifying land opportunity, to partnering on institutional-scale development, to building iconic retail destinations.</p>
         </div>
         <div className="bento">
           <div className="bc rv">
