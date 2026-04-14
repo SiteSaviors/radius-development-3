@@ -6,7 +6,6 @@ import trammelCrowLogo from "@/assets/Trammel-Crow.webp";
 import tollBrothersLogo from "@/assets/Toll-Brothers.webp";
 import triPointeLogo from "@/assets/Tri-Pointe.webp";
 import mcAdamsLogo from "@/assets/McAdams.webp";
-import whoWeAreBg from "@/assets/3.jpg";
 import todBg from "@/assets/TOD.jpg";
 import woodPartnersLogo from "@/assets/Wood-Partners.webp";
 import teamPhoto139 from "@/assets/139.jpg";
@@ -14,10 +13,12 @@ import teamPhoto140 from "@/assets/140.jpg";
 import teamPhoto141 from "@/assets/141.jpg";
 import teamPhoto142 from "@/assets/142.jpg";
 import investorCtaBg from "@/assets/investor.jpg";
+import HomepageAdvantageSection from "@/components/home/HomepageAdvantageSection";
 import PlatformCapabilityCard from "@/components/home/PlatformCapabilityCard";
 import LazyBackground from "@/components/media/LazyBackground";
 import SiteFooter from "@/components/site/SiteFooter";
 import SiteHeader from "@/components/site/SiteHeader";
+import { homepageAdvantageContent } from "@/content/homepageAdvantage";
 import { homepageCapabilities } from "@/content/homepageCapabilities";
 import { projects } from "@/content/projects";
 import useRadiusCursor from "@/hooks/useRadiusCursor";
@@ -163,59 +164,10 @@ const Index = () => {
     const obs = new IntersectionObserver(entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add("on"); }), { threshold: 0.07, rootMargin: "0px 0px -30px 0px" });
     document.querySelectorAll(".rv").forEach(el => obs.observe(el));
 
-    // COUNT-UP
-    const statDefs = [
-      { id: "wwa-val-0", end: 1.1, decimals: 1, prefix: "", suffix: "B" },
-      { id: "wwa-val-1", end: 300000, decimals: 0, prefix: "", suffix: "" },
-      { id: "wwa-val-2", end: 2200, decimals: 0, prefix: "", suffix: "" },
-      { id: "wwa-val-3", end: 2.2, decimals: 1, prefix: "", suffix: "X" },
-    ];
-    const formatStatValue = (value: number, decimals: number) =>
-      value.toLocaleString("en-US", {
-        minimumFractionDigits: decimals,
-        maximumFractionDigits: decimals,
-      });
-    const setFinal = () => statDefs.forEach(s => {
-      const el = document.getElementById(s.id);
-      if (el) el.textContent = s.prefix + formatStatValue(s.end, s.decimals) + s.suffix;
-    });
-    let statsObs: IntersectionObserver | null = null;
-    const statsEl = document.getElementById("wwa-stats");
-    if (statsEl) {
-      const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-      if (reduced) {
-        setFinal();
-      } else {
-        statsObs = new IntersectionObserver(entries => {
-          if (entries[0].isIntersecting) {
-            statsObs!.disconnect();
-            const duration = 1400;
-            const startTime = performance.now();
-            const tick = (now: number) => {
-              const progress = Math.min((now - startTime) / duration, 1);
-              const eased = 1 - Math.pow(1 - progress, 3);
-              statDefs.forEach(s => {
-                const el = document.getElementById(s.id);
-                if (!el) return;
-                const val = s.end * eased;
-                const displayValue = s.decimals > 0 ? Number(val.toFixed(s.decimals)) : Math.floor(val);
-                el.textContent = s.prefix + formatStatValue(displayValue, s.decimals) + s.suffix;
-              });
-              if (progress < 1) requestAnimationFrame(tick);
-              else setFinal();
-            };
-            requestAnimationFrame(tick);
-          }
-        }, { threshold: 0.35 });
-        statsObs.observe(statsEl);
-      }
-    }
-
     return () => {
       window.removeEventListener("scroll", onScroll);
       document.removeEventListener("visibilitychange", onVisibility);
       obs.disconnect();
-      statsObs?.disconnect();
       heroObs?.disconnect();
     };
   }, []);
@@ -285,51 +237,7 @@ const Index = () => {
       </div>
 
       {/* WHO WE ARE */}
-      <section className="wwa" id="about">
-        <div className="wwai">
-          <div className="wwacopy">
-            <div className="ey rv">THE RADIUS ADVANTAGE</div>
-            <div className="wwah rv d1">Building Beyond Expectations</div>
-            <div className="wwabody rv d2">
-              <p>
-                Our creative approach to real estate, supported by our diverse team of best-in-class
-                professionals, has allowed us to successfully invest across several asset classes,
-                including mixed-use, affordable housing, residential condos, commercial office space,
-                and retail.
-              </p>
-              <p>
-                We pride ourselves in working collaboratively across each of our business units in
-                pursuit of our core pillars: adding value to our partners, perfecting our execution,
-                and innovatively solving complex real estate challenges while positively impacting the
-                communities we serve.
-              </p>
-            </div>
-            <a href="#" className="bp rv d3">Learn More</a>
-          </div>
-          <div className="wwapanel rv d1">
-            <LazyBackground className="wwaimg" image={whoWeAreBg} ariaHidden />
-            <div className="wwaov"></div>
-            <div className="wwastats" id="wwa-stats">
-              <div className="wwastat">
-                <div className="wwaval" id="wwa-val-0">1.1B</div>
-                <div className="wwalbl">ACTIVE PIPELINE</div>
-              </div>
-              <div className="wwastat">
-                <div className="wwaval" id="wwa-val-1">300,000</div>
-                <div className="wwalbl">SQ FT DEVELOPED</div>
-              </div>
-              <div className="wwastat">
-                <div className="wwaval" id="wwa-val-2">2,200</div>
-                <div className="wwalbl">RESIDENTIAL UNITS</div>
-              </div>
-              <div className="wwastat">
-                <div className="wwaval" id="wwa-val-3">2.2X</div>
-                <div className="wwalbl">LAND VALUE CREATION</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <HomepageAdvantageSection content={homepageAdvantageContent} />
 
       {/* PLATFORM */}
       <section className="plat" id="platform">

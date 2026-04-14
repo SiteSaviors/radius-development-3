@@ -1,6 +1,7 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
 import { describe, expect, it, vi } from "vitest";
+import { homepageAdvantageContent } from "@/content/homepageAdvantage";
 import { homepageCapabilities } from "@/content/homepageCapabilities";
 import { whatWeDoHero, whatWeDoMirrorIntro } from "@/content/whatWeDo";
 import Index from "@/pages/Index";
@@ -93,6 +94,20 @@ describe("what we do page", () => {
 
   it("routes homepage capability ctas to the standalone page", () => {
     renderHomePage();
+
+    expect(screen.getByRole("heading", { name: homepageAdvantageContent.title })).toBeInTheDocument();
+    homepageAdvantageContent.body.forEach((paragraph) => {
+      expect(screen.getByText(paragraph)).toBeInTheDocument();
+    });
+    expect(screen.getByText(homepageAdvantageContent.proofEyebrow)).toBeInTheDocument();
+    if (homepageAdvantageContent.proofTitle) {
+      expect(screen.getByText(homepageAdvantageContent.proofTitle)).toBeInTheDocument();
+    }
+    expect(screen.getByRole("link", { name: homepageAdvantageContent.ctaLabel })).toHaveAttribute("href", "/company");
+    homepageAdvantageContent.metrics.forEach((metric) => {
+      expect(screen.getByText(metric.label)).toBeInTheDocument();
+      expect(document.getElementById(`wwa-metric-${metric.id}`)).not.toBeNull();
+    });
 
     homepageCapabilities.forEach((capability) => {
       expect(screen.getByRole("heading", { name: capability.title })).toBeInTheDocument();
