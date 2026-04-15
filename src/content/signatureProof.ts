@@ -32,8 +32,8 @@ export const signatureProofContent: SignatureProofContent = {
     holdValue: "18 mo.",
     holdLabel: "Hold Period",
     supportingLine:
-      "A raw land position advanced through entitlement, execution, and disciplined exit.",
-    chips: ["350 Units", "Land Assemblage", "3-Year Hold"],
+      "Fully entitled TOD land project delivered to a national multifamily developer.",
+    chips: ["350 Units", "Land Assemblage", "Residential"],
     footer: "Delivered to Wood Partners",
   },
 };
