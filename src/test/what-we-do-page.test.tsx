@@ -4,7 +4,13 @@ import { describe, expect, it, vi } from "vitest";
 import { homepageAdvantageContent } from "@/content/homepageAdvantage";
 import { homepageCapabilities } from "@/content/homepageCapabilities";
 import { signatureProofContent } from "@/content/signatureProof";
-import { whatWeDoHero, whatWeDoMirrorIntro } from "@/content/whatWeDo";
+import {
+  whatWeDoFrameworkChapters,
+  whatWeDoFrameworkHandoff,
+  whatWeDoHero,
+  whatWeDoProcessIntro,
+  whatWeDoUniverse,
+} from "@/content/whatWeDo";
 import Index from "@/pages/Index";
 import WhatWeDo from "@/pages/WhatWeDo";
 
@@ -30,42 +36,51 @@ const renderHomePage = () =>
   );
 
 describe("what we do page", () => {
-  it("renders the standalone route with the bridge section, process list, and closing CTA", () => {
+  it("renders the standalone route with the premium framework, process list, and closing CTA", () => {
     renderWhatWeDoPage();
 
     expect(screen.getByRole("heading", { name: whatWeDoHero.title })).toBeInTheDocument();
-    expect(screen.getByRole("region", { name: "We don't merely acquire value. We create it." })).toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: "We don't merely acquire value. We create it." })).toBeInTheDocument();
-    expect(
-      screen.getByText(/Radius approaches each opportunity with a value-creation mindset/i)
-    ).toBeInTheDocument();
-    expect(
-      screen.getByRole("img", { name: "The Franklin mixed-use development exterior at sunset" })
-    ).toBeInTheDocument();
-    expect(screen.getByRole("region", { name: whatWeDoMirrorIntro.title })).toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: whatWeDoMirrorIntro.title })).toBeInTheDocument();
-    expect(
-      screen.getByRole("img", { name: "Pittard residential land plan showing lot layout and circulation" })
-    ).toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: "Our Step-By-Step Approach To Land Development" })).toBeInTheDocument();
+    expect(screen.getByRole("region", { name: whatWeDoFrameworkHandoff.eyebrow })).toBeInTheDocument();
+    expect(screen.queryByText("Value creation starts before the site reaches the market.")).not.toBeInTheDocument();
+    expect(screen.queryByText(/Radius combines early conviction/i)).not.toBeInTheDocument();
+    expect(screen.queryByText("THE RADIUS APPROACH")).not.toBeInTheDocument();
+
+    expect(screen.getByText(whatWeDoFrameworkHandoff.eyebrow)).toBeInTheDocument();
+    whatWeDoFrameworkHandoff.items.forEach((item) => {
+      expect(screen.getByText(item.label)).toBeInTheDocument();
+    });
+
+    whatWeDoFrameworkChapters.forEach((chapter) => {
+      expect(screen.getByText(chapter.eyebrow)).toBeInTheDocument();
+      expect(screen.getByRole("heading", { name: chapter.title })).toBeInTheDocument();
+      chapter.paragraphs.forEach((paragraph) => {
+        expect(screen.getByText(paragraph)).toBeInTheDocument();
+      });
+      expect(screen.getByRole("img", { name: chapter.alt })).toBeInTheDocument();
+      expect(screen.getByText(chapter.caption)).toBeInTheDocument();
+      chapter.proofPoints.forEach((point) => {
+        expect(screen.getByText(point.label)).toBeInTheDocument();
+      });
+    });
+
+    expect(screen.getByRole("heading", { name: whatWeDoProcessIntro.title })).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "Acquire with Edge" })).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "Execute & Realize Returns" })).toBeInTheDocument();
-    expect(screen.getAllByRole("heading", { level: 3 })).toHaveLength(4);
     expect(screen.getByRole("link", { name: "Contact Radius" })).toHaveAttribute("href", "/#contact");
   });
 
-  it("renders the bridge section before the universe section and keeps universe interactions intact", () => {
+  it("renders the framework before the process and universe sections and keeps universe interactions intact", () => {
     renderWhatWeDoPage();
 
-    const bridgeSection = screen.getByRole("region", { name: "We don't merely acquire value. We create it." });
-    const mirroredBridgeSection = screen.getByRole("region", { name: whatWeDoMirrorIntro.title });
-    const universeSection = screen.getByRole("region", { name: "Radius Development Universe" });
+    const frameworkSection = screen.getByRole("region", { name: whatWeDoFrameworkHandoff.eyebrow });
+    const processHeading = screen.getByRole("heading", { name: whatWeDoProcessIntro.title });
+    const universeSection = screen.getByRole("region", { name: whatWeDoUniverse.title });
     const residentialButton = screen.getByRole("button", { name: "Residential" });
     const residentialContent = document.getElementById("wwd-uc-content-residential");
 
-    expect(bridgeSection.compareDocumentPosition(mirroredBridgeSection) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
-    expect(mirroredBridgeSection.compareDocumentPosition(universeSection) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
-    expect(screen.getByRole("heading", { name: "Radius Development Universe" })).toBeInTheDocument();
+    expect(frameworkSection.compareDocumentPosition(processHeading) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+    expect(processHeading.compareDocumentPosition(universeSection) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+    expect(screen.getByRole("heading", { name: whatWeDoUniverse.title })).toBeInTheDocument();
     expect(residentialButton).toHaveAttribute("aria-expanded", "false");
     expect(residentialContent).toHaveAttribute("aria-hidden", "true");
     expect(screen.getByRole("button", { name: "Commercial" })).toBeInTheDocument();

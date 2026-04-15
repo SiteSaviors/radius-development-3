@@ -49,6 +49,31 @@ export type WhatWeDoBridgeContent = {
   caption?: string;
 };
 
+export type WhatWeDoFrameworkProofPoint = {
+  label: string;
+};
+
+export type WhatWeDoFrameworkChapter = {
+  id: "value-creation" | "market-demand";
+  eyebrow: string;
+  title: string;
+  paragraphs: string[];
+  image: string;
+  alt: string;
+  caption: string;
+  tone: "green" | "gold";
+  proofPoints: WhatWeDoFrameworkProofPoint[];
+};
+
+export type WhatWeDoFrameworkHandoffItem = {
+  label: string;
+};
+
+export type WhatWeDoFrameworkHandoff = {
+  eyebrow: string;
+  items: WhatWeDoFrameworkHandoffItem[];
+};
+
 export const whatWeDoHero: WhatWeDoHeroContent = {
   eyebrow: "WHAT WE DO",
   title: "Future-Focused Development",
@@ -118,6 +143,50 @@ export const whatWeDoMirrorBridge: WhatWeDoBridgeContent = {
   image: whatWeDoBridgeMirrorImage,
   alt: "Pittard residential land plan showing lot layout and circulation",
   caption: "Pittard",
+};
+
+export const whatWeDoFrameworkChapters: WhatWeDoFrameworkChapter[] = [
+  {
+    id: "value-creation",
+    eyebrow: "01 / Value Creation",
+    title: whatWeDoIntro.title,
+    paragraphs: whatWeDoIntro.paragraphs,
+    image: whatWeDoBridgeImage,
+    alt: "The Franklin mixed-use development exterior at sunset",
+    caption: "The Franklin",
+    tone: "green",
+    proofPoints: [
+      { label: "Proprietary Sourcing" },
+      { label: "Land Strategy" },
+      { label: "Entitlement Readiness" },
+      { label: "Partner-Ready Execution" },
+    ],
+  },
+  {
+    id: "market-demand",
+    eyebrow: "02 / Market Demand",
+    title: whatWeDoMirrorIntro.title,
+    paragraphs: whatWeDoMirrorIntro.paragraphs,
+    image: whatWeDoBridgeMirrorImage,
+    alt: "Pittard residential land plan showing lot layout and circulation",
+    caption: "Pittard",
+    tone: "gold",
+    proofPoints: [
+      { label: "Growth Pattern Review" },
+      { label: "Supply Pipeline Analysis" },
+      { label: "Product Mix Strategy" },
+      { label: "Phasing & Timing" },
+    ],
+  },
+];
+
+export const whatWeDoFrameworkHandoff: WhatWeDoFrameworkHandoff = {
+  eyebrow: "THE OPERATING SEQUENCE",
+  items: [
+    { label: "Source with conviction" },
+    { label: "Shape with discipline" },
+    { label: "Execute with alignment" },
+  ],
 };
 
 export const whatWeDoUniverseSectors: WhatWeDoUniverseSector[] = [

@@ -5,12 +5,10 @@ import SiteFooter from "@/components/site/SiteFooter";
 import SiteHeader from "@/components/site/SiteHeader";
 import { cn } from "@/lib/utils";
 import {
-  whatWeDoBridge,
   whatWeDoCta,
+  whatWeDoFrameworkChapters,
+  whatWeDoFrameworkHandoff,
   whatWeDoHero,
-  whatWeDoIntro,
-  whatWeDoMirrorBridge,
-  whatWeDoMirrorIntro,
   whatWeDoProcessIntro,
   whatWeDoProcessSteps,
   whatWeDoUniverse,
@@ -58,56 +56,6 @@ const WhatWeDo = () => {
     };
   }, []);
 
-  useEffect(() => {
-    const brandSections = Array.from(document.querySelectorAll<HTMLElement>(".wwd-brand-strip"));
-    if (brandSections.length === 0) return;
-
-    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reducedMotion) {
-      brandSections.forEach((section) => {
-        section
-          .querySelector<HTMLElement>(".wwd-intro-brand-stack")
-          ?.style.setProperty("--wwd-intro-brand-shift", "0px");
-      });
-      return;
-    }
-
-    let raf = 0;
-
-    const syncBrandStrips = () => {
-      const viewportHeight = window.innerHeight;
-      const maxShift = window.innerWidth < 768 ? 48 : 140;
-
-      brandSections.forEach((section) => {
-        const brandStack = section.querySelector<HTMLElement>(".wwd-intro-brand-stack");
-        if (!brandStack) return;
-
-        const rect = section.getBoundingClientRect();
-        const progress = Math.min(
-          Math.max((viewportHeight - rect.top) / (viewportHeight + rect.height), 0),
-          1
-        );
-
-        brandStack.style.setProperty("--wwd-intro-brand-shift", `${-maxShift * progress}px`);
-      });
-    };
-
-    const onScroll = () => {
-      cancelAnimationFrame(raf);
-      raf = requestAnimationFrame(syncBrandStrips);
-    };
-
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
-    syncBrandStrips();
-
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
-      cancelAnimationFrame(raf);
-    };
-  }, []);
-
   return (
     <>
       <div id="cur"></div>
@@ -126,93 +74,69 @@ const WhatWeDo = () => {
           </div>
         </section>
 
-        <section className="wwd-intro wwd-intro-transition wwd-brand-strip" aria-label="Radius brand transition">
-          <div className="wwd-intro-brand" aria-hidden="true">
-            <div className="wwd-intro-brand-stack">
-              <div className="wwd-intro-brand-text">radius</div>
-              <div className="wwd-intro-brand-text">radius</div>
-              <div className="wwd-intro-brand-text">radius</div>
-            </div>
-          </div>
-        </section>
-
-        <section className="wwd-bridge" aria-labelledby="wwd-bridge-title">
-          <div className="wwd-bridge-inner">
-            <div className="wwd-bridge-copy-shell">
-              <div className="wwd-bridge-copy wwd-bridge-copy--approach">
-                <div className="wwd-bridge-rule" aria-hidden="true" />
-                <div className="wwd-bridge-eyebrow">Our Approach</div>
-                <h2 id="wwd-bridge-title" className="wwd-bridge-title" aria-label={whatWeDoIntro.title}>
-                  <span className="wwd-bridge-title-line">We don&apos;t merely acquire value.</span>
-                  <span className="wwd-bridge-title-line">We create it.</span>
-                </h2>
-                <div className="wwd-bridge-body">
-                  {whatWeDoIntro.paragraphs.map((paragraph) => (
-                    <p key={paragraph}>{paragraph}</p>
-                  ))}
-                </div>
+        <section className="wwd-framework" aria-labelledby="wwd-framework-sequence-title">
+          <div className="wwd-framework__handoff" aria-label={whatWeDoFrameworkHandoff.eyebrow}>
+            <div className="wwd-framework__handoff-inner">
+              <div className="wwd-framework__handoff-eyebrow" id="wwd-framework-sequence-title">
+                {whatWeDoFrameworkHandoff.eyebrow}
               </div>
-            </div>
-
-            <div className="wwd-bridge-media-wrap">
-              <figure className="wwd-bridge-media-card wwd-bridge-media-card--franklin">
-                <img
-                  className="wwd-bridge-media wwd-bridge-media--top"
-                  src={whatWeDoBridge.image}
-                  alt={whatWeDoBridge.alt}
-                />
-                {whatWeDoBridge.caption ? (
-                  <figcaption className="wwd-bridge-caption">{whatWeDoBridge.caption}</figcaption>
-                ) : null}
-              </figure>
-            </div>
-          </div>
-        </section>
-
-        <section className="wwd-bridge wwd-bridge--mirrored" aria-labelledby="wwd-bridge-mirror-title">
-          <div className="wwd-bridge-strip wwd-brand-strip wwd-bridge-strip--mirrored" aria-hidden="true">
-            <div className="wwd-intro-brand wwd-intro-brand--mirrored">
-              <div className="wwd-intro-brand-stack wwd-intro-brand-stack--mirrored">
-                <div className="wwd-intro-brand-text">radius</div>
-                <div className="wwd-intro-brand-text">radius</div>
-                <div className="wwd-intro-brand-text">radius</div>
+              <div className="wwd-framework__handoff-items">
+                {whatWeDoFrameworkHandoff.items.map((item, index) => (
+                  <div className="wwd-framework__handoff-item" key={item.label}>
+                    <span>{String(index + 1).padStart(2, "0")}</span>
+                    {item.label}
+                  </div>
+                ))}
               </div>
             </div>
           </div>
-          <div className="wwd-bridge-inner">
-            <div className="wwd-bridge-copy-shell wwd-bridge-copy-shell--mirrored">
-              <div className="wwd-bridge-copy wwd-bridge-copy--approach wwd-bridge-copy--market-strategy">
-                <div className="wwd-bridge-rule wwd-bridge-rule--gold" aria-hidden="true" />
-                <div className="wwd-bridge-eyebrow wwd-bridge-eyebrow--market-strategy">Market Stategy</div>
-                <h2
-                  id="wwd-bridge-mirror-title"
-                  className="wwd-bridge-title"
-                  aria-label={whatWeDoMirrorIntro.title}
+
+          <div className="wwd-framework__inner">
+            <div className="wwd-framework__chapters">
+              {whatWeDoFrameworkChapters.map((chapter, index) => (
+                <article
+                  key={chapter.id}
+                  className={cn(
+                    "wwd-framework-chapter",
+                    `wwd-framework-chapter--${chapter.tone}`,
+                    { "wwd-framework-chapter--reverse": index % 2 === 1 }
+                  )}
                 >
-                  <span className="wwd-bridge-title-line">We position every opportunity</span>
-                  <span className="wwd-bridge-title-line">around real market demand.</span>
-                </h2>
-                <div className="wwd-bridge-body">
-                  {whatWeDoMirrorIntro.paragraphs.map((paragraph) => (
-                    <p key={paragraph}>{paragraph}</p>
-                  ))}
-                </div>
-              </div>
-            </div>
+                  <div className="wwd-framework-chapter__copy">
+                    <div className="wwd-framework-chapter__eyebrow">{chapter.eyebrow}</div>
+                    <h3 className="wwd-framework-chapter__title">{chapter.title}</h3>
+                    <div className="wwd-framework-chapter__body">
+                      {chapter.paragraphs.map((paragraph) => (
+                        <p key={paragraph}>{paragraph}</p>
+                      ))}
+                    </div>
+                  </div>
 
-            <div className="wwd-bridge-media-wrap wwd-bridge-media-wrap--mirrored">
-              <figure className="wwd-bridge-media-card wwd-bridge-media-card--mirrored-feature">
-                <img
-                  className="wwd-bridge-media wwd-bridge-media--top"
-                  src={whatWeDoMirrorBridge.image}
-                  alt={whatWeDoMirrorBridge.alt}
-                />
-                {whatWeDoMirrorBridge.caption ? (
-                  <figcaption className="wwd-bridge-caption wwd-bridge-caption--left">
-                    {whatWeDoMirrorBridge.caption}
-                  </figcaption>
-                ) : null}
-              </figure>
+                  <figure className="wwd-framework-chapter__media-stage">
+                    <div className="wwd-framework-chapter__media-shell">
+                      <img
+                        className="wwd-framework-chapter__image"
+                        src={chapter.image}
+                        alt={chapter.alt}
+                      />
+                      <figcaption className="wwd-framework-chapter__caption">
+                        {chapter.caption}
+                      </figcaption>
+                    </div>
+
+                    <div
+                      className="wwd-framework-chapter__proof"
+                      aria-label={`${chapter.title} proof points`}
+                    >
+                      {chapter.proofPoints.map((point) => (
+                        <div className="wwd-framework-chapter__proof-item" key={point.label}>
+                          {point.label}
+                        </div>
+                      ))}
+                    </div>
+                  </figure>
+                </article>
+              ))}
             </div>
           </div>
         </section>
