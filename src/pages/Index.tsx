@@ -14,7 +14,7 @@ import teamPhoto142 from "@/assets/142.jpg";
 import investorCtaBg from "@/assets/investor.jpg";
 import HomepageAdvantageSection from "@/components/home/HomepageAdvantageSection";
 import HomepagePropertiesSlideshow from "@/components/home/HomepagePropertiesSlideshow";
-import HomepageRecentlyClosedSpotlight from "@/components/home/HomepageRecentlyClosedSpotlight";
+import HomepageSignatureProofSection from "@/components/home/HomepageSignatureProofSection";
 import PlatformCapabilityCard from "@/components/home/PlatformCapabilityCard";
 import LazyBackground from "@/components/media/LazyBackground";
 import SiteFooter from "@/components/site/SiteFooter";
@@ -22,7 +22,7 @@ import SiteHeader from "@/components/site/SiteHeader";
 import { homepageAdvantageContent } from "@/content/homepageAdvantage";
 import { homepageCapabilities } from "@/content/homepageCapabilities";
 import { projects } from "@/content/projects";
-import { recentlyClosedContent } from "@/content/recentlyClosed";
+import { signatureProofContent } from "@/content/signatureProof";
 import useRadiusCursor from "@/hooks/useRadiusCursor";
 
 const partnerLogoSlots = [
@@ -45,29 +45,6 @@ const partnerLogoSlots = [
   {
     name: "Wood Partners",
     image: woodPartnersLogo,
-  },
-] as const;
-
-const whyRadiusItems = [
-  {
-    number: "01",
-    title: "Speed",
-    body: "We move quickly on opportunities others cannot execute, using internal decision-making, market conviction, and capital readiness to compress timelines.",
-  },
-  {
-    number: "02",
-    title: "Structure",
-    body: "Options, phased takedowns, land banks, and joint ventures allow us to unlock value where conventional buyers cannot.",
-  },
-  {
-    number: "03",
-    title: "Access",
-    body: "Longstanding relationships with national developers and institutional partners create deal flow that rarely reaches the open market.",
-  },
-  {
-    number: "04",
-    title: "Selectivity",
-    body: "We pursue high-conviction opportunities only. Our track record reflects disciplined underwriting, not transaction volume.",
   },
 ] as const;
 
@@ -258,60 +235,18 @@ const Index = () => {
         <HomepagePropertiesSlideshow projects={projects} />
       </section>
 
-      {/* RECENTLY CLOSED */}
-      <section className="closed" id="recently-closed">
-        <div className="clh">
-          <div className="clh-copy">
-            <div className="cl-ey rv">Recently Closed</div>
-            <div className="st rv d1">Our Track Record</div>
-          </div>
-          <p className="cl-sd rv d2">A representative outcome illustrating Radius&apos;s land strategy, entitlement execution, and realized value creation.</p>
-        </div>
-        <HomepageRecentlyClosedSpotlight content={recentlyClosedContent} />
-      </section>
-
-      {/* WHY RADIUS */}
-      <section className="wyr" id="retail">
-        <div className="wyri">
-          <div className="wyrleft">
-            <div className="wyrhead">
-              <div className="ey rv">Why Radius</div>
-              <div className="st rv d1">Built for Speed, Structure, and Scale</div>
-              <p className="wyrintro rv d2">Principal-led execution, creative structuring, and longstanding institutional relationships allow Radius to move with unusual precision across the land cycle.</p>
-            </div>
-            <div className="wyrlist">
-              {whyRadiusItems.map((item, index) => (
-                <div key={item.number} className={`wyritem rv d${Math.min(index + 1, 4)}`}>
-                  <div className="wyrnum">{item.number}</div>
-                  <div className="wyrcopy">
-                    <div className="wyrtitle">{item.title}</div>
-                    <p className="wyrbody">{item.body}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="wyrrail">
-            <div className="wyrstat rv d2">
-              <div className="wyrstatnum">2.2x</div>
-              <div className="wyrstatlabel">Average Return Multiple</div>
-            </div>
-            <div className="wyrstat rv d3">
-              <div className="wyrstatnum wyrstatnum-sm">18 mo.</div>
-              <div className="wyrstatlabel">Average Hold Period</div>
-            </div>
-            <div className="wyrquote rv d4">
-              <div className="wyrquotemark">"</div>
-              <p className="wyrquotetext">The best land deals rarely make it to market. We are built to see them early and execute with precision.</p>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* SIGNATURE PROOF */}
+      <HomepageSignatureProofSection content={signatureProofContent} />
 
       {/* OUR TEAM */}
       <section className="team" id="team">
         <div className="teami">
+          <div className="teamcopy">
+            <div className="team-ey rv">Our Team</div>
+            <div className="team-title rv d1">Experienced Operators, Structured for Execution</div>
+            <p className="teambody rv d2">Radius is built around a senior team with deep experience across land acquisition, entitlement strategy, structured development, and capital execution. We combine institutional rigor with principal-led decisiveness, giving our partners a team that can move quickly without compromising discipline.</p>
+          </div>
+
           <div className="teammedia rv d1">
             <div className="teamgrid">
               {teamMembers.map((member, index) => (
@@ -326,12 +261,7 @@ const Index = () => {
             </div>
           </div>
 
-          <div className="teamcopy">
-            <div className="ey rv">Our Team</div>
-            <div className="st rv d1">Experienced Operators, Structured for Execution</div>
-            <p className="teambody rv d2">Radius is built around a senior team with deep experience across land acquisition, entitlement strategy, structured development, and capital execution. We combine institutional rigor with principal-led decisiveness, giving our partners a team that can move quickly without compromising discipline.</p>
-            <a href="#about" className="bp rv d3">About Us</a>
-          </div>
+          <a href="#about" className="team-cta rv d3">About Us</a>
         </div>
       </section>
 

@@ -3,6 +3,7 @@ import { MemoryRouter, Route, Routes } from "react-router-dom";
 import { describe, expect, it, vi } from "vitest";
 import { homepageAdvantageContent } from "@/content/homepageAdvantage";
 import { homepageCapabilities } from "@/content/homepageCapabilities";
+import { signatureProofContent } from "@/content/signatureProof";
 import { whatWeDoHero, whatWeDoMirrorIntro } from "@/content/whatWeDo";
 import Index from "@/pages/Index";
 import WhatWeDo from "@/pages/WhatWeDo";
@@ -114,5 +115,11 @@ describe("what we do page", () => {
       expect(screen.getByText(capability.summary)).toBeInTheDocument();
       expect(screen.getByRole("link", { name: capability.ctaLabel })).toHaveAttribute("href", "/what-we-do");
     });
+
+    expect(screen.getByText(signatureProofContent.eyebrow)).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: signatureProofContent.headline })).toBeInTheDocument();
+    expect(screen.getByText(signatureProofContent.outcome.footer)).toBeInTheDocument();
+    expect(screen.queryByText("Our Track Record")).not.toBeInTheDocument();
+    expect(screen.queryByText("Built for Speed, Structure, and Scale")).not.toBeInTheDocument();
   });
 });
