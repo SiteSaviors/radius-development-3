@@ -30,7 +30,7 @@ export const signatureProofContent: SignatureProofContent = {
     value: "2.1x",
     label: "Value Creation",
     holdValue: "18 mo.",
-    holdLabel: "Average Hold Period",
+    holdLabel: "Hold Period",
     supportingLine:
       "A raw land position advanced through entitlement, execution, and disciplined exit.",
     chips: ["350 Units", "Land Assemblage", "3-Year Hold"],

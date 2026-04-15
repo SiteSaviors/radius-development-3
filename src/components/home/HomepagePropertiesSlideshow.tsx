@@ -86,6 +86,9 @@ const HomepagePropertiesSlideshow = ({ projects }: HomepagePropertiesSlideshowPr
   const [isDocumentHidden, setIsDocumentHidden] = useState(
     typeof document !== "undefined" ? document.hidden : false
   );
+  const [isInViewport, setIsInViewport] = useState(
+    typeof IntersectionObserver === "undefined"
+  );
   const [prefersReducedMotion] = useState(
     typeof window !== "undefined"
       ? window.matchMedia("(prefers-reduced-motion: reduce)").matches
@@ -97,6 +100,8 @@ const HomepagePropertiesSlideshow = ({ projects }: HomepagePropertiesSlideshowPr
 
   const autoplayTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const resumeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const showcaseRef = useRef<HTMLDivElement | null>(null);
+  const hasResetInitialMobileSlideRef = useRef(false);
 
   const clearAutoplayTimer = () => {
     if (autoplayTimerRef.current) {
@@ -150,6 +155,28 @@ const HomepagePropertiesSlideshow = ({ projects }: HomepagePropertiesSlideshowPr
   }, []);
 
   useEffect(() => {
+    if (typeof IntersectionObserver === "undefined") {
+      setIsInViewport(true);
+      return;
+    }
+
+    const node = showcaseRef.current;
+    if (!node) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsInViewport(entry.isIntersecting);
+      },
+      {
+        threshold: 0.28,
+      }
+    );
+
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
     if (typeof window === "undefined") return;
 
     const mediaQuery = window.matchMedia(MOBILE_BREAKPOINT_QUERY);
@@ -167,6 +194,16 @@ const HomepagePropertiesSlideshow = ({ projects }: HomepagePropertiesSlideshowPr
   }, []);
 
   useEffect(() => {
+    if (!emblaApi || !isMobileViewport || !isInViewport || hasResetInitialMobileSlideRef.current) {
+      return;
+    }
+
+    emblaApi.scrollTo(0, true);
+    setActiveIndex(0);
+    hasResetInitialMobileSlideRef.current = true;
+  }, [emblaApi, isInViewport, isMobileViewport]);
+
+  useEffect(() => {
     clearAutoplayTimer();
 
     const autoplayBlocked =
@@ -175,6 +212,7 @@ const HomepagePropertiesSlideshow = ({ projects }: HomepagePropertiesSlideshowPr
       hasFocusWithin ||
       isUserInteracting ||
       isDocumentHidden ||
+      (isMobileViewport && !isInViewport) ||
       slides.length <= 1;
 
     if (!emblaApi || autoplayBlocked) {
@@ -193,6 +231,8 @@ const HomepagePropertiesSlideshow = ({ projects }: HomepagePropertiesSlideshowPr
     isDocumentHidden,
     isHovered,
     isUserInteracting,
+    isInViewport,
+    isMobileViewport,
     prefersReducedMotion,
     slides.length,
   ]);
@@ -248,7 +288,7 @@ const HomepagePropertiesSlideshow = ({ projects }: HomepagePropertiesSlideshowPr
   if (!activeSlide) return null;
 
   return (
-    <div className="fps__showcase rv d3">
+    <div className="fps__showcase rv d3" ref={showcaseRef}>
       <div className="fps__toolbar">
         <div className="fps__counter" aria-live="polite">
           <span className="fps__counter-current">{activeSlide.displayIndex}</span>
