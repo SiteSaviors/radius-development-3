@@ -1803,7 +1803,7 @@ h1 em{font-style:italic;color:rgba(255,255,255,.6)}
 
 /* OUR TEAM */
 .team{
-  padding:72px 72px 120px;
+  padding:72px 72px 120px 0;
   background:#f1ead8;
   position:relative;
   overflow:hidden;
@@ -1821,9 +1821,10 @@ h1 em{font-style:italic;color:rgba(255,255,255,.6)}
   grid-area:media;
   position:relative;
   min-height:640px;
-  padding:26px;
+  padding:26px 22px 26px 22px;
   border:1px solid rgba(255,255,255,.08);
-  border-radius:40px;
+  border-left:none;
+  border-radius:0 40px 40px 0;
   background:
     linear-gradient(180deg,rgba(255,255,255,.028) 0%,rgba(255,255,255,.012) 100%),
     linear-gradient(120deg,rgba(27,42,74,.18) 0%,transparent 58%),
