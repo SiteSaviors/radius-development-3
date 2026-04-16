@@ -56,6 +56,21 @@ const ProjectDetail = () => {
           </div>
         </section>
 
+        <section className="project-detail-facts" aria-label={`${project.name} key facts`}>
+          <div className="project-detail-facts-inner">
+            <div className="project-detail-facts-copy">
+              <div className="project-detail-facts-eyebrow">Project Highlights</div>
+            </div>
+            <div className="project-detail-facts-grid">
+              {project.highlightTags.map((tag) => (
+                <div className="project-detail-fact" key={tag.text}>
+                  <span>{tag.text}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
         <section className="project-detail-intro">
           <div className="project-detail-summary">
             <div className="ey">Project Overview</div>

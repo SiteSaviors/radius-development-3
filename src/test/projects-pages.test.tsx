@@ -1,6 +1,7 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { fireEvent, render, screen, within } from "@testing-library/react";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
 import { describe, expect, it } from "vitest";
+import { projectBySlug } from "@/content/projects";
 import ProjectDetail from "@/pages/ProjectDetail";
 import Projects from "@/pages/Projects";
 
@@ -56,8 +57,16 @@ describe("projects pages", () => {
 
   it("renders a detail route and excludes the current project from related cards", () => {
     renderProjectDetail("the-shiloh");
+    const shiloh = projectBySlug["the-shiloh"];
+    const factsRegion = screen.getByRole("region", { name: "The Shiloh key facts" });
 
     expect(screen.getByRole("heading", { name: "The Shiloh" })).toBeInTheDocument();
+    expect(factsRegion).toBeInTheDocument();
+    expect(within(factsRegion).getByText("Project Highlights")).toBeInTheDocument();
+    expect(within(factsRegion).getByText("The Shiloh at a glance")).toBeInTheDocument();
+    shiloh.highlightTags.forEach((tag) => {
+      expect(within(factsRegion).getByText(tag.text)).toBeInTheDocument();
+    });
     expect(screen.getByText("Project Overview")).toBeInTheDocument();
     expect(screen.getByText("Explore More Projects")).toBeInTheDocument();
     expect(screen.queryAllByText("The Shiloh")).toHaveLength(1);
