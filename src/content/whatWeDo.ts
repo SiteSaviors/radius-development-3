@@ -1,6 +1,7 @@
 import whatWeDoBridgeImage from "@/assets/Franklin.jpg";
 import whatWeDoBridgeMirrorImage from "@/assets/Pittard.jpg";
 import whatWeDoStrategyImage from "@/assets/STRATEGY.webp";
+import whatWeDoEntitlementImage from "@/assets/ENTITLEMENT.webp";
 
 export type WhatWeDoHeroContent = {
   eyebrow: string;
@@ -140,9 +141,9 @@ export const whatWeDoFrameworkChapters: WhatWeDoFrameworkChapter[] = [
       "Radius drives the entitlement and planning process to unlock the highest and best use of each site. We manage zoning strategy, approvals, and site design with precision so complexity is reduced before it can slow the opportunity.",
       "This phase is where land becomes cleaner, stronger, and more financeable. By coordinating entitlement sequencing early, we improve certainty, reduce execution risk, and position each asset for institutional-quality delivery.",
     ],
-    image: whatWeDoBridgeImage,
-    alt: "The Franklin mixed-use development exterior at sunset",
-    caption: "The Franklin",
+    image: whatWeDoEntitlementImage,
+    alt: "Entitlement strategy planning image",
+    caption: "Entitlement",
     tone: "green",
     proofPoints: [
       { label: "Zoning Strategy" },
