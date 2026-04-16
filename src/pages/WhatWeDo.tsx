@@ -100,17 +100,20 @@ const WhatWeDo = () => {
 
           <div className="wwd-framework__inner">
             <div className="wwd-framework__chapters">
-              {whatWeDoFrameworkChapters.map((chapter, index) => (
+              {whatWeDoFrameworkChapters.map((chapter) => (
                 <article
                   key={chapter.id}
+                  data-chapter={chapter.id}
                   className={cn(
                     "wwd-framework-chapter",
                     `wwd-framework-chapter--${chapter.tone}`,
-                    { "wwd-framework-chapter--reverse": index % 2 === 1 }
+                    { "wwd-framework-chapter--reverse": chapter.layout === "media-left" }
                   )}
                 >
                   <div className="wwd-framework-chapter__copy">
-                    <div className="wwd-framework-chapter__eyebrow">{chapter.eyebrow}</div>
+                    <div className="wwd-framework-chapter__eyebrow">
+                      {`${chapter.sequence} / ${chapter.navLabel.toUpperCase()}`}
+                    </div>
                     <h3 className="wwd-framework-chapter__title">{chapter.title}</h3>
                     <div className="wwd-framework-chapter__body">
                       {chapter.paragraphs.map((paragraph) => (

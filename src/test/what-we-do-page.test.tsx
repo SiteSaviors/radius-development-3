@@ -49,15 +49,19 @@ describe("what we do page", () => {
     whatWeDoFrameworkHandoff.items.forEach((item) => {
       expect(screen.getByText(item.label)).toBeInTheDocument();
     });
+    expect(whatWeDoFrameworkHandoff.items).toHaveLength(4);
+    expect(whatWeDoFrameworkChapters).toHaveLength(4);
 
     whatWeDoFrameworkChapters.forEach((chapter) => {
-      expect(screen.getByText(chapter.eyebrow)).toBeInTheDocument();
+      expect(
+        screen.getByText(`${chapter.sequence} / ${chapter.navLabel.toUpperCase()}`)
+      ).toBeInTheDocument();
       expect(screen.getByRole("heading", { name: chapter.title })).toBeInTheDocument();
       chapter.paragraphs.forEach((paragraph) => {
         expect(screen.getByText(paragraph)).toBeInTheDocument();
       });
-      expect(screen.getByRole("img", { name: chapter.alt })).toBeInTheDocument();
-      expect(screen.getByText(chapter.caption)).toBeInTheDocument();
+      expect(screen.getAllByRole("img", { name: chapter.alt }).length).toBeGreaterThan(0);
+      expect(screen.getAllByText(chapter.caption).length).toBeGreaterThan(0);
       chapter.proofPoints.forEach((point) => {
         expect(screen.getByText(point.label)).toBeInTheDocument();
       });
@@ -80,6 +84,14 @@ describe("what we do page", () => {
 
     expect(frameworkSection.compareDocumentPosition(processHeading) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
     expect(processHeading.compareDocumentPosition(universeSection) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+    const chapterHeadings = whatWeDoFrameworkChapters.map((chapter) =>
+      screen.getByRole("heading", { name: chapter.title })
+    );
+    chapterHeadings.slice(1).forEach((heading, index) => {
+      expect(
+        chapterHeadings[index].compareDocumentPosition(heading) & Node.DOCUMENT_POSITION_FOLLOWING
+      ).toBeTruthy();
+    });
     expect(screen.getByRole("heading", { name: whatWeDoUniverse.title })).toBeInTheDocument();
     expect(residentialButton).toHaveAttribute("aria-expanded", "false");
     expect(residentialContent).toHaveAttribute("aria-hidden", "true");

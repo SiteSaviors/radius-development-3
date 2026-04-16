@@ -2919,7 +2919,7 @@ h1 em{font-style:italic;color:rgba(255,255,255,.6)}
   display:block;
   width:184px;
   height:2px;
-  background:linear-gradient(90deg,var(--framework-accent,#8fcb7b) 0%,rgba(255,255,255,.12) 100%);
+  background:linear-gradient(90deg,var(--framework-eyebrow-accent,var(--framework-accent,#8fcb7b)) 0%,rgba(255,255,255,.12) 100%);
 }
 .wwd-framework__chapters{
   display:grid;
@@ -2928,6 +2928,7 @@ h1 em{font-style:italic;color:rgba(255,255,255,.6)}
 .wwd-framework-chapter{
   --framework-accent:#8fcb7b;
   --framework-accent-soft:rgba(143,203,123,.16);
+  --framework-eyebrow-accent:var(--framework-accent);
   position:relative;
   display:grid;
   grid-template-columns:minmax(360px,.74fr) minmax(0,1.08fr);
@@ -2937,6 +2938,18 @@ h1 em{font-style:italic;color:rgba(255,255,255,.6)}
 .wwd-framework-chapter--gold{
   --framework-accent:#cfaa46;
   --framework-accent-soft:rgba(207,170,70,.16);
+}
+.wwd-framework-chapter[data-chapter="strategic-acquisition"]{
+  --framework-eyebrow-accent:#8fcb7b;
+}
+.wwd-framework-chapter[data-chapter="entitlement-strategy"]{
+  --framework-eyebrow-accent:#6e88c9;
+}
+.wwd-framework-chapter[data-chapter="capital-strategy"]{
+  --framework-eyebrow-accent:#cfaa46;
+}
+.wwd-framework-chapter[data-chapter="value-realization"]{
+  --framework-eyebrow-accent:#d88b63;
 }
 .wwd-framework-chapter--reverse{
   grid-template-columns:minmax(0,1.08fr) minmax(360px,.74fr);

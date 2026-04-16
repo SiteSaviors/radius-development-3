@@ -54,8 +54,14 @@ export type WhatWeDoFrameworkProofPoint = {
 };
 
 export type WhatWeDoFrameworkChapter = {
-  id: "value-creation" | "market-demand";
-  eyebrow: string;
+  id:
+    | "strategic-acquisition"
+    | "entitlement-strategy"
+    | "capital-strategy"
+    | "value-realization";
+  sequence: "01" | "02" | "03" | "04";
+  navLabel: string;
+  layout: "media-right" | "media-left";
   title: string;
   paragraphs: string[];
   image: string;
@@ -147,26 +153,15 @@ export const whatWeDoMirrorBridge: WhatWeDoBridgeContent = {
 
 export const whatWeDoFrameworkChapters: WhatWeDoFrameworkChapter[] = [
   {
-    id: "value-creation",
-    eyebrow: "01 / Value Creation",
-    title: whatWeDoIntro.title,
-    paragraphs: whatWeDoIntro.paragraphs,
-    image: whatWeDoBridgeImage,
-    alt: "The Franklin mixed-use development exterior at sunset",
-    caption: "The Franklin",
-    tone: "green",
-    proofPoints: [
-      { label: "Proprietary Sourcing" },
-      { label: "Land Strategy" },
-      { label: "Entitlement Readiness" },
-      { label: "Partner-Ready Execution" },
+    id: "strategic-acquisition",
+    sequence: "01",
+    navLabel: "Strategic Acquisition",
+    layout: "media-left",
+    title: "Strategic acquisition starts with real market demand.",
+    paragraphs: [
+      "Radius studies growth patterns, supply pipelines, and demand signals early so each opportunity is positioned against the realities of its market, not assumptions.",
+      "We use market strategy to inform product mix, phasing, and timing before committing capital, helping each site move forward with clearer conviction, stronger economics, and a cleaner path to execution.",
     ],
-  },
-  {
-    id: "market-demand",
-    eyebrow: "02 / Market Demand",
-    title: whatWeDoMirrorIntro.title,
-    paragraphs: whatWeDoMirrorIntro.paragraphs,
     image: whatWeDoBridgeMirrorImage,
     alt: "Pittard residential land plan showing lot layout and circulation",
     caption: "Pittard",
@@ -176,6 +171,69 @@ export const whatWeDoFrameworkChapters: WhatWeDoFrameworkChapter[] = [
       { label: "Supply Pipeline Analysis" },
       { label: "Product Mix Strategy" },
       { label: "Phasing & Timing" },
+    ],
+  },
+  {
+    id: "entitlement-strategy",
+    sequence: "02",
+    navLabel: "Entitlement Strategy",
+    layout: "media-right",
+    title: "Entitlement strategy turns land into a clearer path to execution.",
+    paragraphs: [
+      "Radius drives the entitlement and planning process to unlock the highest and best use of each site. We manage zoning strategy, approvals, and site design with precision so complexity is reduced before it can slow the opportunity.",
+      "This phase is where land becomes cleaner, stronger, and more financeable. By coordinating entitlement sequencing early, we improve certainty, reduce execution risk, and position each asset for institutional-quality delivery.",
+    ],
+    image: whatWeDoBridgeImage,
+    alt: "The Franklin mixed-use development exterior at sunset",
+    caption: "The Franklin",
+    tone: "green",
+    proofPoints: [
+      { label: "Zoning Strategy" },
+      { label: "Approval Sequencing" },
+      { label: "Site Plan Coordination" },
+      { label: "Entitlement Readiness" },
+    ],
+  },
+  {
+    id: "capital-strategy",
+    sequence: "03",
+    navLabel: "Capital Strategy",
+    layout: "media-left",
+    title: "Capital strategy keeps execution flexible and returns aligned.",
+    paragraphs: [
+      "Radius determines the highest-value execution path based on market dynamics, capital efficiency, and risk-adjusted returns. We evaluate whether to pursue vertical development, structure a joint venture with the right operator, or monetize the asset through a sale.",
+      "That flexibility allows capital to be allocated where it is most effective rather than forced into a fixed model. The result is a cleaner strategy, stronger partner alignment, and better control over how value is ultimately realized.",
+    ],
+    image: whatWeDoBridgeMirrorImage,
+    alt: "Pittard residential land plan showing lot layout and circulation",
+    caption: "Pittard",
+    tone: "gold",
+    proofPoints: [
+      { label: "Execution Path Selection" },
+      { label: "JV Structuring" },
+      { label: "Capital Partner Alignment" },
+      { label: "Risk-Adjusted Returns" },
+    ],
+  },
+  {
+    id: "value-realization",
+    sequence: "04",
+    navLabel: "Value Realization",
+    layout: "media-right",
+    title: "We don't merely acquire value. We realize it.",
+    paragraphs: [
+      "Radius approaches each opportunity with a value-realization mindset rooted in land strategy, development intelligence, and institutional alignment.",
+      "From early sourcing to downstream execution, our role is to make complex opportunities cleaner, stronger, and more actionable so value can be captured with discipline, preserved through execution, and realized through the right outcome.",
+    ],
+    image: whatWeDoBridgeImage,
+    alt: "The Franklin mixed-use development exterior at sunset",
+    caption: "The Franklin",
+    tone: "green",
+    proofPoints: [
+      { label: "Execution Discipline" },
+      { label: "Partner-Ready Delivery" },
+      { label: "Capital Recycling" },
+      { label: "Monetization Strategy" },
     ],
   },
 ];
