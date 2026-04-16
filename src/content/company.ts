@@ -5,6 +5,7 @@ import teamPhoto140 from "@/assets/140.jpg";
 import teamPhoto141 from "@/assets/141.jpg";
 import teamPhoto142 from "@/assets/142.jpg";
 import teamPhotoKyle from "@/assets/kyle.jpeg";
+import teamPhotoBethlehem from "@/assets/bethlehem.png";
 
 export type CompanyHeroContent = {
   eyebrow: string;
@@ -199,9 +200,6 @@ export const companyMission: CompanyMissionContent = {
   ],
 };
 
-const companyTeamBio =
-  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere, sapien non cursus facilisis, erat libero ultrices velit, vitae tincidunt risus erat id lorem. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.";
-
 export const companyTeam: CompanyTeamContent = {
   title: "Meet The Team",
   members: [
@@ -211,7 +209,7 @@ export const companyTeam: CompanyTeamContent = {
       role: "General Partner",
       image: teamPhoto139,
       imageAlt: "Portrait of Ricky Joshi",
-      bio: companyTeamBio,
+      bio: "Ricky Joshi is a General Partner and Co-Founder of Radius Development, where he focuses on sourcing, structuring, and executing mixed-use, retail, and residential projects. He previously co-founded Saatva, scaling it into a $600M+ omni-channel brand and leading its expansion to 39+ Brick and Mortar locations nationwide. At Radius, he has played a key role in projects including Shiloh, a $1B+ mixed-use development in North Carolina. He has over 15 years of real estate investing experience across land, residential, retail, and hospitality assets. Ricky holds a degree from Dartmouth College and an MBA from Columbia Business School.",
     },
     {
       id: "gaurang-gala",
@@ -219,7 +217,7 @@ export const companyTeam: CompanyTeamContent = {
       role: "General Partner",
       image: teamPhoto140,
       imageAlt: "Portrait of Gaurang Gala",
-      bio: companyTeamBio,
+      bio: "Gaurang Gala is a General Partner and Co-Founder of Radius Development. He is a seasoned real estate investor and developer with a wealth of experience spanning over two decades, including a background in lending and commercial and residential real estate sales and development. With a keen eye for identifying market opportunities and a deep understanding of industry trends, Gaurang has consistently demonstrated his expertise in creating innovative and profitable investment projects on his own and with industry leading partnerships. Gaurang is a graduate of the University of North Carolina - Chapel Hill.",
     },
     {
       id: "tarek-morshed",
@@ -227,7 +225,7 @@ export const companyTeam: CompanyTeamContent = {
       role: "General Partner",
       image: teamPhoto141,
       imageAlt: "Portrait of Tarek Morshed",
-      bio: companyTeamBio,
+      bio: "Tarek Morshed is a General Partner of Radius Development. In real estate since 1995, he brings a deep range of experience in value-add and ground-up development projects as a General Partner in his career. Re-positioning multi-family and mixed-use assets, ground-up multi-family developments, urban infill residential/mixed-use development and land development in Austin and beyond have been his primary focuses. He currently focuses on land development projects in Austin and beyond as well as niche strategies such as multi-family acquisitions in secondary markets. Additionally, Tarek is CEO of The Morshed Group at Sotheby's International, a longstanding boutique real estate broker practice in Austin, TX focused on serving the residential and commercial needs of Founders/Csuite/VC’s demographics. The Morshed Group is ranked in the top 1%. Mr. Morshed is a graduate of University of Texas with a Bachelor's in Accounting, a program consistently ranked top 5 in the nation.",
     },
     {
       id: "elizabeth-eichen",
@@ -235,14 +233,15 @@ export const companyTeam: CompanyTeamContent = {
       role: "Head of Investor Relations",
       image: teamPhoto142,
       imageAlt: "Portrait of Elizabeth Eichen",
-      bio: companyTeamBio,
+      bio: "Elizabeth Eichen is a dedicated professional skilled in connecting clients with optimal investment opportunities. She analyzes market trends, evaluates investments, and crafts strategic recommendations with attention to detail and a deep understanding of the financial landscape, providing valuable insights that align with clients' goals.",
     },
     {
       id: "bethlehem-gonzalez",
       name: "Bethlehem Gonzalez",
       role: "Executive Assistant",
+      image: teamPhotoBethlehem,
       imageAlt: "Portrait of Bethlehem Gonzalez",
-      bio: companyTeamBio,
+      bio: "Bethlehem Gonzalez is an operations-focused professional specializing in organizational management, client coordination, and process execution. She manages workflows, aligns communication, and supports efficient operations. Through a proactive and structured approach, Bethlehem ensures seamless execution and reliable performance across all aspects of the business.",
     },
     {
       id: "kyle-trebing",
@@ -250,7 +249,7 @@ export const companyTeam: CompanyTeamContent = {
       role: "Project Manager",
       image: teamPhotoKyle,
       imageAlt: "Portrait of Kyle Trebing",
-      bio: companyTeamBio,
+      bio: "Kyle is a results-driven professional with a Bachelor’s degree in Computer Information Systems from Appalachian State University. He brings a strong background in retail management and business education, with proven experience leading teams, optimizing operations, and driving efficiency. With skills in project management, data analysis, and systems integration, Kyle effectively bridges technical and operational needs. He is passionate about leveraging technology to streamline processes and support smart, strategic growth.",
     },
   ],
 };
