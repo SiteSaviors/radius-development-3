@@ -2764,6 +2764,7 @@ h1 em{font-style:italic;color:rgba(255,255,255,.6)}
   position:relative;
   display:flex;
   flex-direction:column;
+  min-height:0;
   padding:54px 62px 56px;
 }
 .company-team-dialog-copy::after{
@@ -2794,9 +2795,12 @@ h1 em{font-style:italic;color:rgba(255,255,255,.6)}
   margin:0 0 30px !important;
 }
 .company-team-dialog-body{
+  flex:1 1 auto;
+  min-height:0;
   max-height:430px;
   overflow:auto;
   padding-right:40px;
+  overscroll-behavior:contain;
 }
 .company-team-dialog-body p{
   margin:0;
@@ -4510,17 +4514,24 @@ footer{padding:72px 48px 42px;border-top:1px solid var(--hl);background:#000;dis
     font-size:34px;
   }
   .company-team-dialog{
-    width:min(94vw,640px) !important;
-    max-width:min(94vw,640px) !important;
+    width:min(calc(100vw - 2rem),520px) !important;
+    max-width:min(calc(100vw - 2rem),520px) !important;
+    max-height:min(calc(100dvh - 2.5rem),720px) !important;
+    top:50% !important;
+    transform:translate(-50%,-50%) !important;
     grid-template-columns:1fr;
+    grid-template-rows:minmax(208px,28dvh) minmax(0,1fr);
+    border-radius:24px !important;
   }
   .company-team-dialog-media,
   .company-team-dialog-image,
   .company-team-dialog-placeholder{
-    min-height:320px;
+    min-height:0;
+    height:100%;
   }
   .company-team-dialog-copy{
-    padding:30px 24px 28px;
+    padding:30px 20px 24px;
+    overflow:hidden;
   }
   .company-team-dialog-copy::after{
     display:none;
@@ -4529,12 +4540,28 @@ footer{padding:72px 48px 42px;border-top:1px solid var(--hl);background:#000;dis
     margin-bottom:20px !important;
   }
   .company-team-dialog-body{
-    max-height:280px;
-    padding-right:0;
+    max-height:none;
+    padding-right:4px;
   }
   .company-team-dialog-body p{
     font-size:13px;
     line-height:1.8;
+  }
+  .company-team-dialog-image{
+    object-position:center 18%;
+  }
+  .company-team-dialog > button{
+    top:12px;
+    right:12px;
+    width:40px;
+    height:40px;
+    border-radius:999px;
+    background:rgba(251,250,246,.92);
+    box-shadow:0 10px 24px rgba(0,0,0,.18);
+  }
+  .company-team-dialog > button svg{
+    width:20px;
+    height:20px;
   }
   .wwd-process-head,
   .wwd-cta{padding:64px 20px}

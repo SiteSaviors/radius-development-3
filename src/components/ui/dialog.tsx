@@ -21,7 +21,7 @@ const DialogOverlay = React.forwardRef<
     style={{
       position: "fixed",
       inset: 0,
-      zIndex: 50,
+      zIndex: 1000,
       background: "rgba(0, 0, 0, 0.8)",
     }}
     className={cn(
@@ -45,7 +45,7 @@ const DialogContent = React.forwardRef<
         position: "fixed",
         left: "50%",
         top: "50%",
-        zIndex: 50,
+        zIndex: 1010,
         display: "grid",
         width: "min(calc(100vw - 2rem), 32rem)",
         maxHeight: "min(calc(100vh - 2rem), 90vh)",
