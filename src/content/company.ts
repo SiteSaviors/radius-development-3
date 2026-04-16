@@ -238,12 +238,11 @@ export const companyTeam: CompanyTeamContent = {
       bio: companyTeamBio,
     },
     {
-      id: "placeholder-1",
-      name: "Additional Team Member",
-      role: "Leadership Role",
-      imageAlt: "Placeholder portrait for future team member",
+      id: "bethlehem-gonzalez",
+      name: "Bethlehem Gonzalez",
+      role: "Executive Assistant",
+      imageAlt: "Portrait of Bethlehem Gonzalez",
       bio: companyTeamBio,
-      isPlaceholder: true,
     },
     {
       id: "kyle-trebing",
