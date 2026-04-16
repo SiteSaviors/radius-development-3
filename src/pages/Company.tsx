@@ -8,6 +8,8 @@ import SiteHeader from "@/components/site/SiteHeader";
 import { companyAbout, companyHero, companyMission, companyNumbers, companyTeam } from "@/content/company";
 import useRadiusCursor from "@/hooks/useRadiusCursor";
 
+const companyHeroMobileBg = companyHeroBg;
+
 const formatCompanyStatValue = (value: number, decimals: number) =>
   value.toLocaleString("en-US", {
     minimumFractionDigits: decimals,
@@ -132,7 +134,13 @@ const Company = () => {
 
       <main className="company-page">
         <section className="wwd-hero">
-          <LazyBackground className="wwd-hero-media" image={companyHeroBg} eager ariaHidden />
+          <LazyBackground
+            className="wwd-hero-media"
+            image={companyHeroBg}
+            mobileImage={companyHeroMobileBg}
+            eager
+            ariaHidden
+          />
           <div className="wwd-hero-copy">
             <div className="wwd-hero-eyebrow">{companyHero.eyebrow}</div>
             <h1 className="wwd-hero-title">{companyHero.title}</h1>

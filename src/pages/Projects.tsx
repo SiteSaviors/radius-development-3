@@ -14,6 +14,8 @@ import useRadiusCursor from "@/hooks/useRadiusCursor";
 import projectsHeroBg from "@/assets/8.jpg";
 import investorCtaBg from "@/assets/investor.jpg";
 
+const projectsHeroMobileBg = projectsHeroBg;
+
 const Projects = () => {
   const [statusFilter, setStatusFilter] = useState<"All" | ProjectStatus>("All");
   const [categoryFilter, setCategoryFilter] = useState<"All" | ProjectFilterCategory>("All");
@@ -72,12 +74,18 @@ const Projects = () => {
 
       <main className="projects-page">
         <section className="wwd-hero wwd-hero--projects">
-          <LazyBackground className="wwd-hero-media" image={projectsHeroBg} eager ariaHidden />
+          <LazyBackground
+            className="wwd-hero-media"
+            image={projectsHeroBg}
+            mobileImage={projectsHeroMobileBg}
+            eager
+            ariaHidden
+          />
           <div className="wwd-hero-copy">
             <div className="wwd-hero-eyebrow">Current Projects</div>
-            <h1 className="wwd-hero-title">Projects Shaped by Land Strategy</h1>
+            <h1 className="wwd-hero-title">Projects in Motion</h1>
             <p className="wwd-hero-body">
-              A portfolio of projects advancing through entitlement, land assembly, institutional planning, and mixed-use execution across high-growth markets.
+            Land and development opportunities advancing through entitlement, planning, and strategic execution across high-growth markets.
             </p>
           </div>
         </section>

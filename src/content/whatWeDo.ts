@@ -183,9 +183,10 @@ export const whatWeDoFrameworkChapters: WhatWeDoFrameworkChapter[] = [
 export const whatWeDoFrameworkHandoff: WhatWeDoFrameworkHandoff = {
   eyebrow: "THE OPERATING SEQUENCE",
   items: [
-    { label: "Source with conviction" },
-    { label: "Shape with discipline" },
-    { label: "Execute with alignment" },
+    { label: "Strategic Acquisition" },
+    { label: "Entitlement Strategy" },
+    { label: "Capital Strategy" },
+    { label: "Value Realization" },
   ],
 };
 

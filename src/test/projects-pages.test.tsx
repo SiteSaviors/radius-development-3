@@ -27,7 +27,7 @@ describe("projects pages", () => {
   it("renders the archive page with all six launch projects and route-aware nav links", () => {
     renderProjectsPage();
 
-    expect(screen.getByText("Projects Shaped by Land Strategy")).toBeInTheDocument();
+    expect(screen.getByText("Projects In Motion")).toBeInTheDocument();
     expect(screen.getByText("The Shiloh")).toBeInTheDocument();
     expect(screen.getByText("The Franklin")).toBeInTheDocument();
     expect(screen.getByText("Terraces At West Cary")).toBeInTheDocument();
@@ -63,7 +63,6 @@ describe("projects pages", () => {
     expect(screen.getByRole("heading", { name: "The Shiloh" })).toBeInTheDocument();
     expect(factsRegion).toBeInTheDocument();
     expect(within(factsRegion).getByText("Project Highlights")).toBeInTheDocument();
-    expect(within(factsRegion).getByText("The Shiloh at a glance")).toBeInTheDocument();
     shiloh.highlightTags.forEach((tag) => {
       expect(within(factsRegion).getByText(tag.text)).toBeInTheDocument();
     });

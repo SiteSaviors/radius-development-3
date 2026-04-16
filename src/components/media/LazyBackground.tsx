@@ -1,17 +1,33 @@
 import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from "react";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 type LazyBackgroundProps = {
   className: string;
   image: string;
+  mobileImage?: string;
   style?: CSSProperties;
+  mobileStyle?: CSSProperties;
   eager?: boolean;
   ariaHidden?: boolean;
   children?: ReactNode;
 };
 
-const LazyBackground = ({ className, image, style, eager = false, ariaHidden, children }: LazyBackgroundProps) => {
+const LazyBackground = ({
+  className,
+  image,
+  mobileImage,
+  style,
+  mobileStyle,
+  eager = false,
+  ariaHidden,
+  children,
+}: LazyBackgroundProps) => {
   const [loaded, setLoaded] = useState(eager);
   const containerRef = useRef<HTMLDivElement | null>(null);
+  const isMobile = useIsMobile();
+
+  const activeImage = isMobile && mobileImage ? mobileImage : image;
+  const activeStyle = isMobile && mobileStyle ? { ...style, ...mobileStyle } : style;
 
   useEffect(() => {
     if (loaded) return;
@@ -45,8 +61,8 @@ const LazyBackground = ({ className, image, style, eager = false, ariaHidden, ch
       className={className}
       aria-hidden={ariaHidden}
       style={{
-        ...style,
-        ...(loaded ? { backgroundImage: `url(${image})` } : undefined),
+        ...activeStyle,
+        ...(loaded ? { backgroundImage: `url(${activeImage})` } : undefined),
       }}
     >
       {children}

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import whatWeDoHeroBg from "@/assets/wwd-hero.jpg";
+import whatWeDoHeroBg from "@/assets/WHAT_WE_DO.webp";
+import whatWeDoHeroMobileBg from "@/assets/WWD-HERO-MOB.webp";
 import LazyBackground from "@/components/media/LazyBackground";
 import SiteFooter from "@/components/site/SiteFooter";
 import SiteHeader from "@/components/site/SiteHeader";
@@ -64,7 +65,13 @@ const WhatWeDo = () => {
 
       <main className="wwd-page">
         <section className="wwd-hero wwd-hero--what-we-do">
-          <LazyBackground className="wwd-hero-media" image={whatWeDoHeroBg} eager ariaHidden />
+          <LazyBackground
+            className="wwd-hero-media"
+            image={whatWeDoHeroBg}
+            mobileImage={whatWeDoHeroMobileBg}
+            eager
+            ariaHidden
+          />
           <div className="wwd-hero-shell">
             <div className="wwd-hero-copy">
               <div className="wwd-hero-eyebrow">{whatWeDoHero.eyebrow}</div>

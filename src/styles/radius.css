@@ -2143,8 +2143,8 @@ h1 em{font-style:italic;color:rgba(255,255,255,.6)}
   background:rgba(4,5,8,.94);
   border-top-right-radius:78px;
   box-shadow:0 24px 72px rgba(0,0,0,.28);
-  border-top:1px solid rgba(255,255,255,.05);
-  border-right:1px solid rgba(255,255,255,.05);
+  border-top:3px solid #f1ead8;
+  border-right:3px solid #f1ead8;
 }
 .wwd-hero--what-we-do .wwd-hero-copy{
   margin-right:72px;
@@ -3172,7 +3172,7 @@ h1 em{font-style:italic;color:rgba(255,255,255,.6)}
 }
 .wwd-framework__handoff-items{
   display:grid;
-  grid-template-columns:repeat(3,minmax(0,1fr));
+  grid-template-columns:repeat(4,minmax(0,1fr));
   border:1px solid rgba(27,42,74,.12);
   background:rgba(255,255,255,.2);
 }
@@ -3207,6 +3207,9 @@ h1 em{font-style:italic;color:rgba(255,255,255,.6)}
 }
 .wwd-framework__handoff-item:nth-child(3) span{
   color:#a77816;
+}
+.wwd-framework__handoff-item:nth-child(4) span{
+  color:rgba(27,42,74,.82);
 }
 @media (prefers-reduced-motion: reduce){
   .wwd-framework-chapter__image{
@@ -4382,18 +4385,28 @@ footer{padding:72px 48px 42px;border-top:1px solid var(--hl);background:#000;dis
     width:100%;
   }
   .wwd-hero-copy{
-    gap:18px;
-    width:min(100%,420px);
-    padding:24px 22px 24px 24px;
-    border-top-right-radius:40px;
+    gap:14px;
+    width:min(100%,374px);
+    padding:20px 18px 20px 20px;
+    border-top-right-radius:32px;
+    border-top:3px solid #f1ead8;
+    border-right:3px solid #f1ead8;
   }
   .wwd-hero--what-we-do .wwd-hero-copy{
-    margin-right:20px;
+    margin-right:12px;
   }
-  .wwd-hero-title{font-size:clamp(34px,10vw,48px);line-height:.94;max-width:10ch}
+  .wwd-hero-eyebrow{
+    gap:12px;
+    font-size:8px;
+    letter-spacing:.24em;
+  }
+  .wwd-hero-eyebrow::before{
+    width:24px;
+  }
+  .wwd-hero-title{font-size:clamp(29px,8.6vw,38px);line-height:.94;max-width:10ch}
   .wwd-hero--projects .wwd-hero-title{max-width:12ch}
   .wwd-hero--what-we-do .wwd-hero-title{max-width:12ch}
-  .wwd-hero-body{max-width:100%;font-size:13px;line-height:1.78}
+  .wwd-hero-body{max-width:100%;font-size:11px;line-height:1.68}
   .company-numbers{
     padding:18px 24px 22px;
   }

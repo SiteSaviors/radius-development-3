@@ -38,7 +38,11 @@ const ProjectDetail = () => {
           <LazyBackground
             className="project-detail-hero-bg"
             image={project.image}
+            mobileImage={project.mobileImage}
             style={{ backgroundPosition: project.imagePosition }}
+            mobileStyle={{
+              backgroundPosition: project.mobileImagePosition ?? project.imagePosition,
+            }}
             eager
             ariaHidden
           />
