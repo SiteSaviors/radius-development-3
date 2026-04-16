@@ -8,7 +8,6 @@ import {
   whatWeDoFrameworkChapters,
   whatWeDoFrameworkHandoff,
   whatWeDoHero,
-  whatWeDoProcessIntro,
   whatWeDoUniverse,
 } from "@/content/whatWeDo";
 import Index from "@/pages/Index";
@@ -36,7 +35,7 @@ const renderHomePage = () =>
   );
 
 describe("what we do page", () => {
-  it("renders the standalone route with the premium framework, process list, and closing CTA", () => {
+  it("renders the standalone route with the premium framework, universe section, and closing CTA", () => {
     renderWhatWeDoPage();
 
     expect(screen.getByRole("heading", { name: whatWeDoHero.title })).toBeInTheDocument();
@@ -67,23 +66,21 @@ describe("what we do page", () => {
       });
     });
 
-    expect(screen.getByRole("heading", { name: whatWeDoProcessIntro.title })).toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: "Acquire with Edge" })).toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: "Execute & Realize Returns" })).toBeInTheDocument();
+    expect(screen.queryByText("Our Step-By-Step Approach To Land Development")).not.toBeInTheDocument();
+    expect(screen.queryByRole("heading", { name: "Acquire with Edge" })).not.toBeInTheDocument();
+    expect(screen.queryByRole("heading", { name: "Execute & Realize Returns" })).not.toBeInTheDocument();
     expect(screen.getByRole("link", { name: "Contact Radius" })).toHaveAttribute("href", "/#contact");
   });
 
-  it("renders the framework before the process and universe sections and keeps universe interactions intact", () => {
+  it("renders the framework before the universe section and keeps universe interactions intact", () => {
     renderWhatWeDoPage();
 
     const frameworkSection = screen.getByRole("region", { name: whatWeDoFrameworkHandoff.eyebrow });
-    const processHeading = screen.getByRole("heading", { name: whatWeDoProcessIntro.title });
     const universeSection = screen.getByRole("region", { name: whatWeDoUniverse.title });
     const residentialButton = screen.getByRole("button", { name: "Residential" });
     const residentialContent = document.getElementById("wwd-uc-content-residential");
 
-    expect(frameworkSection.compareDocumentPosition(processHeading) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
-    expect(processHeading.compareDocumentPosition(universeSection) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+    expect(frameworkSection.compareDocumentPosition(universeSection) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
     const chapterHeadings = whatWeDoFrameworkChapters.map((chapter) =>
       screen.getByRole("heading", { name: chapter.title })
     );

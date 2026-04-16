@@ -1,11 +1,6 @@
 import whatWeDoBridgeImage from "@/assets/Franklin.jpg";
 import whatWeDoBridgeMirrorImage from "@/assets/Pittard.jpg";
-
-export type WhatWeDoProcessStep = {
-  step: string;
-  title: string;
-  body: string;
-};
+import whatWeDoStrategyImage from "@/assets/STRATEGY.webp";
 
 export type WhatWeDoHeroContent = {
   eyebrow: string;
@@ -16,13 +11,6 @@ export type WhatWeDoHeroContent = {
 export type WhatWeDoIntroContent = {
   title: string;
   paragraphs: string[];
-};
-
-export type WhatWeDoProcessIntroContent = {
-  title: string;
-  bodyStart: string;
-  bodyHighlight: string;
-  bodyEnd: string;
 };
 
 export type WhatWeDoUniverseContent = {
@@ -95,37 +83,6 @@ export const whatWeDoIntro: WhatWeDoIntroContent = {
   ],
 };
 
-export const whatWeDoProcessIntro: WhatWeDoProcessIntroContent = {
-  title: "Our Step-By-Step Approach To Land Development",
-  bodyStart: "We start with a site review and move through ",
-  bodyHighlight: "zoning, permitting, and planning,",
-  bodyEnd:
-    " then handle the full build. From raw land to finished projects, we manage each step to keep things clear, on track, and built right.",
-};
-
-export const whatWeDoProcessSteps: WhatWeDoProcessStep[] = [
-  {
-    step: "01",
-    title: "Acquire with Edge",
-    body: "Source and control high-quality land positions through proprietary channels, local relationships, and disciplined underwriting. We focus on assets in structurally advantaged markets with clear demand drivers and favorable long-term fundamentals. Every acquisition is grounded in a defined path to value creation.",
-  },
-  {
-    step: "02",
-    title: "Entitle for Maximum Value",
-    body: "Drive the entitlement and planning process to unlock the highest and best use of each site. We manage zoning, approvals, and site design with precision, reducing risk, increasing certainty, and positioning the asset for institutional-quality execution. This phase transforms land into a financeable, development-ready investment.",
-  },
-  {
-    step: "03",
-    title: "Select the Optimal Strategy",
-    body: "Determine the highest-value execution path based on market dynamics, capital efficiency, and risk-adjusted returns. We maintain full flexibility, pursuing vertical development, structuring joint ventures with leading operators, or monetizing the asset through a sale. Capital is allocated where it is most effective, not constrained by a fixed model.",
-  },
-  {
-    step: "04",
-    title: "Execute & Realize Returns",
-    body: "Execute with speed and discipline to capture value and deliver strong outcomes. We focus on clean transactions, aligned partnerships, and efficient capital recycling, whether through a land sale, structured JV, or selective long-term hold. Each project is managed with a clear objective: maximize returns while preserving optionality.",
-  },
-];
-
 export const whatWeDoUniverse: WhatWeDoUniverseContent = {
   title: "Radius Development Universe",
   body: "Radius operates across four primary sectors, with each opportunity shaped through disciplined land strategy, development judgment, and execution readiness.",
@@ -162,9 +119,9 @@ export const whatWeDoFrameworkChapters: WhatWeDoFrameworkChapter[] = [
       "Radius studies growth patterns, supply pipelines, and demand signals early so each opportunity is positioned against the realities of its market, not assumptions.",
       "We use market strategy to inform product mix, phasing, and timing before committing capital, helping each site move forward with clearer conviction, stronger economics, and a cleaner path to execution.",
     ],
-    image: whatWeDoBridgeMirrorImage,
-    alt: "Pittard residential land plan showing lot layout and circulation",
-    caption: "Pittard",
+    image: whatWeDoStrategyImage,
+    alt: "Strategic acquisition planning image",
+    caption: "Strategy",
     tone: "gold",
     proofPoints: [
       { label: "Growth Pattern Review" },
