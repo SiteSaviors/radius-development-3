@@ -2,7 +2,7 @@ import type { CSSProperties, KeyboardEvent } from "react";
 import { useEffect, useRef, useState } from "react";
 import whatWeDoHeroBg from "@/assets/WHAT_WE_DO.webp";
 import whatWeDoHeroMobileBg from "@/assets/WWD-HERO-MOB.webp";
-import universeCommercialImage from "@/assets/Cary-E.jpg";
+import universeCommercialImage from "@/assets/CARY-E.jpg";
 import universeMixedUseImage from "@/assets/Franklin.jpg";
 import universeResidentialImage from "@/assets/Pittard.jpg";
 import universeRetailImage from "@/assets/lux-retail.jpg";
