@@ -2,6 +2,7 @@ import whatWeDoBridgeImage from "@/assets/Franklin.jpg";
 import whatWeDoBridgeMirrorImage from "@/assets/Pittard.jpg";
 import whatWeDoStrategyImage from "@/assets/STRATEGY.webp";
 import whatWeDoEntitlementImage from "@/assets/ENTITLEMENT.webp";
+import whatWeDoCapitalImage from "@/assets/CAPITAL.webp";
 
 export type WhatWeDoHeroContent = {
   eyebrow: string;
@@ -162,9 +163,9 @@ export const whatWeDoFrameworkChapters: WhatWeDoFrameworkChapter[] = [
       "Radius determines the highest-value execution path based on market dynamics, capital efficiency, and risk-adjusted returns. We evaluate whether to pursue vertical development, structure a joint venture with the right operator, or monetize the asset through a sale.",
       "That flexibility allows capital to be allocated where it is most effective rather than forced into a fixed model. The result is a cleaner strategy, stronger partner alignment, and better control over how value is ultimately realized.",
     ],
-    image: whatWeDoBridgeMirrorImage,
-    alt: "Pittard residential land plan showing lot layout and circulation",
-    caption: "Pittard",
+    image: whatWeDoCapitalImage,
+    alt: "Capital strategy planning image",
+    caption: "Capital",
     tone: "gold",
     proofPoints: [
       { label: "Execution Path Selection" },
