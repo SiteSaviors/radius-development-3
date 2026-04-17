@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { fireEvent, render, screen, within } from "@testing-library/react";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
 import { describe, expect, it, vi } from "vitest";
 import { homepageAdvantageContent } from "@/content/homepageAdvantage";
@@ -42,7 +42,6 @@ describe("what we do page", () => {
     expect(screen.getByRole("region", { name: whatWeDoFrameworkHandoff.eyebrow })).toBeInTheDocument();
     expect(screen.queryByText("Value creation starts before the site reaches the market.")).not.toBeInTheDocument();
     expect(screen.queryByText(/Radius combines early conviction/i)).not.toBeInTheDocument();
-    expect(screen.queryByText("THE RADIUS APPROACH")).not.toBeInTheDocument();
 
     expect(screen.getByText(whatWeDoFrameworkHandoff.eyebrow)).toBeInTheDocument();
     whatWeDoFrameworkHandoff.items.forEach((item) => {
@@ -69,6 +68,11 @@ describe("what we do page", () => {
     expect(screen.queryByText("Our Step-By-Step Approach To Land Development")).not.toBeInTheDocument();
     expect(screen.queryByRole("heading", { name: "Acquire with Edge" })).not.toBeInTheDocument();
     expect(screen.queryByRole("heading", { name: "Execute & Realize Returns" })).not.toBeInTheDocument();
+    const desktopBoard = screen.getByRole("group", { name: "Market segments desktop board" });
+    const mobileBoard = screen.getByRole("group", { name: "Market segments mobile board" });
+    expect(within(desktopBoard).getAllByRole("tab")).toHaveLength(4);
+    expect(within(mobileBoard).getAllByRole("button")).toHaveLength(4);
+    expect(document.querySelector(".wwd-universe-plate")).toBeNull();
     expect(screen.getByRole("link", { name: "Contact Radius" })).toHaveAttribute("href", "/#contact");
   });
 
@@ -77,8 +81,14 @@ describe("what we do page", () => {
 
     const frameworkSection = screen.getByRole("region", { name: whatWeDoFrameworkHandoff.eyebrow });
     const universeSection = screen.getByRole("region", { name: whatWeDoUniverse.title });
-    const residentialButton = screen.getByRole("button", { name: "Residential" });
-    const residentialContent = document.getElementById("wwd-uc-content-residential");
+    const desktopBoard = screen.getByRole("group", { name: "Market segments desktop board" });
+    const mobileBoard = screen.getByRole("group", { name: "Market segments mobile board" });
+    const residentialTab = within(desktopBoard).getByRole("tab", { name: "Residential" });
+    const commercialTab = within(desktopBoard).getByRole("tab", { name: "Commercial" });
+    const residentialPanel = document.getElementById("wwd-segment-panel-residential");
+    const commercialPanel = document.getElementById("wwd-segment-panel-commercial");
+    const residentialMobileButton = within(mobileBoard).getByRole("button", { name: "Residential" });
+    const residentialMobilePanel = document.getElementById("wwd-segment-mobile-panel-residential");
 
     expect(frameworkSection.compareDocumentPosition(universeSection) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
     const chapterHeadings = whatWeDoFrameworkChapters.map((chapter) =>
@@ -90,21 +100,34 @@ describe("what we do page", () => {
       ).toBeTruthy();
     });
     expect(screen.getByRole("heading", { name: whatWeDoUniverse.title })).toBeInTheDocument();
-    expect(residentialButton).toHaveAttribute("aria-expanded", "false");
-    expect(residentialContent).toHaveAttribute("aria-hidden", "true");
-    expect(screen.getByRole("button", { name: "Commercial" })).toBeInTheDocument();
+    expect(commercialTab).toHaveAttribute("aria-selected", "false");
+    expect(commercialPanel).toHaveAttribute("aria-hidden", "true");
+    expect(residentialTab).toHaveAttribute("aria-selected", "false");
+    expect(residentialPanel).toHaveAttribute("aria-hidden", "true");
+    expect(residentialMobileButton).toHaveAttribute("aria-expanded", "false");
+    expect(residentialMobilePanel).toHaveAttribute("aria-hidden", "true");
 
-    fireEvent.click(residentialButton);
+    fireEvent.click(residentialTab);
 
-    expect(screen.getByRole("heading", { name: "Residential" })).toBeInTheDocument();
-    expect(screen.getByText("Multifamily")).toBeInTheDocument();
-    expect(residentialButton).toHaveAttribute("aria-expanded", "true");
-    expect(residentialContent).toHaveAttribute("aria-hidden", "false");
+    expect(residentialTab).toHaveAttribute("aria-selected", "true");
+    expect(residentialPanel).toHaveAttribute("aria-hidden", "false");
+    expect(commercialTab).toHaveAttribute("aria-selected", "false");
+    expect(commercialPanel).toHaveAttribute("aria-hidden", "true");
 
-    fireEvent.click(residentialButton);
+    fireEvent.click(residentialTab);
 
-    expect(residentialButton).toHaveAttribute("aria-expanded", "false");
-    expect(residentialContent).toHaveAttribute("aria-hidden", "true");
+    expect(residentialTab).toHaveAttribute("aria-selected", "false");
+    expect(residentialPanel).toHaveAttribute("aria-hidden", "true");
+
+    fireEvent.click(residentialMobileButton);
+
+    expect(residentialMobileButton).toHaveAttribute("aria-expanded", "true");
+    expect(residentialMobilePanel).toHaveAttribute("aria-hidden", "false");
+
+    fireEvent.click(residentialMobileButton);
+
+    expect(residentialMobileButton).toHaveAttribute("aria-expanded", "false");
+    expect(residentialMobilePanel).toHaveAttribute("aria-hidden", "true");
   });
 
   it("uses the standalone what we do route in shared header and footer links", () => {

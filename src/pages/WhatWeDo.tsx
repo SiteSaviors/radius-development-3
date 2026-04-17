@@ -1,6 +1,11 @@
-import { useEffect, useState } from "react";
+import type { CSSProperties, KeyboardEvent } from "react";
+import { useEffect, useRef, useState } from "react";
 import whatWeDoHeroBg from "@/assets/WHAT_WE_DO.webp";
 import whatWeDoHeroMobileBg from "@/assets/WWD-HERO-MOB.webp";
+import universeCommercialImage from "@/assets/Cary-E.jpg";
+import universeMixedUseImage from "@/assets/Franklin.jpg";
+import universeResidentialImage from "@/assets/Pittard.jpg";
+import universeRetailImage from "@/assets/lux-retail.jpg";
 import LazyBackground from "@/components/media/LazyBackground";
 import SiteFooter from "@/components/site/SiteFooter";
 import SiteHeader from "@/components/site/SiteHeader";
@@ -15,8 +20,38 @@ import {
 } from "@/content/whatWeDo";
 import useRadiusCursor from "@/hooks/useRadiusCursor";
 
+const universeQuadrantClasses = [
+  "top-left",
+  "top-right",
+  "bottom-left",
+  "bottom-right",
+] as const;
+
+const universeSectorMeta = {
+  residential: {
+    image: universeResidentialImage,
+    accentRgb: "124, 164, 102",
+  },
+  retail: {
+    image: universeRetailImage,
+    accentRgb: "181, 138, 61",
+  },
+  commercial: {
+    image: universeCommercialImage,
+    accentRgb: "104, 136, 190",
+  },
+  "mixed-use": {
+    image: universeMixedUseImage,
+    accentRgb: "161, 115, 92",
+  },
+} as const;
+
 const WhatWeDo = () => {
-  const [activeUniverseSectorId, setActiveUniverseSectorId] = useState<string | null>(null);
+  type UniverseSectorId = (typeof whatWeDoUniverseSectors)[number]["id"];
+
+  const [activeDesktopSectorId, setActiveDesktopSectorId] = useState<UniverseSectorId | null>(null);
+  const [activeMobileSectorId, setActiveMobileSectorId] = useState<UniverseSectorId | null>(null);
+  const desktopTileRefs = useRef<Array<HTMLButtonElement | null>>([]);
 
   useRadiusCursor();
 
@@ -54,6 +89,46 @@ const WhatWeDo = () => {
       cancelAnimationFrame(raf);
     };
   }, []);
+
+  const handleDesktopSectorKeyDown = (
+    event: KeyboardEvent<HTMLButtonElement>,
+    index: number,
+    sectorId: UniverseSectorId
+  ) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      setActiveDesktopSectorId((current) => (current === sectorId ? null : sectorId));
+      return;
+    }
+
+    let nextIndex = index;
+
+    switch (event.key) {
+      case "ArrowRight":
+        nextIndex = index % 2 === 0 ? index + 1 : index;
+        break;
+      case "ArrowLeft":
+        nextIndex = index % 2 === 1 ? index - 1 : index;
+        break;
+      case "ArrowDown":
+        nextIndex = index < 2 ? index + 2 : index;
+        break;
+      case "ArrowUp":
+        nextIndex = index >= 2 ? index - 2 : index;
+        break;
+      case "Home":
+        nextIndex = 0;
+        break;
+      case "End":
+        nextIndex = whatWeDoUniverseSectors.length - 1;
+        break;
+      default:
+        return;
+    }
+
+    event.preventDefault();
+    desktopTileRefs.current[nextIndex]?.focus();
+  };
 
   return (
     <>
@@ -160,49 +235,177 @@ const WhatWeDo = () => {
             </div>
 
             <div className="wwd-universe-stage">
-              <div className={cn('wwd-universe-board', { 'wwd-universe-board--active': !!activeUniverseSectorId })}>
-                <div className="wwd-universe-plate">
-                  <div className="wwd-universe-row">
-                    {whatWeDoUniverseSectors.map((sector) => {
-                      const isActive = activeUniverseSectorId === sector.id;
-                      return (
-                        <div
-                          key={sector.id}
-                          className={cn(`wwd-universe-col wwd-universe-col--${sector.id}`, { 'is-active': isActive })}
-                          tabIndex={0}
-                          role="button"
-                          aria-expanded={isActive}
-                          aria-controls={`wwd-uc-content-${sector.id}`}
-                          onClick={() => setActiveUniverseSectorId(isActive ? null : sector.id)}
-                          onKeyDown={(e) => {
-                            if (e.key === 'Enter' || e.key === ' ') {
-                              e.preventDefault();
-                              setActiveUniverseSectorId(isActive ? null : sector.id);
-                            }
+              <div
+                className="wwd-universe-board wwd-universe-board--desktop"
+                role="group"
+                aria-label="Market segments desktop board"
+              >
+                <div
+                  className="wwd-universe-grid"
+                  role="tablist"
+                  aria-label="Market segments"
+                  data-active-position={
+                    activeDesktopSectorId
+                      ? universeQuadrantClasses[
+                          Math.max(
+                            0,
+                            whatWeDoUniverseSectors.findIndex((sector) => sector.id === activeDesktopSectorId)
+                          )
+                        ]
+                      : undefined
+                  }
+                  data-expanded={activeDesktopSectorId ? "true" : "false"}
+                >
+                  {whatWeDoUniverseSectors.map((sector, index) => {
+                    const positionClass = universeQuadrantClasses[index];
+                    const isActive = activeDesktopSectorId === sector.id;
+                    const sectorMeta = universeSectorMeta[sector.id as keyof typeof universeSectorMeta];
+
+                    return (
+                      <article
+                        key={sector.id}
+                        data-sector={sector.id}
+                        className={cn(
+                          "wwd-segment-tile",
+                          `wwd-segment-tile--${positionClass}`,
+                          { "is-active": isActive }
+                        )}
+                        style={{ "--segment-accent-rgb": sectorMeta.accentRgb } as CSSProperties}
+                      >
+                        <button
+                          ref={(node) => {
+                            desktopTileRefs.current[index] = node;
                           }}
+                          type="button"
+                          className="wwd-segment-tile__trigger"
+                          role="tab"
+                          id={`wwd-segment-tab-${sector.id}`}
+                          aria-label={sector.title}
+                          aria-selected={isActive}
+                          aria-controls={`wwd-segment-panel-${sector.id}`}
+                          tabIndex={isActive || (!activeDesktopSectorId && index === 0) ? 0 : -1}
+                          onClick={() =>
+                            setActiveDesktopSectorId((current) =>
+                              current === sector.id ? null : sector.id
+                            )
+                          }
+                          onKeyDown={(event) => handleDesktopSectorKeyDown(event, index, sector.id)}
                         >
-                          <span className="wwd-uc-bg" aria-hidden="true"></span>
-                          <span className="wwd-uc-title" id={`wwd-uc-title-${sector.id}`}>
-                            {sector.title}
+                          <span className="wwd-segment-tile__surface" aria-hidden="true"></span>
+                          <span className="wwd-segment-tile__eyebrow-line" aria-hidden="true"></span>
+                          <span className="wwd-segment-tile__title-wrap">
+                            <span className="wwd-segment-tile__title">{sector.title}</span>
                           </span>
-                          <div
-                            className={cn('wwd-uc-content', { 'has-columns': sector.items.length >= 4 })}
-                            id={`wwd-uc-content-${sector.id}`}
-                            aria-hidden={!isActive}
-                            aria-labelledby={`wwd-uc-title-${sector.id}`}
+                          <span className="wwd-segment-tile__icon" aria-hidden="true">
+                            {isActive ? "×" : "+"}
+                          </span>
+                        </button>
+
+                        <div
+                          className="wwd-segment-tile__panel"
+                          id={`wwd-segment-panel-${sector.id}`}
+                          role="tabpanel"
+                          aria-hidden={!isActive}
+                          aria-labelledby={`wwd-segment-tab-${sector.id}`}
+                        >
+                          <ul
+                            className={cn("wwd-segment-tile__list", {
+                              "wwd-segment-tile__list--columns": sector.items.length >= 4,
+                            })}
                           >
-                            <h3 className="wwd-uc-content-title">{sector.title}</h3>
-                            <ul className="wwd-uc-list">
-                              {sector.items.map((item) => (
-                                <li key={item}>{item}</li>
-                              ))}
-                            </ul>
-                          </div>
-                          <span className="wwd-uc-icon" aria-hidden="true">+</span>
+                            {sector.items.map((item) => (
+                              <li key={item}>{item}</li>
+                            ))}
+                          </ul>
+                          <div
+                            className="wwd-segment-tile__media"
+                            aria-hidden="true"
+                            style={{ backgroundImage: `url(${sectorMeta.image})` }}
+                          ></div>
                         </div>
-                      );
-                    })}
-                  </div>
+                      </article>
+                    );
+                  })}
+                </div>
+              </div>
+
+              <div
+                className="wwd-universe-board-mobile"
+                role="group"
+                aria-label="Market segments mobile board"
+              >
+                <div
+                  className={cn("wwd-universe-grid-mobile", {
+                    "is-active": !!activeMobileSectorId,
+                  })}
+                  data-active-position={
+                    activeMobileSectorId
+                      ? universeQuadrantClasses[
+                          Math.max(
+                            0,
+                            whatWeDoUniverseSectors.findIndex((sector) => sector.id === activeMobileSectorId)
+                          )
+                        ]
+                      : undefined
+                  }
+                >
+                  {whatWeDoUniverseSectors.map((sector, index) => {
+                    const positionClass = universeQuadrantClasses[index];
+                    const isActive = activeMobileSectorId === sector.id;
+                    const sectorMeta = universeSectorMeta[sector.id as keyof typeof universeSectorMeta];
+
+                    return (
+                      <article
+                        key={sector.id}
+                        data-sector={sector.id}
+                        className={cn(
+                          "wwd-segment-mobile",
+                          `wwd-segment-mobile--${positionClass}`,
+                          { "is-active": isActive }
+                        )}
+                        style={{ "--segment-accent-rgb": sectorMeta.accentRgb } as CSSProperties}
+                      >
+                        <button
+                          type="button"
+                          className="wwd-segment-mobile__trigger"
+                          aria-label={sector.title}
+                          aria-expanded={isActive}
+                          aria-controls={`wwd-segment-mobile-panel-${sector.id}`}
+                          onClick={() =>
+                            setActiveMobileSectorId((current) =>
+                              current === sector.id ? null : sector.id
+                            )
+                          }
+                          >
+                          <span className="wwd-segment-mobile__surface" aria-hidden="true"></span>
+                          <span className="wwd-segment-mobile__eyebrow-line" aria-hidden="true"></span>
+                          <span className="wwd-segment-mobile__title-wrap">
+                            <span className="wwd-segment-mobile__title">{sector.title}</span>
+                          </span>
+                          <span className="wwd-segment-mobile__icon" aria-hidden="true">
+                            {isActive ? "×" : "+"}
+                          </span>
+                        </button>
+
+                        <div
+                          className="wwd-segment-mobile__panel"
+                          id={`wwd-segment-mobile-panel-${sector.id}`}
+                          aria-hidden={!isActive}
+                        >
+                          <ul className="wwd-segment-mobile__list">
+                            {sector.items.map((item) => (
+                              <li key={item}>{item}</li>
+                            ))}
+                          </ul>
+                          <div
+                            className="wwd-segment-mobile__media"
+                            aria-hidden="true"
+                            style={{ backgroundImage: `url(${sectorMeta.image})` }}
+                          ></div>
+                        </div>
+                      </article>
+                    );
+                  })}
                 </div>
               </div>
             </div>

@@ -213,9 +213,7 @@ export const whatWeDoUniverseSectors: WhatWeDoUniverseSector[] = [
     title: "Residential",
     items: [
       "Multifamily",
-      "Build-to-Rent",
       "Townhomes",
-      "Single Family Rentals",
       "Student Housing",
       "Senior Housing",
     ],
