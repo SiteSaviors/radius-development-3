@@ -155,7 +155,7 @@ const Projects = () => {
               <div className="ey">Investor Access</div>
               <div className="st">Interested in Learning More?</div>
               <p className="projects-cta-body">
-                We&apos;re always looking to partner with accredited investors who share our vision for Central Texas. Join us to access exclusive opportunities, local expertise, and a team committed to helping you achieve your goals.
+                We&apos;re always looking to partner with accredited investors who share our vision for real estate value creation. Join us to access exclusive opportunities, local expertise, and a team committed to helping you achieve your goals.
               </p>
               <div className="projects-cta-actions">
                 <a href="#" className="bp">Become an Investor</a>

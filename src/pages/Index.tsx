@@ -272,7 +272,7 @@ const Index = () => {
             <div className="ey rv">Investor Access</div>
             <div className="st rv d3">Interested in Learning More?</div>
             <p className="investorbody rv d4">
-              We&apos;re always looking to partner with accredited investors who share our vision for Central Texas. Join us to access exclusive opportunities, local expertise, and a team committed to helping you achieve your goals.
+              We&apos;re always looking to partner with accredited investors who share our vision for real estate value creation. Join us to access exclusive opportunities, local expertise, and a team committed to helping you achieve your goals.
             </p>
             <div className="investoractions rv d4">
               <a href="#" className="bp">Become an Investor</a>
