@@ -3,6 +3,7 @@ import whatWeDoBridgeMirrorImage from "@/assets/Pittard.jpg";
 import whatWeDoStrategyImage from "@/assets/STRATEGY.webp";
 import whatWeDoEntitlementImage from "@/assets/ENTITLEMENT.webp";
 import whatWeDoCapitalImage from "@/assets/CAPITAL.webp";
+import whatWeDoValueRealizationImage from "@/assets/value-realization.webp";
 
 export type WhatWeDoHeroContent = {
   eyebrow: string;
@@ -184,9 +185,9 @@ export const whatWeDoFrameworkChapters: WhatWeDoFrameworkChapter[] = [
       "Radius approaches each opportunity with a value-realization mindset rooted in land strategy, development intelligence, and institutional alignment.",
       "From early sourcing to downstream execution, our role is to make complex opportunities cleaner, stronger, and more actionable so value can be captured with discipline, preserved through execution, and realized through the right outcome.",
     ],
-    image: whatWeDoBridgeImage,
-    alt: "The Franklin mixed-use development exterior at sunset",
-    caption: "The Franklin",
+    image: whatWeDoValueRealizationImage,
+    alt: "Value realization planning image",
+    caption: "Value Realization",
     tone: "green",
     proofPoints: [
       { label: "Execution Discipline" },
