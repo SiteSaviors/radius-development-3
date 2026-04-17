@@ -3230,7 +3230,7 @@ h1 em{font-style:italic;color:rgba(255,255,255,.6)}
   }
 }
 .wwd-universe{
-  padding:32px 64px 112px;
+  padding:32px 64px 72px;
   background:var(--team-beige);
 }
 .wwd-universe-inner{
@@ -3642,8 +3642,8 @@ h1 em{font-style:italic;color:rgba(255,255,255,.6)}
   border-color:rgba(var(--segment-accent-rgb),.28);
 }
 .wwd-cta{
-  padding-top:28px;
-  padding-bottom:112px;
+  padding-top:88px;
+  padding-bottom:88px;
 }
 .wwd-cta-body{
   max-width:620px;
@@ -4764,7 +4764,7 @@ footer{padding:72px 48px 42px;border-top:1px solid var(--hl);background:#000;dis
   }
   .wwd-cta-title{font-size:clamp(30px,8vw,38px)}
   .wwd-cta-body{font-size:13px;line-height:1.8}
-  .wwd-universe{padding:18px 20px 72px}
+  .wwd-universe{padding:18px 20px 40px}
   .wwd-universe-head{margin-bottom:28px}
   .wwd-universe-eyebrow{gap:14px;margin-bottom:14px;font-size:9px}
   .wwd-universe-title{font-size:clamp(30px,8vw,40px)}
@@ -4814,7 +4814,7 @@ footer{padding:72px 48px 42px;border-top:1px solid var(--hl);background:#000;dis
     font-size:12.5px;
     line-height:1.48;
   }
-  .wwd-cta{padding-top:12px;padding-bottom:64px}
+  .wwd-cta{padding-top:56px;padding-bottom:64px}
   .wwd-cta-body{margin-bottom:24px}
   .wwd-cta-actions .bp{width:100%;justify-content:center}
 

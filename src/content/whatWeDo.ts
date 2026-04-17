@@ -179,7 +179,7 @@ export const whatWeDoFrameworkChapters: WhatWeDoFrameworkChapter[] = [
     sequence: "04",
     navLabel: "Value Realization",
     layout: "media-right",
-    title: "We don't merely acquire value. We realize it.",
+    title: "We don't merely acquire value. We create it.",
     paragraphs: [
       "Radius approaches each opportunity with a value-realization mindset rooted in land strategy, development intelligence, and institutional alignment.",
       "From early sourcing to downstream execution, our role is to make complex opportunities cleaner, stronger, and more actionable so value can be captured with discipline, preserved through execution, and realized through the right outcome.",
