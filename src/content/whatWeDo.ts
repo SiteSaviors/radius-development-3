@@ -86,7 +86,7 @@ export const whatWeDoIntro: WhatWeDoIntroContent = {
 };
 
 export const whatWeDoUniverse: WhatWeDoUniverseContent = {
-  title: "Radius Development Universe",
+  title: "Where Radius Creates Value",
   body: "Radius operates across four primary sectors, with each opportunity shaped through disciplined land strategy, development judgment, and execution readiness.",
 };
 
@@ -198,7 +198,7 @@ export const whatWeDoFrameworkChapters: WhatWeDoFrameworkChapter[] = [
 ];
 
 export const whatWeDoFrameworkHandoff: WhatWeDoFrameworkHandoff = {
-  eyebrow: "THE OPERATING SEQUENCE",
+  eyebrow: "THE RADIUS APPROACH",
   items: [
     { label: "Strategic Acquisition" },
     { label: "Entitlement Strategy" },

@@ -3231,7 +3231,7 @@ h1 em{font-style:italic;color:rgba(255,255,255,.6)}
 }
 .wwd-universe{
   padding:8px 64px 48px;
-  background:#020202;
+  background:var(--team-beige);
 }
 .wwd-universe-inner{
   max-width:1440px;
@@ -3253,13 +3253,13 @@ h1 em{font-style:italic;color:rgba(255,255,255,.6)}
   font-weight:700;
   letter-spacing:.26em;
   text-transform:uppercase;
-  color:rgba(255,255,255,.62);
+  color:rgba(27,42,74,.62);
 }
 .wwd-universe-eyebrow::before{
   content:'';
   width:min(100%,220px);
   height:2px;
-  background:var(--ac);
+  background:rgba(79,125,72,.9);
 }
 .wwd-universe-title{
   font-family:'Poppins',sans-serif;
@@ -3267,7 +3267,7 @@ h1 em{font-style:italic;color:rgba(255,255,255,.6)}
   font-weight:600;
   line-height:.96;
   letter-spacing:-.055em;
-  color:#fff;
+  color:#1B2A4A;
   margin:0;
 }
 .wwd-universe-body{
@@ -3277,7 +3277,7 @@ h1 em{font-style:italic;color:rgba(255,255,255,.6)}
   font-weight:400;
   line-height:1.84;
   letter-spacing:.02em;
-  color:rgba(255,255,255,.68);
+  color:rgba(0,0,0,.72);
 }
 .wwd-universe-stage{
   width:100%;
