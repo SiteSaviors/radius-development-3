@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import companyHeroBg from "@/assets/company-hero.jpg";
+import companyHeroMobileBg from "@/assets/RADIUS-MOBILE.jpg";
 import CompanyMissionWheel from "@/components/company/CompanyMissionWheel";
 import CompanyTeamGrid from "@/components/company/CompanyTeamGrid";
 import LazyBackground from "@/components/media/LazyBackground";
@@ -7,8 +8,6 @@ import SiteFooter from "@/components/site/SiteFooter";
 import SiteHeader from "@/components/site/SiteHeader";
 import { companyAbout, companyHero, companyMission, companyNumbers, companyTeam } from "@/content/company";
 import useRadiusCursor from "@/hooks/useRadiusCursor";
-
-const companyHeroMobileBg = companyHeroBg;
 
 const formatCompanyStatValue = (value: number, decimals: number) =>
   value.toLocaleString("en-US", {
