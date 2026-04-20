@@ -4407,25 +4407,28 @@ a.contact-detail-value:hover{
 }
 
 /* FOOTER */
-footer.site-footer{padding:72px 48px 42px;border-top:1px solid var(--hl);background:#000;display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.75fr) minmax(0,1fr);gap:56px}
-.fbrand{max-width:360px}
-.flogo{font-family:'Safira March',serif;font-size:34px;font-weight:400;letter-spacing:.04em;text-transform:lowercase;color:#fff;line-height:1;margin-bottom:18px;text-decoration:none;display:inline-block}
-.ftag{font-size:11.5px;font-weight:300;letter-spacing:.075em;color:rgba(255,255,255,.42);line-height:1.82;max-width:320px}
-.fmeta{margin-top:18px;font-size:10px;font-weight:300;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.24);line-height:1.7;max-width:340px}
+footer.site-footer{padding:86px 48px 52px;border-top:1px solid var(--hl);background:
+  radial-gradient(circle at 12% 18%,rgba(255,255,255,.03) 0%,transparent 24%),
+  linear-gradient(180deg,rgba(255,255,255,.01) 0%,rgba(255,255,255,0) 18%),
+  #000;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(220px,.72fr) minmax(260px,.96fr);gap:64px}
+.fbrand{max-width:380px}
+.flogo{font-family:'Safira March',serif;font-size:36px;font-weight:400;letter-spacing:.04em;text-transform:lowercase;color:#fff;line-height:1;margin-bottom:22px;text-decoration:none;display:inline-block}
+.ftag{font-size:12px;font-weight:300;letter-spacing:.065em;color:rgba(255,255,255,.48);line-height:1.86;max-width:330px}
+.fmeta{margin-top:20px;font-size:10px;font-weight:300;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.22);line-height:1.8;max-width:340px}
 .fcol{min-width:0}
-.fct{font-family:'Syne',sans-serif;font-size:8px;font-weight:700;letter-spacing:.35em;text-transform:uppercase;color:rgba(255,255,255,.24);margin-bottom:20px}
-.flinks{list-style:none;display:flex;flex-direction:column;gap:12px}
-.flinks a{font-size:11.5px;font-weight:300;letter-spacing:.05em;color:rgba(255,255,255,.46);text-decoration:none;transition:color .2s;cursor:none}
+.fct{font-family:'Syne',sans-serif;font-size:8px;font-weight:700;letter-spacing:.35em;text-transform:uppercase;color:rgba(255,255,255,.28);margin-bottom:22px}
+.flinks{list-style:none;display:flex;flex-direction:column;gap:14px}
+.flinks a{font-size:12px;font-weight:300;letter-spacing:.045em;color:rgba(255,255,255,.52);text-decoration:none;transition:color .2s;cursor:none;line-height:1.7}
 .flinks a:hover{color:#fff}
-.fcontact{max-width:360px}
-.fcontact-list{display:grid;gap:18px}
+.fcontact{max-width:380px}
+.fcontact-list{display:grid;gap:20px}
 .fcontact-item{display:grid;gap:8px}
-.fcontact-label{font-family:'Syne',sans-serif;font-size:8px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:rgba(255,255,255,.24)}
-.fcontact-value{margin:0;font-size:11.5px;font-weight:300;letter-spacing:.05em;line-height:1.8;color:rgba(255,255,255,.58);text-decoration:none;font-style:normal;transition:color .2s}
+.fcontact-label{font-family:'Syne',sans-serif;font-size:8px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:rgba(255,255,255,.26)}
+.fcontact-value{margin:0;font-size:12px;font-weight:300;letter-spacing:.045em;line-height:1.82;color:rgba(255,255,255,.58);text-decoration:none;font-style:normal;transition:color .2s}
 a.fcontact-value:hover{color:#fff}
-.fcontact-address{max-width:280px}
-.fbot{padding:22px 48px;border-top:1px solid var(--hl);background:#000;display:flex;justify-content:space-between;align-items:center;gap:24px}
-.fcp{font-size:10px;font-weight:300;letter-spacing:.1em;color:rgba(255,255,255,.22)}
+.fcontact-address{max-width:292px}
+.fbot{padding:20px 48px 28px;border-top:1px solid rgba(255,255,255,.06);background:#000;display:flex;justify-content:center;align-items:center;gap:24px}
+.fcp{font-size:10px;font-weight:300;letter-spacing:.1em;color:rgba(255,255,255,.22);text-align:center}
 
 @media(max-width:1100px){
   .projects-grid,
@@ -4433,6 +4436,8 @@ a.fcontact-value:hover{color:#fff}
   .project-detail-intro,
   .project-detail-sections{grid-template-columns:1fr}
   .company-team-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  footer.site-footer{grid-template-columns:minmax(0,1fr) minmax(220px,.88fr);gap:44px}
+  .fbrand{max-width:none;grid-column:1 / -1}
   .contact-shell{grid-template-columns:1fr;gap:36px}
   .contact-copy{max-width:none;padding-top:0}
   .contact-form-card{max-width:760px}
@@ -5594,13 +5599,33 @@ a.fcontact-value:hover{color:#fff}
   .project-related-grid{grid-template-columns:1fr}
 
   /* Footer */
-  footer.site-footer{grid-template-columns:1fr;gap:32px;padding:48px 20px 32px}
+  footer.site-footer{grid-template-columns:1fr;gap:28px;padding:56px 20px 34px}
   .fbrand{max-width:none}
-  .flogo{font-size:30px;margin-bottom:14px}
+  .flogo{font-size:32px;margin-bottom:16px}
   .ftag{max-width:none}
-  .fmeta{max-width:none;margin-top:14px}
+  .fmeta{max-width:none;margin-top:16px}
+  .fcol,
+  .fcontact{
+    position:relative;
+    padding-top:22px;
+  }
+  .fcol::before,
+  .fcontact::before{
+    content:'';
+    position:absolute;
+    left:0;
+    right:0;
+    top:0;
+    height:1px;
+    background:rgba(255,255,255,.08);
+  }
+  .fct{margin-bottom:18px}
+  .flinks{gap:12px}
+  .flinks a{font-size:11.5px}
   .fcontact{max-width:none}
-  .fcontact-list{gap:16px}
+  .fcontact-list{gap:18px}
+  .fcontact-item{gap:7px}
+  .fcontact-value{font-size:11.5px}
   .fcontact-address{max-width:none}
-  .fbot{padding:18px 20px;flex-direction:column;gap:12px;text-align:center}
+  .fbot{padding:18px 20px 24px;flex-direction:column;gap:10px;text-align:center}
 }

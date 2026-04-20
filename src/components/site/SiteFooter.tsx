@@ -56,7 +56,6 @@ const SiteFooter = ({ currentPath: _currentPath }: SiteFooterProps) => {
       </footer>
       <div className="fbot">
         <span className="fcp">© {currentYear} Radius Development Group. All rights reserved.</span>
-        <span className="fcp">105 Kilmayne Drive, Suite C, Cary, NC 27511</span>
       </div>
     </>
   );
