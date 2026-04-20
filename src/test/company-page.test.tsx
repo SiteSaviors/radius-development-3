@@ -63,8 +63,8 @@ describe("company page", () => {
     expect(screen.getByText("Gaurang Gala")).toBeInTheDocument();
     expect(screen.getByText("Tarek Morshed")).toBeInTheDocument();
     expect(screen.getByText("Elizabeth Eichen")).toBeInTheDocument();
+    expect(screen.getByText("Bethlehem Gonzalez")).toBeInTheDocument();
     expect(screen.getByText("Kyle Trebing")).toBeInTheDocument();
-    expect(screen.getAllByText("Additional Team Member")).toHaveLength(1);
     expect(screen.getAllByRole("button", { name: /Learn more about/i })).toHaveLength(6);
     expect(screen.getAllByRole("link", { name: /company/i })[0]).toHaveAttribute("href", "/company");
     expect(screen.getAllByRole("link", { name: /company/i })[1]).toHaveAttribute("href", "/company");
@@ -116,7 +116,7 @@ describe("company page", () => {
     expect(dialog).toBeInTheDocument();
     expect(within(dialog).getByText("Ricky Joshi")).toBeInTheDocument();
     expect(within(dialog).getByText("General Partner")).toBeInTheDocument();
-    expect(within(dialog).getByText(/Lorem ipsum dolor sit amet/i)).toBeInTheDocument();
+    expect(within(dialog).getByText(/Ricky Joshi is a General Partner and Co-Founder/i)).toBeInTheDocument();
     expect(within(dialog).getByRole("img", { name: "Portrait of Ricky Joshi" })).toBeInTheDocument();
 
     fireEvent.click(within(dialog).getByRole("button", { name: "Close" }));
@@ -124,18 +124,18 @@ describe("company page", () => {
     expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
   });
 
-  it("closes the team modal with Escape and supports placeholder members", () => {
+  it("closes the team modal with Escape for additional team members", () => {
     renderCompanyPage();
 
-    const placeholderTrigger = screen.getAllByRole("button", { name: "Learn more about Additional Team Member" })[0];
+    const bethlehemTrigger = screen.getByRole("button", { name: "Learn more about Bethlehem Gonzalez" });
 
-    fireEvent.click(placeholderTrigger);
+    fireEvent.click(bethlehemTrigger);
 
     const dialog = screen.getByRole("dialog");
-    expect(within(dialog).getByText("Additional Team Member")).toBeInTheDocument();
-    expect(within(dialog).getByText("Leadership Role")).toBeInTheDocument();
+    expect(within(dialog).getByText("Bethlehem Gonzalez")).toBeInTheDocument();
+    expect(within(dialog).getByText("Executive Assistant")).toBeInTheDocument();
     expect(
-      within(dialog).getByRole("img", { name: "Placeholder portrait for future team member" })
+      within(dialog).getByRole("img", { name: "Portrait of Bethlehem Gonzalez" })
     ).toBeInTheDocument();
 
     fireEvent.keyDown(document, { key: "Escape" });

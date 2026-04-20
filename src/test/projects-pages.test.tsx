@@ -27,7 +27,7 @@ describe("projects pages", () => {
   it("renders the archive page with all six launch projects and route-aware nav links", () => {
     renderProjectsPage();
 
-    expect(screen.getByText("Projects In Motion")).toBeInTheDocument();
+    expect(screen.getByText("Projects in Motion")).toBeInTheDocument();
     expect(screen.getByText("The Shiloh")).toBeInTheDocument();
     expect(screen.getByText("The Franklin")).toBeInTheDocument();
     expect(screen.getByText("Terraces At West Cary")).toBeInTheDocument();

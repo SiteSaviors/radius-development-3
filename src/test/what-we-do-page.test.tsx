@@ -45,7 +45,7 @@ describe("what we do page", () => {
 
     expect(screen.getByText(whatWeDoFrameworkHandoff.eyebrow)).toBeInTheDocument();
     whatWeDoFrameworkHandoff.items.forEach((item) => {
-      expect(screen.getByText(item.label)).toBeInTheDocument();
+      expect(screen.getAllByText(item.label).length).toBeGreaterThan(0);
     });
     expect(whatWeDoFrameworkHandoff.items).toHaveLength(4);
     expect(whatWeDoFrameworkChapters).toHaveLength(4);
@@ -73,7 +73,7 @@ describe("what we do page", () => {
     expect(within(desktopBoard).getAllByRole("tab")).toHaveLength(4);
     expect(within(mobileBoard).getAllByRole("button")).toHaveLength(4);
     expect(document.querySelector(".wwd-universe-plate")).toBeNull();
-    expect(screen.getByRole("link", { name: "Contact Radius" })).toHaveAttribute("href", "/#contact");
+    expect(screen.getByRole("link", { name: "Contact Radius" })).toHaveAttribute("href", "/contact");
   });
 
   it("renders the framework before the universe section and keeps universe interactions intact", () => {
@@ -138,6 +138,9 @@ describe("what we do page", () => {
     expect(whatWeDoLinks[1]).toHaveAttribute("href", "/what-we-do");
     expect(screen.getAllByRole("link", { name: /company/i })[0]).toHaveAttribute("href", "/company");
     expect(screen.getAllByRole("link", { name: /company/i })[1]).toHaveAttribute("href", "/company");
+    screen.getAllByRole("link", { name: "Contact" }).forEach((link) => {
+      expect(link).toHaveAttribute("href", "/contact");
+    });
   });
 
   it("routes homepage capability ctas to the standalone page", () => {

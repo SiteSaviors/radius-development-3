@@ -10,6 +10,7 @@ import Projects from "./pages/Projects.tsx";
 import ProjectDetail from "./pages/ProjectDetail.tsx";
 import Company from "./pages/Company.tsx";
 import WhatWeDo from "./pages/WhatWeDo.tsx";
+import Contact from "./pages/Contact.tsx";
 
 const queryClient = new QueryClient();
 
@@ -22,6 +23,7 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/company" element={<Company />} />
+          <Route path="/contact" element={<Contact />} />
           <Route path="/what-we-do" element={<WhatWeDo />} />
           <Route path="/projects" element={<Projects />} />
           <Route path="/projects/:slug" element={<ProjectDetail />} />

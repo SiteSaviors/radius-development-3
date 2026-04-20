@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-const DEFAULT_HOVER_SELECTOR = ".bp,.bg,.homepage-advantage__visual,.homepage-advantage__proof-card,.homepage-advantage__cta,.platform-card,.platform-card__cta,.fps__arrow,.fps__dot,.fps__view-all,.fps-slide__cta,.teamcard,.li,.nbtn,.flinks a,.nlinks a,.rts,.project-archive-card,.project-related-card,.filterpill,.archive-reset";
+const DEFAULT_HOVER_SELECTOR = ".bp,.bg,.homepage-advantage__visual,.homepage-advantage__proof-card,.homepage-advantage__cta,.platform-card,.platform-card__cta,.fps__arrow,.fps__dot,.fps__view-all,.fps-slide__cta,.teamcard,.li,.nbtn,.flinks a,.nlinks a,.rts,.project-archive-card,.project-related-card,.filterpill,.archive-reset,.contact-detail-value,.contact-form-submit,.contact-success-reset";
 
 const useRadiusCursor = (hoverSelector: string = DEFAULT_HOVER_SELECTOR) => {
   useEffect(() => {

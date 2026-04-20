@@ -10,12 +10,10 @@ const SiteHeader = ({ currentPath }: SiteHeaderProps) => {
   const startsTransparent =
     currentPath === "/" ||
     currentPath === "/company" ||
+    currentPath === "/contact" ||
     currentPath === "/what-we-do" ||
     currentPath === "/projects";
   const [scrolled, setScrolled] = useState(!startsTransparent);
-  const isHome = currentPath === "/";
-
-  const contactHref = isHome ? "#contact" : "/#contact";
 
   useEffect(() => {
     const onScroll = () => {
@@ -38,7 +36,7 @@ const SiteHeader = ({ currentPath }: SiteHeaderProps) => {
         <li><Link to="/what-we-do">What We Do</Link></li>
         <li><Link to="/projects">Current Projects</Link></li>
         <li><Link to="/company">Company</Link></li>
-        <li><a href={contactHref}>Contact</a></li>
+        <li><Link to="/contact">Contact</Link></li>
       </ul>
       <a href="#" className="nbtn">Investor Portal</a>
       <button
@@ -55,8 +53,8 @@ const SiteHeader = ({ currentPath }: SiteHeaderProps) => {
       <div className={`mnav${mobileNavOpen ? " open" : ""}`}>
         <Link to="/what-we-do" onClick={() => setMobileNavOpen(false)}>What We Do</Link>
         <Link to="/projects" onClick={() => setMobileNavOpen(false)}>Current Projects</Link>
-        <Link to="/company" onClick={() => setMobileNavOpen(false)}>company</Link>
-        <a href={contactHref} onClick={() => setMobileNavOpen(false)}>Contact</a>
+        <Link to="/company" onClick={() => setMobileNavOpen(false)}>Company</Link>
+        <Link to="/contact" onClick={() => setMobileNavOpen(false)}>Contact</Link>
       </div>
     </nav>
   );

@@ -255,5 +255,5 @@ export const whatWeDoCta: WhatWeDoCtaContent = {
   title: "Lead with conviction. Build with trusted partners.",
   body: "If you are evaluating land, development, or partnership opportunities, Radius is positioned to help shape a clearer path to value.",
   label: "Contact Radius",
-  href: "/#contact",
+  href: "/contact",
 };
