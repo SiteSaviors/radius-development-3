@@ -3743,7 +3743,10 @@ a.contact-detail-value:hover{
   position:relative;
   z-index:1;
   display:grid;
-  gap:14px;
+  grid-template-rows:auto minmax(0,1fr);
+  align-content:start;
+  gap:18px;
+  flex:0 0 auto;
   padding:0 20px 0;
   max-height:0;
   min-height:0;
@@ -3753,7 +3756,7 @@ a.contact-detail-value:hover{
   transition:opacity .18s ease,max-height .24s ease,padding .24s ease;
 }
 .wwd-segment-mobile__panel{
-  gap:12px;
+  gap:14px;
   padding:0 14px 0;
 }
 .wwd-segment-tile.is-active .wwd-segment-tile__trigger,
@@ -3763,11 +3766,22 @@ a.contact-detail-value:hover{
   min-height:auto;
   padding-bottom:0;
 }
+.wwd-segment-tile.is-active .wwd-segment-tile__trigger{
+  padding-top:24px;
+}
+.wwd-segment-mobile.is-active .wwd-segment-mobile__trigger{
+  padding-top:18px;
+}
 .wwd-segment-tile.is-active .wwd-segment-tile__title-wrap,
 .wwd-segment-mobile.is-active .wwd-segment-mobile__title-wrap{
   align-items:flex-start;
   text-align:left;
   max-width:calc(100% - 56px);
+  padding-top:18px;
+  gap:12px;
+}
+.wwd-segment-mobile.is-active .wwd-segment-mobile__title-wrap{
+  padding-top:14px;
 }
 .wwd-segment-tile.is-active .wwd-segment-tile__icon,
 .wwd-segment-mobile.is-active .wwd-segment-mobile__icon{
@@ -3779,14 +3793,16 @@ a.contact-detail-value:hover{
 }
 .wwd-segment-tile.is-active .wwd-segment-tile__panel{
   max-height:100%;
-  padding:0 20px 20px;
+  flex:1 1 auto;
+  padding:14px 20px 20px;
   opacity:1;
-  overflow:auto;
+  overflow:hidden;
   pointer-events:auto;
 }
 .wwd-segment-mobile.is-active .wwd-segment-mobile__panel{
   max-height:100%;
-  padding:0 14px 14px;
+  flex:1 1 auto;
+  padding:10px 14px 14px;
   opacity:1;
   overflow:auto;
   pointer-events:auto;
@@ -3797,25 +3813,26 @@ a.contact-detail-value:hover{
   margin:0;
   padding:0;
   display:grid;
-  gap:10px;
+  gap:12px;
   position:relative;
   z-index:1;
 }
 .wwd-segment-tile__list--columns{
   grid-template-columns:repeat(2,minmax(0,1fr));
-  column-gap:16px;
+  column-gap:24px;
 }
 .wwd-segment-tile__list li,
 .wwd-segment-mobile__list li{
   position:relative;
   padding-left:14px;
-  font-size:14px;
+  font-size:15px;
   font-weight:400;
-  line-height:1.55;
+  line-height:1.5;
   color:rgba(255,255,255,.76);
 }
 .wwd-segment-mobile__list li{
   font-size:13px;
+  line-height:1.45;
 }
 .wwd-segment-tile__list li::before,
 .wwd-segment-mobile__list li::before{
@@ -3832,13 +3849,18 @@ a.contact-detail-value:hover{
 .wwd-segment-mobile__media{
   position:relative;
   z-index:0;
-  flex:1;
+  align-self:stretch;
+  width:100%;
   min-height:150px;
+  height:100%;
   border-radius:14px;
   overflow:hidden;
   background-position:center center;
   background-repeat:no-repeat;
   background-size:cover;
+}
+.wwd-segment-tile__media{
+  min-height:240px;
 }
 .wwd-segment-mobile__media{
   min-height:88px;
@@ -5078,7 +5100,7 @@ a.fcontact-value:hover{color:#fff}
     padding:14px 14px 0;
   }
   .wwd-segment-mobile.is-active .wwd-segment-mobile__panel{
-    padding:0 14px 14px;
+    padding:10px 14px 14px;
   }
   .wwd-segment-mobile__list{
     gap:8px;
