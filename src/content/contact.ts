@@ -37,8 +37,8 @@ export const contactDetails: ContactDetail[] = [
   {
     id: "email",
     label: "Email Address",
-    value: "info@developnc.com",
-    href: "mailto:info@developnc.com",
+    value: "info@radiusbuilt.com",
+    href: "mailto:info@radiusbuilt.com",
   },
   {
     id: "phone",

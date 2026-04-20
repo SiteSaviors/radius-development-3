@@ -35,8 +35,8 @@ const SiteFooter = ({ currentPath: _currentPath }: SiteFooterProps) => {
           <div className="fcontact-list">
             <div className="fcontact-item">
               <div className="fcontact-label">Email Address</div>
-              <a className="fcontact-value" href="mailto:info@developnc.com">
-                info@developnc.com
+              <a className="fcontact-value" href="mailto:info@radiusbuilt.com">
+                info@radiusbuilt.com
               </a>
             </div>
             <div className="fcontact-item">

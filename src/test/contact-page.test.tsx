@@ -1,4 +1,4 @@
-import { act, fireEvent, render, screen, waitFor, within } from "@testing-library/react";
+import { fireEvent, render, screen, waitFor, within } from "@testing-library/react";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import Contact from "@/pages/Contact";
@@ -31,7 +31,7 @@ describe("contact page", () => {
         "If you are evaluating land, development, or partnership opportunities, Radius is positioned to help shape a clearer path to value."
       )
     ).toBeInTheDocument();
-    expect(within(details).getByText("info@developnc.com")).toBeInTheDocument();
+    expect(within(details).getByText("info@radiusbuilt.com")).toBeInTheDocument();
     expect(within(details).getByText("(919) 275-0109")).toBeInTheDocument();
     expect(within(details).getByText("105 Kilmayne Drive, Suite C, Cary, NC 27511")).toBeInTheDocument();
     expect(screen.getByLabelText("Name")).toBeInTheDocument();
@@ -56,9 +56,6 @@ describe("contact page", () => {
   });
 
   it("shows the inline success state when no endpoint is configured", async () => {
-    vi.useFakeTimers();
-    vi.stubGlobal("requestAnimationFrame", vi.fn(() => 0));
-    vi.stubGlobal("cancelAnimationFrame", vi.fn());
     renderContactPage();
 
     fireEvent.change(screen.getByLabelText("Name"), { target: { value: "Taylor Radius" } });
@@ -70,10 +67,6 @@ describe("contact page", () => {
     fireEvent.click(screen.getByRole("button", { name: "Send Inquiry" }));
 
     expect(screen.getByRole("button", { name: "Sending..." })).toBeDisabled();
-
-    await act(async () => {
-      await vi.runAllTimersAsync();
-    });
 
     expect(await screen.findByRole("heading", { name: "Inquiry received" })).toBeInTheDocument();
     expect(
