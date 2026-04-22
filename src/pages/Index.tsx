@@ -1,14 +1,14 @@
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
-import heroBg from "@/assets/RADIUS-VIDEO-poster.jpg";
+import heroBg from "@/assets/company-hero.jpg";
 import heroVideo from "@/assets/RADIUS-VIDEO.mp4";
 import trammelCrowLogo from "@/assets/Trammel-Crow.webp";
 import tollBrothersLogo from "@/assets/Toll-Brothers.webp";
 import triPointeLogo from "@/assets/Tri-Pointe.webp";
 import mcAdamsLogo from "@/assets/McAdams.webp";
 import woodPartnersLogo from "@/assets/Wood-Partners.webp";
-import teamPhoto139 from "@/assets/139.jpg";
-import teamPhoto140 from "@/assets/140.jpg";
+import teamPhoto139 from "@/assets/RICKY.webp";
+import teamPhoto140 from "@/assets/GAURANG.webp";
 import teamPhoto141 from "@/assets/141.jpg";
 import teamPhoto142 from "@/assets/142.jpg";
 import investorCtaBg from "@/assets/investor.jpg";
