@@ -223,20 +223,22 @@ const Index = () => {
         </div>
       </section>
 
-      {/* FEATURED PROJECTS */}
-      <section className="fps" id="featured-projects">
-        <div className="fps__header">
-          <div className="fps__header-copy">
-            <div className="fps-ey rv">Active Pipeline</div>
-            <div className="st rv d1">Landmark Projects</div>
+      <div className="homepage-dark-flow">
+        {/* FEATURED PROJECTS */}
+        <section className="fps" id="featured-projects">
+          <div className="fps__header">
+            <div className="fps__header-copy">
+              <div className="fps-ey rv">Active Pipeline</div>
+              <div className="st rv d1">Landmark Projects</div>
+            </div>
+            <p className="sd rv d2">Current projects moving through entitlement, strategic development structuring, and retail execution across high-growth markets.</p>
           </div>
-          <p className="sd rv d2">Current projects moving through entitlement, strategic development structuring, and retail execution across high-growth markets.</p>
-        </div>
-        <HomepagePropertiesSlideshow projects={projects} />
-      </section>
+          <HomepagePropertiesSlideshow projects={projects} />
+        </section>
 
-      {/* SIGNATURE PROOF */}
-      <HomepageSignatureProofSection content={signatureProofContent} />
+        {/* SIGNATURE PROOF */}
+        <HomepageSignatureProofSection content={signatureProofContent} />
+      </div>
 
       {/* OUR TEAM */}
       <section className="team" id="team">
