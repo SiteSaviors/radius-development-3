@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
-import heroBg from "@/assets/company-hero.jpg";
+import heroPosterDesktop from "@/assets/HERO-POSTER-DESKTOP.webp";
+import heroPosterMobile from "@/assets/HERO-POSTER-MOBILE.webp";
 import heroVideo from "@/assets/RADIUS-VIDEO.mp4";
 import trammelCrowLogo from "@/assets/Trammel-Crow.webp";
 import tollBrothersLogo from "@/assets/Toll-Brothers.webp";
@@ -23,6 +24,7 @@ import { homepageAdvantageContent } from "@/content/homepageAdvantage";
 import { homepageCapabilities } from "@/content/homepageCapabilities";
 import { projects } from "@/content/projects";
 import { signatureProofContent } from "@/content/signatureProof";
+import { useIsMobile } from "@/hooks/use-mobile";
 import useRadiusCursor from "@/hooks/useRadiusCursor";
 
 const partnerLogoSlots = [
@@ -76,6 +78,9 @@ const teamMembers = [
 ] as const;
 
 const Index = () => {
+  const isMobile = useIsMobile();
+  const heroPoster = isMobile ? heroPosterMobile : heroPosterDesktop;
+
   useRadiusCursor();
 
   useEffect(() => {
@@ -147,7 +152,7 @@ const Index = () => {
 
       {/* HERO */}
       <section className="hero" id="hero">
-        <div className="hbg" id="hbg" style={{backgroundImage:`url(${heroBg})`}}>
+        <div className="hbg" id="hbg" style={{ backgroundImage: `url(${heroPoster})` }}>
           <video
             className="hbgv"
             id="hvideo"
@@ -155,7 +160,7 @@ const Index = () => {
             loop
             playsInline
             preload="metadata"
-            poster={heroBg}
+            poster={heroPoster}
             aria-hidden="true"
             disablePictureInPicture
           >

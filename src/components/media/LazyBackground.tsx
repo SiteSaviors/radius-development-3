@@ -30,6 +30,12 @@ const LazyBackground = ({
   const activeStyle = isMobile && mobileStyle ? { ...style, ...mobileStyle } : style;
 
   useEffect(() => {
+    if (eager && !loaded) {
+      setLoaded(true);
+    }
+  }, [eager, loaded]);
+
+  useEffect(() => {
     if (loaded) return;
 
     const node = containerRef.current;

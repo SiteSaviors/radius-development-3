@@ -342,6 +342,10 @@ const HomepagePropertiesSlideshow = ({ projects }: HomepagePropertiesSlideshowPr
         <div className="fps__track">
           {slides.map((slide, index) => {
             const isActive = index === activeIndex;
+            const eagerLoadSlide =
+              index === activeIndex ||
+              index === (activeIndex + 1) % slides.length ||
+              index === (activeIndex - 1 + slides.length) % slides.length;
 
             return (
               <article
@@ -364,7 +368,7 @@ const HomepagePropertiesSlideshow = ({ projects }: HomepagePropertiesSlideshowPr
                           ? slide.mobileImagePosition
                           : slide.imagePosition,
                       }}
-                      eager
+                      eager={eagerLoadSlide}
                       ariaHidden
                     />
                     <div className="fps-slide__scrim" />

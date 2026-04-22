@@ -19,6 +19,16 @@ Object.defineProperty(window, "scrollTo", {
   value: () => {},
 });
 
+Object.defineProperty(HTMLMediaElement.prototype, "pause", {
+  writable: true,
+  value: () => {},
+});
+
+Object.defineProperty(HTMLMediaElement.prototype, "play", {
+  writable: true,
+  value: () => Promise.resolve(),
+});
+
 class MockIntersectionObserver {
   observe() {}
   disconnect() {}
