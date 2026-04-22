@@ -232,7 +232,7 @@ const Company = () => {
           </div>
         </section>
 
-        <section className="company-team" aria-labelledby="company-team-title">
+        <section className="company-team" id="meet-the-team" aria-labelledby="company-team-title">
           <div className="company-team-inner">
             <h2 id="company-team-title" className="company-team-title">
               {companyTeam.title}

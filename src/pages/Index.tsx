@@ -252,18 +252,25 @@ const Index = () => {
           <div className="teammedia rv d1">
             <div className="teamgrid">
               {teamMembers.map((member, index) => (
-                <div key={member.name} className={`teamcard ${member.theme} rv d${Math.min(index + 1, 4)}`}>
+                <Link
+                  key={member.name}
+                  to="/company#meet-the-team"
+                  className={`teamcard ${member.theme} rv d${Math.min(index + 1, 4)}`}
+                >
                   <LazyBackground className="teamimage" image={member.image} ariaHidden />
                   <div className="teammeta">
                     <div className="teamname">{member.name}</div>
                     <div className="teamrole">{member.role}</div>
                   </div>
-                </div>
+                </Link>
               ))}
             </div>
           </div>
 
-          <a href="#about" className="team-cta rv d3">About Us</a>
+          <Link to="/company" className="team-cta rv d3">
+            About Us
+            <span aria-hidden="true">→</span>
+          </Link>
         </div>
       </section>
 
