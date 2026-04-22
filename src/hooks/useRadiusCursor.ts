@@ -4,6 +4,13 @@ const DEFAULT_HOVER_SELECTOR = ".bp,.bg,.homepage-advantage__visual,.homepage-ad
 
 const useRadiusCursor = (hoverSelector: string = DEFAULT_HOVER_SELECTOR) => {
   useEffect(() => {
+    const supportsFinePointer =
+      typeof window.matchMedia === "function"
+        ? window.matchMedia("(hover: hover) and (pointer: fine)").matches
+        : true;
+
+    if (!supportsFinePointer) return;
+
     const cur = document.getElementById("cur");
     const cdot = document.getElementById("cdot");
     if (!cur || !cdot) return;
@@ -30,23 +37,61 @@ const useRadiusCursor = (hoverSelector: string = DEFAULT_HOVER_SELECTOR) => {
       cur.style.top = `${cy}px`;
       raf = requestAnimationFrame(animate);
     };
-    raf = requestAnimationFrame(animate);
 
-    const hoverElements = Array.from(document.querySelectorAll<HTMLElement>(hoverSelector));
-    const enter = () => cur.classList.add("x");
-    const leave = () => cur.classList.remove("x");
-    hoverElements.forEach((element) => {
-      element.addEventListener("mouseenter", enter);
-      element.addEventListener("mouseleave", leave);
-    });
+    const startAnimation = () => {
+      if (!raf && !document.hidden) {
+        raf = requestAnimationFrame(animate);
+      }
+    };
+
+    const stopAnimation = () => {
+      if (raf) {
+        cancelAnimationFrame(raf);
+        raf = 0;
+      }
+    };
+
+    const onMouseOver = (event: MouseEvent) => {
+      if (!(event.target instanceof Element)) return;
+      if (event.target.closest(hoverSelector)) {
+        cur.classList.add("x");
+      }
+    };
+
+    const onMouseOut = (event: MouseEvent) => {
+      if (!(event.target instanceof Element)) return;
+
+      const currentHoverTarget = event.target.closest(hoverSelector);
+      if (!currentHoverTarget) return;
+
+      const nextHoverTarget =
+        event.relatedTarget instanceof Element ? event.relatedTarget.closest(hoverSelector) : null;
+
+      if (nextHoverTarget) return;
+      cur.classList.remove("x");
+    };
+
+    const onVisibilityChange = () => {
+      if (document.hidden) {
+        stopAnimation();
+        return;
+      }
+
+      startAnimation();
+    };
+
+    document.addEventListener("mouseover", onMouseOver);
+    document.addEventListener("mouseout", onMouseOut);
+    document.addEventListener("visibilitychange", onVisibilityChange);
+    startAnimation();
 
     return () => {
       document.removeEventListener("mousemove", onMove);
-      cancelAnimationFrame(raf);
-      hoverElements.forEach((element) => {
-        element.removeEventListener("mouseenter", enter);
-        element.removeEventListener("mouseleave", leave);
-      });
+      document.removeEventListener("mouseover", onMouseOver);
+      document.removeEventListener("mouseout", onMouseOut);
+      document.removeEventListener("visibilitychange", onVisibilityChange);
+      stopAnimation();
+      cur.classList.remove("x");
     };
   }, [hoverSelector]);
 };
