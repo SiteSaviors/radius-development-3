@@ -33,11 +33,11 @@ export const homepageAdvantageContent: HomepageAdvantageContent = {
   eyebrow: "THE RADIUS ADVANTAGE",
   title: "Building Beyond Expectations",
   body: [
-    "Our creative approach to real estate and principal-led execution have allowed Radius to invest across mixed-use, affordable housing, residential condos, commercial office, and retail with unusual discipline and range.",
+    "Radius combines entrepreneurial grit with principal-led execution to invest across mixed-use, affordable housing, residential condominiums, office, and retail—bringing discipline, versatility, and conviction to every opportunity.",
     "We work collaboratively across our business units to add value to partners, elevate execution, and solve complex real estate challenges in ways that create stronger outcomes for the communities we serve.",
   ],
   ctaLabel: "Learn More",
-  ctaHref: "/company",
+  ctaHref: "/what-we-do",
   image: whoWeAreBg,
   imageAlt: "Modern multifamily development exterior representing Radius platform execution",
   proofEyebrow: "Radius at a Glance",
