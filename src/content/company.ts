@@ -1,9 +1,9 @@
-import companyAboutImage from "@/assets/START (1).jpg";
+import companyAboutImage from "@/assets/START-2200-q86.webp";
 import companyAboutInsetImage from "@/assets/3.jpg";
 import teamPhoto139 from "@/assets/RICKY.webp";
 import teamPhoto140 from "@/assets/GAURANG.webp";
-import teamPhoto141 from "@/assets/141.jpg";
-import teamPhoto142 from "@/assets/142.jpg";
+import teamPhoto141 from "@/assets/141-2000-q86.webp";
+import teamPhoto142 from "@/assets/142-2000-q86.webp";
 import teamPhotoKyle from "@/assets/kyle.jpeg";
 import teamPhotoBethlehem from "@/assets/bethlehem.png";
 

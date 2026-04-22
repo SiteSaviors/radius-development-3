@@ -1,6 +1,6 @@
 import jointVenturesBg from "@/assets/joint-ventures.jpg";
-import landEntitlementBg from "@/assets/land-entitlement.jpg";
-import luxRetailBg from "@/assets/lux-retail.jpg";
+import landEntitlementBg from "@/assets/LAND-ENTITLEMENT-2200-q86.webp";
+import luxRetailBg from "@/assets/LUX-RETAIL-2200-q86.webp";
 
 export type HomepageCapabilityId = "land" | "development" | "retail";
 

@@ -1,11 +1,11 @@
 import type { CSSProperties, KeyboardEvent } from "react";
 import { useEffect, useRef, useState } from "react";
-import whatWeDoHeroBg from "@/assets/WHAT_WE_DO.webp";
-import whatWeDoHeroMobileBg from "@/assets/WWD-HERO-MOB.webp";
-import universeCommercialImage from "@/assets/CARY-E.jpg";
-import universeMixedUseImage from "@/assets/Franklin.jpg";
-import universeResidentialImage from "@/assets/Pittard.jpg";
-import universeRetailImage from "@/assets/lux-retail.jpg";
+import whatWeDoHeroBg from "@/assets/WHAT-WE-DO-2200-q86.webp";
+import whatWeDoHeroMobileBg from "@/assets/WWD-HERO-MOB-2200-q86.webp";
+import universeCommercialImage from "@/assets/CARY-E-2200-q86.webp";
+import universeMixedUseImage from "@/assets/FRANKLIN-2200-q86.webp";
+import universeResidentialImage from "@/assets/PITTARD-2200-q86.webp";
+import universeRetailImage from "@/assets/LUX-RETAIL-2200-q86.webp";
 import LazyBackground from "@/components/media/LazyBackground";
 import SiteFooter from "@/components/site/SiteFooter";
 import SiteHeader from "@/components/site/SiteHeader";

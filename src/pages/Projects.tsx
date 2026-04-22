@@ -12,7 +12,7 @@ import {
 import LazyBackground from "@/components/media/LazyBackground";
 import useRadiusCursor from "@/hooks/useRadiusCursor";
 import projectsHeroBg from "@/assets/8.jpg";
-import investorCtaBg from "@/assets/investor.jpg";
+import investorCtaBg from "@/assets/INVESTOR-2000-q86.webp";
 
 const projectsHeroMobileBg = projectsHeroBg;
 

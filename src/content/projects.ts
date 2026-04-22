@@ -1,12 +1,12 @@
-import caryEstatesBg from "@/assets/CARY-E.jpg";
-import caryEstatesMobileBg from "@/assets/CARY-E.jpg"; // TODO: replace with mobile crop
-import franklinBg from "@/assets/Franklin.jpg";
+import caryEstatesBg from "@/assets/CARY-E-2200-q86.webp";
+import caryEstatesMobileBg from "@/assets/CARY-E-2200-q86.webp"; // TODO: replace with mobile crop
+import franklinBg from "@/assets/FRANKLIN-2200-q86.webp";
 import franklinMobileBg from "@/assets/Franklin-Mobile.jpg";
-import pittardBg from "@/assets/Pittard.jpg";
-import pittardMobileBg from "@/assets/Pittard.jpg"; // TODO: replace with mobile crop
-import rduTownBg from "@/assets/RDU-Town.jpg";
-import rduTownMobileBg from "@/assets/RDU-Town.jpg"; // TODO: replace with mobile crop
-import shilohBg from "@/assets/Shiloh.jpg";
+import pittardBg from "@/assets/PITTARD-2200-q86.webp";
+import pittardMobileBg from "@/assets/PITTARD-2200-q86.webp"; // TODO: replace with mobile crop
+import rduTownBg from "@/assets/RDU-TOWN-2200-q86.webp";
+import rduTownMobileBg from "@/assets/RDU-TOWN-2200-q86.webp"; // TODO: replace with mobile crop
+import shilohBg from "@/assets/SHILOH-2200-q86.webp";
 import shilohMobileBg from "@/assets/SHILOH-MOBILE.jpg";
 import terracesBg from "@/assets/TERRACES.jpg";
 import terracesMobileBg from "@/assets/TERRACES-MOBILE.jpg"; // TODO: replace with mobile crop
