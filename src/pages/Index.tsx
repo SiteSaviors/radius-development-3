@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import heroPosterDesktop from "@/assets/HERO-POSTER-DESKTOP.webp";
 import heroPosterMobile from "@/assets/HERO-POSTER-MOBILE.webp";
-import heroVideo from "@/assets/RADIUS-LOOP-VIDEO.mp4";
+import heroVideo from "@/assets/RADIUS-VIDEO.mp4";
 import trammelCrowLogo from "@/assets/Trammel-Crow.webp";
 import tollBrothersLogo from "@/assets/Toll-Brothers.webp";
 import triPointeLogo from "@/assets/Tri-Pointe.webp";
@@ -170,11 +170,12 @@ const Index = () => {
         <div className="hwm" id="hwm">RADIUS</div>
         <div className="hinner">
           <div className="glass text-left">
-            <div className="ey">Residential &nbsp;·&nbsp; Commercial &nbsp;·&nbsp; Land</div>
+            <div className="ey">Land &nbsp;·&nbsp; Development &nbsp;·&nbsp; Retail</div>
             <h1>
-              Investing in What Comes Next.
+              We Find High Value Development Opportunities{" "}
+              <span className="hero-headline-accent">Before the Market Sees Them</span>
             </h1>
-            <p className="hsp">We identify and develop high-potential real estate opportunities across Raleigh-Durham and the Research Triangle, one of America’s fastest-growing markets.</p>
+            <p className="hsp">Land acquisition, development partnerships, and scalable retail concepts across high-growth markets.</p>
             <div className="hbtns">
               <Link to="/projects" className="bp">View Projects</Link>
               <a href="#" className="bg">Investor Portal &nbsp;→</a>

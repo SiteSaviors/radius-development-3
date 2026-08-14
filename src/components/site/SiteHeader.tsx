@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import galaLogo from "@/assets/gala-cre-logo.png";
 
 type SiteHeaderProps = {
   currentPath: string;
@@ -32,9 +31,7 @@ const SiteHeader = ({ currentPath }: SiteHeaderProps) => {
 
   return (
     <nav className={scrolled ? "scrolled" : ""}>
-      <Link to="/" className="nlogo" aria-label="Gala CRE Group home">
-        <img src={galaLogo} alt="Gala CRE Group" />
-      </Link>
+      <Link to="/" className="nlogo">radius</Link>
       <ul className="nlinks">
         <li><Link to="/what-we-do">What We Do</Link></li>
         <li><Link to="/projects">Current Projects</Link></li>
