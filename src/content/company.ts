@@ -3,7 +3,6 @@ import companyAboutInsetImage from "@/assets/3.jpg";
 import teamPhoto139 from "@/assets/RICKY.webp";
 import teamPhoto140 from "@/assets/GAURANG.webp";
 import teamPhoto141 from "@/assets/141-2000-q86.webp";
-import teamPhoto142 from "@/assets/142-2000-q86.webp";
 import teamPhotoKyle from "@/assets/kyle.jpeg";
 import teamPhotoBethlehem from "@/assets/bethlehem.png";
 
@@ -226,14 +225,6 @@ export const companyTeam: CompanyTeamContent = {
       image: teamPhoto141,
       imageAlt: "Portrait of Tarek Morshed",
       bio: "Tarek Morshed is a General Partner of Radius Development. In real estate since 1995, he brings a deep range of experience in value-add and ground-up development projects as a General Partner in his career. Re-positioning multi-family and mixed-use assets, ground-up multi-family developments, urban infill residential/mixed-use development and land development in Austin and beyond have been his primary focuses. He currently focuses on land development projects in Austin and beyond as well as niche strategies such as multi-family acquisitions in secondary markets. Additionally, Tarek is CEO of The Morshed Group at Sotheby's International, a longstanding boutique real estate broker practice in Austin, TX focused on serving the residential and commercial needs of Founders/Csuite/VC’s demographics. The Morshed Group is ranked in the top 1%. Mr. Morshed is a graduate of University of Texas with a Bachelor's in Accounting, a program consistently ranked top 5 in the nation.",
-    },
-    {
-      id: "elizabeth-eichen",
-      name: "Elizabeth Eichen",
-      role: "Head of Investor Relations",
-      image: teamPhoto142,
-      imageAlt: "Portrait of Elizabeth Eichen",
-      bio: "Elizabeth Eichen is a dedicated professional skilled in connecting clients with optimal investment opportunities. She analyzes market trends, evaluates investments, and crafts strategic recommendations with attention to detail and a deep understanding of the financial landscape, providing valuable insights that align with clients' goals.",
     },
     {
       id: "bethlehem-gonzalez",
