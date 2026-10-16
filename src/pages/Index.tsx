@@ -11,7 +11,6 @@ import woodPartnersLogo from "@/assets/Wood-Partners.webp";
 import teamPhoto139 from "@/assets/RICKY.webp";
 import teamPhoto140 from "@/assets/GAURANG.webp";
 import teamPhoto141 from "@/assets/141-2000-q86.webp";
-import teamPhoto142 from "@/assets/142-2000-q86.webp";
 import investorCtaBg from "@/assets/INVESTOR-2000-q86.webp";
 import HomepageAdvantageSection from "@/components/home/HomepageAdvantageSection";
 import HomepagePropertiesSlideshow from "@/components/home/HomepagePropertiesSlideshow";
@@ -68,12 +67,6 @@ const teamMembers = [
     role: "General Partner",
     theme: "team-03",
     image: teamPhoto141,
-  },
-  {
-    name: "Elizabeth Eichen",
-    role: "Head of Investor Relations",
-    theme: "team-04",
-    image: teamPhoto142,
   },
 ] as const;
 
